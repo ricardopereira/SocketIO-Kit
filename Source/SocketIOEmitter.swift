@@ -8,6 +8,17 @@
 
 import Foundation
 
-class SocketIOEmitter {
+protocol SocketIOEmitterProtocol {
+    
+    func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEmitter;
+    
+}
+
+class SocketIOEmitter: SocketIOEmitterProtocol {
+    
+    func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEmitter {
+        
+        return self
+    }
     
 }
