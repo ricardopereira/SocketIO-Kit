@@ -21,11 +21,40 @@ class SocketIOEventHandler: SocketIOEventHandlerProtocol {
     lazy var activeEvents = [String: SocketIOCallback]()
     lazy var globalEvents = [SocketIOCallback]()
     
+    func performEvent(event: String, withMessage message: String) {
+        // Call current callback
+        if let currentCallback = activeEvents[event] {
+            #if DEBUG
+                println("Call event: \"\(event)\"")
+            #endif
+            currentCallback(message)
+        }
+        else {
+            #if DEBUG
+                println("No events")
+            #endif
+        }
+    }
+    
+    func performGlobalEvents(message: String) {
+        #if DEBUG
+            println("Call global events: \(globalEvents.count)")
+        #endif
+        for callback in globalEvents {
+            callback(message)
+        }
+    }
+
     func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         // Check current callback
         if let currentCallback = activeEvents[event] {
             #if DEBUG
                 println("Set event \"\(event)\" with new callback")
+            #endif
+        }
+        else {
+            #if DEBUG
+                println("Set callback event \"\(event)\"")
             #endif
         }
         // Set new callback
@@ -43,6 +72,9 @@ class SocketIOEventHandler: SocketIOEventHandlerProtocol {
     }
     
     func off() -> SocketIOEventHandler {
+        #if DEBUG
+            println("Remove all events")
+        #endif
         if (activeEvents.count > 0) {
             // Remove all events
             activeEvents = [String: SocketIOCallback]()

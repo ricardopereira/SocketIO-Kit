@@ -14,4 +14,9 @@ class SocketIOConnection: SocketIOEventHandler {
         
     }
     
+    func emit(event: String, withMessage message: String) {
+        performEvent(event, withMessage: message)
+        performGlobalEvents(message)
+    }
+    
 }

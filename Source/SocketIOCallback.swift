@@ -8,4 +8,4 @@
 
 import Foundation
 
-typealias SocketIOCallback = () -> ()
+typealias SocketIOCallback = (AnyObject) -> (SocketIOCallbackResult)
