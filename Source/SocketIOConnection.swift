@@ -8,6 +8,10 @@
 
 import Foundation
 
-class SocketIOConnection: SocketIOEmitter {
+class SocketIOConnection: SocketIOEventHandler {
+    
+    override init() {
+        
+    }
     
 }
