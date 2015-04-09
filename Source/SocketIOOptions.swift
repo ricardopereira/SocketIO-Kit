@@ -8,6 +8,12 @@
 
 import Foundation
 
-class SocketIOOptions {
+struct SocketIOOptions {
+    
+    var reconnect = false
+    
+    init() {
+        
+    }
     
 }

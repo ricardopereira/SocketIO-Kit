@@ -8,6 +8,6 @@
 
 import Foundation
 
-class SocketIOTransport {
+protocol SocketIOTransport {
     
 }

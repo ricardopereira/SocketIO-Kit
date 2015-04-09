@@ -12,24 +12,37 @@ class SocketIO: SocketIOEventHandlerProtocol {
     
     lazy var connection = SocketIOConnection()
     
-    init(url: String) {
-        
+    convenience init?(url: String) {
+        self.init(nsurl: NSURL(string: url))
     }
     
-    init(url: NSURL) {
-        
+    convenience init?(nsurl: NSURL?) {
+        self.init(nsurl: nsurl, withOptions: SocketIOOptions())
     }
     
-    init(url: String, withOptions option: SocketIOOptions) {
-        
+    convenience init?(url: String, withOptions option: SocketIOOptions) {
+        self.init(nsurl: NSURL(string: url), withOptions: option)
     }
 
-    init(url: NSURL, withOptions option: SocketIOOptions) {
+    init?(nsurl: NSURL?, withOptions option: SocketIOOptions) {
+        if nsurl == nil {
+            return nil
+        }
+        else if !NSURLConnection.canHandleRequest(NSURLRequest(URL: nsurl!)) {
+            return nil
+        }
+        else {
+            println("URL is \(nsurl!.absoluteString)")
+        }
         
     }
     
     func connect() {
         
+    }
+    
+    func connect(customTransport: SocketIOTransport) {
+        connection = SocketIOConnection(transport: customTransport)
     }
     
     
