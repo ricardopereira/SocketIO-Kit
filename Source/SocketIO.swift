@@ -8,12 +8,12 @@
 
 import Foundation
 
-class SocketIO: SocketIOEventHandlerProtocol {
+class SocketIO: SocketIOEventHandlerProtocol, SocketIOEmitter {
     
-    let url: NSURL
+    private let url: NSURL
         
     // Default transport: WebSocket
-    lazy var connection = SocketIOConnection(transport: SocketIOWebSocket())
+    private lazy var connection = SocketIOConnection(transport: SocketIOWebSocket())
     
     convenience init(url: String) {
         if let url = NSURL(string: url) {
@@ -41,25 +41,28 @@ class SocketIO: SocketIOEventHandlerProtocol {
 
     init(nsurl: NSURL, withOptions options: SocketIOOptions) {
         url = nsurl
+        
+        // ToDo: Options
     }
     
-    func connect() -> Bool {
-
-        return canConnect(url)
+    final func connect() {
+        //connection.
     }
     
-    func connect(customTransport: SocketIOTransport) -> Bool {
-        if canConnect(url) {
-            connection = SocketIOConnection(transport: customTransport)
-            return true
-        }
-        else {
-            return false
-        }
+    final func connect(customTransport: SocketIOTransport) {
+        connection = SocketIOConnection(transport: customTransport)
     }
     
     func canConnect(url: NSURL) -> Bool {
+        // ?
         return NSURLConnection.canHandleRequest(NSURLRequest(URL: url))
+    }
+    
+    
+    //MARK: SocketIOEmitter
+    
+    func emit(event: String, withMessage message: String) {
+        connection.emit(event, withMessage: message)
     }
     
     

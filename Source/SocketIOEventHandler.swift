@@ -18,10 +18,10 @@ protocol SocketIOEventHandlerProtocol {
 
 class SocketIOEventHandler: SocketIOEventHandlerProtocol {
     
-    lazy var activeEvents = [String: SocketIOCallback]()
-    lazy var globalEvents = [SocketIOCallback]()
+    private lazy var activeEvents = [String: SocketIOCallback]()
+    private lazy var globalEvents = [SocketIOCallback]()
     
-    func performEvent(event: String, withMessage message: String) {
+    final func performEvent(event: String, withMessage message: String) {
         // Call current callback
         if let currentCallback = activeEvents[event] {
             #if DEBUG
@@ -36,7 +36,7 @@ class SocketIOEventHandler: SocketIOEventHandlerProtocol {
         }
     }
     
-    func performGlobalEvents(message: String) {
+    final func performGlobalEvents(message: String) {
         #if DEBUG
             println("Call global events: \(globalEvents.count)")
         #endif

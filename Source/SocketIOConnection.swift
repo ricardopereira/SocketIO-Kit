@@ -8,9 +8,9 @@
 
 import Foundation
 
-class SocketIOConnection: SocketIOEventHandler {
+class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
     
-    let transport: SocketIOTransport
+    private let transport: SocketIOTransport
     
     init(transport: SocketIOTransport) {
         // Connection transport

@@ -8,8 +8,9 @@
 
 import Foundation
 
-class SocketIOCallbackResult {
+enum SocketIOCallbackResult {
     
-    var success = false
+    case Success(status: Int)
+    case Failed(message: String)
     
 }
