@@ -12,11 +12,6 @@ class SocketIOConnection: SocketIOEventHandler {
     
     let transport: SocketIOTransport
     
-    convenience override init() {
-        // Default transport: WebSocket
-        self.init(transport: SocketIOWebSocket())
-    }
-    
     init(transport: SocketIOTransport) {
         // Connection transport
         self.transport = transport

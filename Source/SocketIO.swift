@@ -10,39 +10,56 @@ import Foundation
 
 class SocketIO: SocketIOEventHandlerProtocol {
     
-    lazy var connection = SocketIOConnection()
+    let url: NSURL
+        
+    // Default transport: WebSocket
+    lazy var connection = SocketIOConnection(transport: SocketIOWebSocket())
     
-    convenience init?(url: String) {
-        self.init(nsurl: NSURL(string: url))
+    convenience init(url: String) {
+        if let url = NSURL(string: url) {
+            self.init(nsurl: url)
+        }
+        else {
+            assertionFailure("Invalid URL")
+            self.init(url: "")
+        }
     }
     
-    convenience init?(nsurl: NSURL?) {
+    convenience init(nsurl: NSURL) {
         self.init(nsurl: nsurl, withOptions: SocketIOOptions())
     }
     
-    convenience init?(url: String, withOptions option: SocketIOOptions) {
-        self.init(nsurl: NSURL(string: url), withOptions: option)
-    }
-
-    init?(nsurl: NSURL?, withOptions option: SocketIOOptions) {
-        if nsurl == nil {
-            return nil
-        }
-        else if !NSURLConnection.canHandleRequest(NSURLRequest(URL: nsurl!)) {
-            return nil
+    convenience init(url: String, withOptions options: SocketIOOptions) {
+        if let url = NSURL(string: url) {
+            self.init(nsurl: url, withOptions: options)
         }
         else {
-            println("URL is \(nsurl!.absoluteString)")
+            assertionFailure("Invalid URL")
+            self.init(url: "", withOptions: options)
         }
-        
+    }
+
+    init(nsurl: NSURL, withOptions options: SocketIOOptions) {
+        url = nsurl
     }
     
-    func connect() {
-        
+    func connect() -> Bool {
+
+        return canConnect(url)
     }
     
-    func connect(customTransport: SocketIOTransport) {
-        connection = SocketIOConnection(transport: customTransport)
+    func connect(customTransport: SocketIOTransport) -> Bool {
+        if canConnect(url) {
+            connection = SocketIOConnection(transport: customTransport)
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    func canConnect(url: NSURL) -> Bool {
+        return NSURLConnection.canHandleRequest(NSURLRequest(URL: url))
     }
     
     

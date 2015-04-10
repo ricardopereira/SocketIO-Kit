@@ -44,6 +44,10 @@ class SocketIOEventHandler: SocketIOEventHandlerProtocol {
             callback(message)
         }
     }
+    
+    func on(event: SocketIOEvent, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
+        return self.on(event.description, withCallback: callback)
+    }
 
     func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         // Check current callback
