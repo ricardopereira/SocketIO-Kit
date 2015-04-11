@@ -45,7 +45,11 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
     
     func open(serverUrl: NSURL) {
         // GET request for Handshake
-        let url = NSURL(string: "/socket.io/?transport=polling&b64=1", relativeToURL: serverUrl)!;
+        let url = NSURL(string: "socket.io/?transport=polling&b64=1", relativeToURL: serverUrl.URLByAppendingTrailingSlash())!;
+        #if DEBUG
+            println("Data: \(url)")
+        #endif
+
         let request = NSURLRequest(URL: url)
         
         requester.sendRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
