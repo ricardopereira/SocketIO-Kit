@@ -46,11 +46,15 @@ class SocketIO: SocketIOEventHandlerProtocol, SocketIOEmitter {
     }
     
     final func connect() {
-        //connection.
+        connection.open(url)
     }
     
     final func connect(customTransport: SocketIOTransport) {
         connection = SocketIOConnection(transport: customTransport)
+    }
+    
+    final func connect(customRequest: SocketIORequester, customTransport: SocketIOTransport) {
+        connection = SocketIOConnection(requester: customRequest, transport: customTransport)
     }
     
     func canConnect(url: NSURL) -> Bool {
