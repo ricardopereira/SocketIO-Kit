@@ -11,8 +11,10 @@ import Foundation
 // System events
 enum SocketIOEvent: String, Printable {
     
-    case Connect = "connect"
-    case Disconnect = "disconnect"
+    case Connected = "connected" //Called on a successful connection
+    case Disconnected = "disconnected" //Called on a disconnection
+    case ConnectError = "connect_error" //Called on a connection error
+    case ReconnectAttempt = "reconnect_attempt" //Attempt for reconnection
     
     var description: String {
         return self.rawValue

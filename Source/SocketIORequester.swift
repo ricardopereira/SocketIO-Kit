@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias RequestCompletionHandler = (NSData?, NSURLResponse?, NSError?) -> Void
+typealias RequestCompletionHandler = (NSData!, NSURLResponse?, NSError?) -> Void
 
 protocol SocketIORequester {
     

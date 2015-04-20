@@ -27,7 +27,22 @@ class SocketIOEventHandler: SocketIOEventHandlerProtocol {
             #if DEBUG
                 println("Call event: \"\(event)\"")
             #endif
-            currentCallback(message)
+            currentCallback(SocketIOArg.Message(message: message))
+        }
+        else {
+            #if DEBUG
+                println("No events")
+            #endif
+        }
+    }
+    
+    final func performEvent(event: String, withError error: NSError) {
+        // Call current callback
+        if let currentCallback = activeEvents[event] {
+            #if DEBUG
+                println("Call event: \"\(event)\"")
+            #endif
+            currentCallback(SocketIOArg.Error(error: error))
         }
         else {
             #if DEBUG
@@ -41,7 +56,7 @@ class SocketIOEventHandler: SocketIOEventHandlerProtocol {
             println("Call global events: \(globalEvents.count)")
         #endif
         for callback in globalEvents {
-            callback(message)
+            callback(SocketIOArg.Message(message: message))
         }
     }
     

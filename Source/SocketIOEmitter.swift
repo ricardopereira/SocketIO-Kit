@@ -10,6 +10,7 @@ import Foundation
 
 protocol SocketIOEmitter {
     
+    func emit(event: SocketIOEvent, withMessage message: String)
     func emit(event: String, withMessage message: String)
     
 }

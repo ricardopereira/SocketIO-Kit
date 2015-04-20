@@ -10,6 +10,8 @@ import Foundation
 
 class SocketIO: SocketIOEventHandlerProtocol, SocketIOEmitter {
     
+    static internal let name = "SocketIO"
+    
     private let url: NSURL
         
     // Default transport: WebSocket
@@ -20,7 +22,7 @@ class SocketIO: SocketIOEventHandlerProtocol, SocketIOEmitter {
             self.init(nsurl: url)
         }
         else {
-            assertionFailure("Invalid URL")
+            assertionFailure("\(SocketIO.name): Invalid URL")
             self.init(url: "")
         }
     }
@@ -34,7 +36,7 @@ class SocketIO: SocketIOEventHandlerProtocol, SocketIOEmitter {
             self.init(nsurl: url, withOptions: options)
         }
         else {
-            assertionFailure("Invalid URL")
+            assertionFailure("\(SocketIO.name): Invalid URL")
             self.init(url: "", withOptions: options)
         }
     }
@@ -64,6 +66,10 @@ class SocketIO: SocketIOEventHandlerProtocol, SocketIOEmitter {
     
     
     //MARK: SocketIOEmitter
+    
+    func emit(event: SocketIOEvent, withMessage message: String) {
+        emit(event.description, withMessage: message)
+    }
     
     func emit(event: String, withMessage message: String) {
         connection.emit(event, withMessage: message)
