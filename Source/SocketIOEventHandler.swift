@@ -42,7 +42,7 @@ class SocketIOEventHandler: SocketIOEventHandlerProtocol {
             #if DEBUG
                 println("Call event: \"\(event)\"")
             #endif
-            currentCallback(SocketIOArg.Error(error: error))
+            currentCallback(SocketIOArg.Error(error))
         }
         else {
             #if DEBUG
