@@ -99,39 +99,24 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
             // Bad request
             //Error: {"code":3,"message":"Bad request"} with response status code: 400
             
-            if let regex = NSRegularExpression(pattern: "^[0-9]{2,}:0", options: .CaseInsensitive, error: nil) {
-                let all = NSMakeRange(0, payload.length)
-                // Check pattern
-                let matchPattern = regex.rangeOfFirstMatchInString(payload as String, options: .ReportProgress, range: all)
-                let valid = matchPattern.location != NSNotFound
+            let jsonStr = SocketIOPayload.getStringPacket(payload)
+            
+            if let json = LumaJSON.parse(jsonStr) {
+                #if DEBUG
+                    println("JSON: \(json)")
+                #endif
                 
-                if let match = regex.firstMatchInString(payload as String, options: .ReportProgress, range: all) {
-                    let packet = NSMakeRange(match.range.length, payload.length - match.range.length)
-                    let string = payload.substringWithRange(packet)
-                    println("** \(string)")
-                }
-            }
-            
-            
-            let parsed = payload.componentsSeparatedByString(":0")
-            
-            if let jsonStr = parsed[1] as? String {
-                if let json = LumaJSON.parse(jsonStr) {
-                    #if DEBUG
-                        println("JSON: \(json)")
-                    #endif
+                if let sid = json["sid"] as? String {
+                    println("SID: \(sid)")
                     
-                    if let sid = json["sid"] as? String {
-                        println("SID: \(sid)")
-                        
-                        //transport.connect()
-                        
-                        //self.socket = WebSocket(url: NSURL(scheme: "ws", host: "localhost:8000", path: "/socket.io/?transport=websocket&sid=\(sid)")!)
-                        //self.socket?.delegate = self
-                        //self.socket?.connect()
-                    }
+                    //transport.connect()
+                    
+                    //self.socket = WebSocket(url: NSURL(scheme: "ws", host: "localhost:8000", path: "/socket.io/?transport=websocket&sid=\(sid)")!)
+                    //self.socket?.delegate = self
+                    //self.socket?.connect()
                 }
             }
+            
         }
     }
     
