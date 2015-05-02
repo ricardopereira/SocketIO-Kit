@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SocketIOJSONHandshake: SocketIOJSON {
+extension SocketIOHandshake: SocketIOJSON {
     
     static func parse(json: String) -> (Bool, SocketIOHandshake) {
         // Parse JSON

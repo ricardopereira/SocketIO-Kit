@@ -12,6 +12,27 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
     var socket: WebSocket?
     
+    func connect(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake) {
+        // WebSocket
+        if let scheme = hostUrl.scheme, let host = hostUrl.host, let port = hostUrl.port {
+            // Establish connection
+            if scheme.lowercaseString == "http" {
+                // Standard
+                socket = WebSocket(url: NSURL(scheme: "ws", host: "\(host):\(port)", path: "/socket.io/?transport=websocket&sid=\(handshake.sid)")!)
+            }
+            else {
+                // TLS
+                socket = WebSocket(url: NSURL(scheme: "wss", host: "\(host):\(port)", path: "/socket.io/?transport=websocket&sid=\(handshake.sid)")!)
+            }
+            
+            socket?.delegate = self
+            socket?.connect()
+        }
+    }
+    
+    
+    // MARK: WebSocketDelegate
+    
     func websocketDidConnect(socket: WebSocket) {
         println("Connect websocket")
         

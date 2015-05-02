@@ -10,4 +10,6 @@ import Foundation
 
 protocol SocketIOTransport {
     
+    func connect(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake)
+    
 }

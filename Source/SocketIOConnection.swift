@@ -43,12 +43,12 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
         super.init()
     }
     
-    func open(serverUrl: NSURL) {
+    func open(hostUrl: NSURL) {
         // GET request for Handshake
         //  - Indicate the transport: polling
         //  - b64: (XHR2 is not supported) signal the server that all binary data should be sent base64 encoded
         
-        let url = NSURL(string: "socket.io/?transport=polling&b64=1", relativeToURL: serverUrl.URLByAppendingTrailingSlash())!;
+        let url = NSURL(string: "socket.io/?transport=polling&b64=1", relativeToURL: hostUrl.URLByAppendingTrailingSlash())!;
         
         #if DEBUG
             println("\(SocketIO.name) - open: \(url)")
@@ -93,29 +93,26 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
                 println("\(SocketIO.name) - data with UTF8 encoding: \(payload)")
             #endif
             
-            // Parse string data (when response status code: 200)
-            //Example: 97:0{"sid":"G4uSss_etvVa6k-6AAAF","upgrades":["websocket"],"pingInterval":25000,"pingTimeout":60000}
-            
-            // Bad request
-            //Error: {"code":3,"message":"Bad request"} with response status code: 400
-            
+            // Interpret server response
             let jsonStr = SocketIOPayload.getStringPacket(payload)
             
-            let (valid, handshake) = SocketIOJSONHandshake.parse(jsonStr)
+            // Parse JSON info from response
+            let (valid, handshake) = SocketIOHandshake.parse(jsonStr)
             
-            if valid {
-                println("SID: \(handshake.sid)")
-                
-                //transport.connect()
-                
-                //self.socket = WebSocket(url: NSURL(scheme: "ws", host: "localhost:8000", path: "/socket.io/?transport=websocket&sid=\(sid)")!)
-                //self.socket?.delegate = self
-                //self.socket?.connect()
+            if valid, let url = response?.URL, let hostUrl = url.relativeURL() {
+                // Connect
+                transport.connect(hostUrl, withHandshake: handshake)
             }
             else {
                 // Teste
                 emit(.ConnectError, withError: NSError())
             }
+            
+            // Parse string data (when response status code: 200)
+            //Example: 97:0{"sid":"G4uSss_etvVa6k-6AAAF","upgrades":["websocket"],"pingInterval":25000,"pingTimeout":60000}
+            
+            // Bad request
+            //Error: {"code":3,"message":"Bad request"} with response status code: 400
         }
     }
     
