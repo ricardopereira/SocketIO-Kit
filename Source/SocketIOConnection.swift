@@ -101,22 +101,21 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
             
             let jsonStr = SocketIOPayload.getStringPacket(payload)
             
-            if let json = LumaJSON.parse(jsonStr) {
-                #if DEBUG
-                    println("JSON: \(json)")
-                #endif
-                
-                if let sid = json["sid"] as? String {
-                    println("SID: \(sid)")
-                    
-                    //transport.connect()
-                    
-                    //self.socket = WebSocket(url: NSURL(scheme: "ws", host: "localhost:8000", path: "/socket.io/?transport=websocket&sid=\(sid)")!)
-                    //self.socket?.delegate = self
-                    //self.socket?.connect()
-                }
-            }
+            let (valid, handshake) = SocketIOJSONHandshake.parse(jsonStr)
             
+            if valid {
+                println("SID: \(handshake.sid)")
+                
+                //transport.connect()
+                
+                //self.socket = WebSocket(url: NSURL(scheme: "ws", host: "localhost:8000", path: "/socket.io/?transport=websocket&sid=\(sid)")!)
+                //self.socket?.delegate = self
+                //self.socket?.connect()
+            }
+            else {
+                // Teste
+                emit(.ConnectError, withError: NSError())
+            }
         }
     }
     
