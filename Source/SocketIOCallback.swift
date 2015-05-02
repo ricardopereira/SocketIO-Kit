@@ -11,7 +11,7 @@ import Foundation
 enum SocketIOArg<E: NSError> {
     
     case Message(message: String)
-    case Error(E)
+    case Failure(E)
     case Binary(data: NSData)
     
 }
@@ -19,7 +19,7 @@ enum SocketIOArg<E: NSError> {
 enum SocketIOResult {
     
     case Success(status: Int)
-    case Failed(message: String)
+    case Failure(message: String)
     
 }
 

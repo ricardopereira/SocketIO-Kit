@@ -45,13 +45,18 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
     
     func open(serverUrl: NSURL) {
         // GET request for Handshake
+        //  - Indicate the transport: polling
+        //  - b64: (XHR2 is not supported) signal the server that all binary data should be sent base64 encoded
+        
         let url = NSURL(string: "socket.io/?transport=polling&b64=1", relativeToURL: serverUrl.URLByAppendingTrailingSlash())!;
+        
         #if DEBUG
             println("\(SocketIO.name) - open: \(url)")
         #endif
 
         let request = NSURLRequest(URL: url)
         
+        // Transport establishes a connection
         requester.sendRequest(request, completion: requestCompletion)
     }
     
@@ -66,21 +71,49 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
             println("\(SocketIO.name) - error: \(error)")
         #endif
         
-        // Catched error
+        // Got error
         if let currentError = error {
             emit(.ConnectError, withError: currentError)
             return
         }
         
-        if let dataStr = NSString(data: data, encoding: NSUTF8StringEncoding) {
+        // Receive Payload: payload is used for transports which do not support framing
+        //  - Format: <length1>:<packet1>
+        //  - Length: length of the packet in characters
+        //  - Packet: 0 for string data
+        
+        // Server responds with an open packet with JSON-encoded handshake data:
+        //  - Session id
+        //  - Possible transport upgrades
+        //  - Ping interval
+        //  - Ping timeout
+        
+        if let payload = NSString(data: data, encoding: NSUTF8StringEncoding) {
             #if DEBUG
-                println("\(SocketIO.name) - data with UTF8 encoding: \(dataStr)")
+                println("\(SocketIO.name) - data with UTF8 encoding: \(payload)")
             #endif
             
-            // Parse string data
-            //Example: 97:0{"sid":"G4uSss_etvVa6k-6AAAF","upgrades":["websocket"],"pingInterval":25000,"pingTimeout":60000} with response status code: 200
+            // Parse string data (when response status code: 200)
+            //Example: 97:0{"sid":"G4uSss_etvVa6k-6AAAF","upgrades":["websocket"],"pingInterval":25000,"pingTimeout":60000}
             
-            let parsed = dataStr.componentsSeparatedByString(":0")
+            // Bad request
+            //Error: {"code":3,"message":"Bad request"} with response status code: 400
+            
+            if let regex = NSRegularExpression(pattern: "^[0-9]{2,}:0", options: .CaseInsensitive, error: nil) {
+                let all = NSMakeRange(0, payload.length)
+                // Check pattern
+                let matchPattern = regex.rangeOfFirstMatchInString(payload as String, options: .ReportProgress, range: all)
+                let valid = matchPattern.location != NSNotFound
+                
+                if let match = regex.firstMatchInString(payload as String, options: .ReportProgress, range: all) {
+                    let packet = NSMakeRange(match.range.length, payload.length - match.range.length)
+                    let string = payload.substringWithRange(packet)
+                    println("** \(string)")
+                }
+            }
+            
+            
+            let parsed = payload.componentsSeparatedByString(":0")
             
             if let jsonStr = parsed[1] as? String {
                 if let json = LumaJSON.parse(jsonStr) {
@@ -99,8 +132,6 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
                     }
                 }
             }
-            
-            //Error: {"code":3,"message":"Bad request"} with response status code: 400
         }
     }
     
