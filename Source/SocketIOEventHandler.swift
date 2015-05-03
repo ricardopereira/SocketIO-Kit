@@ -36,7 +36,7 @@ class SocketIOEventHandler: SocketIOEventHandlerProtocol {
         }
     }
     
-    final func performEvent(event: String, withError error: NSError) {
+    final func performEvent(event: String, withError error: SocketIOError) {
         // Call current callback
         if let currentCallback = activeEvents[event] {
             #if DEBUG

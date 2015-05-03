@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SocketIOArg<E: NSError> {
+enum SocketIOArg<E: SocketIOError> {
     
     case Message(message: String)
     case Failure(E)
@@ -23,4 +23,4 @@ enum SocketIOResult {
     
 }
 
-typealias SocketIOCallback = (SocketIOArg<NSError>) -> (SocketIOResult)
+typealias SocketIOCallback = (SocketIOArg<SocketIOError>) -> (SocketIOResult)

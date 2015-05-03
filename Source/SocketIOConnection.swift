@@ -73,7 +73,7 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
         
         // Got error
         if let currentError = error {
-            emit(.ConnectError, withError: currentError)
+            emit(.ConnectError, withError: SocketIOError(error: currentError))
             return
         }
         
@@ -105,7 +105,7 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
             }
             else {
                 // Teste
-                emit(.ConnectError, withError: NSError())
+                emit(.ConnectError, withError: SocketIOError(message: jsonStr, withInfo: []))
             }
             
             // Parse string data (when response status code: 200)
@@ -128,11 +128,11 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
         performGlobalEvents(message)
     }
     
-    func emit(event: SocketIOEvent, withError error: NSError) {
+    func emit(event: SocketIOEvent, withError error: SocketIOError) {
         emit(event.description, withError: error)
     }
     
-    func emit(event: String, withError error: NSError) {
+    func emit(event: String, withError error: SocketIOError) {
         performEvent(event, withError: error)
     }
     
