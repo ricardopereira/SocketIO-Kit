@@ -37,7 +37,7 @@ extension NSURL {
         }
     }
     
-    func relativeURL() -> NSURL? {
+    var relativeURL: NSURL? {
         return NSURL(string: "\(self.scheme!)://\(self.host!):\(self.port!)")
     }
     

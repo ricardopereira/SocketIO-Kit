@@ -37,10 +37,10 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         println("Connect websocket")
         
         // Complete upgrade to WebSocket
-        //5: send payload to server
-        socket.writeString("5")
+        // 5 upgrade + 2 event
+        socket.writeString("52")
         
-        //6: ping server to keep connection alive
+        // Server flushes and closes old transport and switches to new
         
     }
     
@@ -54,6 +54,14 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         println("Message: \(text)")
+        
+        // <packet type id>[<data>]
+        // 4 message + 2 event
+        //Message: 42["chat message","lkjlkj"]
+        
+        //There's two distinct types of encodings
+        // - packet
+        // - payload
     }
     
 }
