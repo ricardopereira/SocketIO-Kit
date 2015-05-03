@@ -59,7 +59,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         
         if valid {
             switch (id, key) {
-            case (PacketTypeID.Ping, PacketTypeKey.Disconnect):
+            case (PacketTypeID.Message, PacketTypeKey.Connect):
                 println("done")
             default:
                 println("none")
