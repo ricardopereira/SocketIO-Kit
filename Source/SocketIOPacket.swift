@@ -8,6 +8,32 @@
 
 import Foundation
 
-class SocketIOPacket {
+enum PacketTypeID: Int {
+    
+    case Open
+    case Close
+    case Ping
+    case Pong
+    case Message
+    
+    var value: String {
+        return String(self.rawValue)
+    }
+    
+}
+
+enum PacketTypeKey: Int {
+    
+    case Connect
+    case Disconnect
+    case Event
+    case Ack
+    case Error
+    case BinaryEvent
+    case BinaryAck
+    
+    var value: String {
+        return String(self.rawValue)
+    }
     
 }
