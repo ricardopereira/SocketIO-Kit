@@ -37,3 +37,15 @@ enum PacketTypeKey: Int {
     }
     
 }
+
+class SocketIOPacket {
+    
+    static func decode(value: String) -> (Bool, PacketTypeID, PacketTypeKey) {
+        
+        let id = PacketTypeID(rawValue: 2)!
+        let key = PacketTypeKey(rawValue: 1)!
+        
+        return (true, id, key)
+    }
+    
+}

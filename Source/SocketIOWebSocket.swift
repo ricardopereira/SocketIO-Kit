@@ -55,6 +55,17 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         println("Message: \(text)")
         
+        let (valid, id, key) = SocketIOPacket.decode(text)
+        
+        if valid {
+            switch (id, key) {
+            case (PacketTypeID.Ping, PacketTypeKey.Disconnect):
+                println("done")
+            default:
+                println("none")
+            }
+        }
+        
         // <packet type id>[<data>]
         // 4 message + 2 event
         //Message: 42["chat message","lkjlkj"]
