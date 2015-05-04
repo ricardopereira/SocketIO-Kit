@@ -41,34 +41,37 @@ enum PacketTypeKey: Int {
 class SocketIOPacket {
     
     static private func regEx() -> NSRegularExpression? {
-        // Regular Expression: <length>:<packet>, added 0 for parse optimization
-        //because packet as suffix 0 for string data
+        // Regular Expression: <packet type>[<data>]
         return NSRegularExpression(pattern: "^[0-9][0-9]", options: .CaseInsensitive, error: nil)
     }
     
-    static func decode(value: String) -> (Bool, PacketTypeID, PacketTypeKey) {
+    static func decode(value: String) -> (Bool, PacketTypeID, PacketTypeKey, NSArray) {
         if let regex = regEx() {
             let all = NSMakeRange(0, count(value))
             
-            // Check pattern and get remaining part: packet type
+            // <packet type id>[<data>]
+            // 4 message + 2 event
+            
+            //42["chat message","example"]
+            //42["object message",{"id":1,"name":"Xpto"}]
+            
+            // Check pattern and get remaining part: message data
             if let match = regex.firstMatchInString(value, options: .ReportProgress, range: all) {
                 
                 // Data
                 let remaining = NSMakeRange(match.range.length, count(value) - match.range.length)
-                let data = (value as NSString).substringWithRange(remaining)
+                // Ex: ["object message",{"id":1,"name":"Xpto"}]
+                let remainingData = (value as NSString).substringWithRange(remaining)
                 
-                if !data.isEmpty, let jsonData = data.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+                var data = []
+                
+                if !remainingData.isEmpty, let jsonData = remainingData.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
                     // Parse JSON
                     var err: NSError?
                     let parsed: AnyObject? = NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableLeaves, error: &err)
                     
                     if let parsedArray = parsed as? NSArray {
-                        println(parsedArray[1])
-                        
-                        if let parsedDict = parsedArray[1] as? NSDictionary {
-                            
-                            println(parsedDict["name"])
-                        }
+                        data = parsedArray
                     }
                 }
 
@@ -76,11 +79,11 @@ class SocketIOPacket {
                 if let firstDigit = (value as NSString).substringToIndex(1).toInt(), let packetID = PacketTypeID(rawValue: firstDigit),
                     let secondDigit = (value as NSString).substringWithRange(NSMakeRange(1, 1)).toInt(), let packetKey = PacketTypeKey(rawValue: secondDigit)
                 {
-                    return (true, packetID, packetKey)
+                    return (true, packetID, packetKey, data)
                 }
             }
         }
-        return (false, PacketTypeID.Close, PacketTypeKey.Error)
+        return (false, PacketTypeID.Close, PacketTypeKey.Error, [])
     }
     
 }

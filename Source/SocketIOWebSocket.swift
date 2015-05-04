@@ -55,24 +55,31 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         println("Message: \(text)")
         
-        let (valid, id, key) = SocketIOPacket.decode(text)
+        let (valid, id, key, data) = SocketIOPacket.decode(text)
         
         if valid {
             switch (id, key) {
             case (PacketTypeID.Message, PacketTypeKey.Connect):
                 println("done")
+            case (PacketTypeID.Message, PacketTypeKey.Event):
+                // Message data
+                if data.count == 2 {
+                    
+                    println(data[0]) // Event name
+                    println(data[1]) // String or NSDictionary
+                    
+                    if let dict = data[1] as? NSDictionary {
+                        println(dict["name"])
+                    }
+                    else {
+                        
+                    }
+                }
             default:
                 println("none")
             }
         }
-        
-        // <packet type id>[<data>]
-        // 4 message + 2 event
-        
-        //42["chat message","lkjlkj"]
-
-        //42["json message",{"people":1,"name":"Obama"}]
-        
+                
         //There's two distinct types of encodings
         // - packet
         // - payload
