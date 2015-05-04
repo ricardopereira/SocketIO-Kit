@@ -71,7 +71,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         
         //42["chat message","lkjlkj"]
 
-        //42["json message",{"people":1,"name":"Ricardo Pereira"}]
+        //42["json message",{"people":1,"name":"Obama"}]
         
         //There's two distinct types of encodings
         // - packet
