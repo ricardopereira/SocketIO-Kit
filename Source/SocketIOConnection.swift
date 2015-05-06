@@ -8,28 +8,11 @@
 
 import Foundation
 
-private class SessionRequest: SocketIORequester {
-    
-    // Request session
-    private let session: NSURLSession
-    // Handling a lot of requests at once
-    private var requestsQueue = NSOperationQueue()
-    
-    init() {
-        session = NSURLSession(configuration: NSURLSessionConfiguration.ephemeralSessionConfiguration(), delegate: nil, delegateQueue: self.requestsQueue)
-    }
-    
-    func sendRequest(request: NSURLRequest, completion: RequestCompletionHandler) {
-        // Do request
-        session.dataTaskWithRequest(request, completionHandler: completion).resume()
-    }
-    
-}
-
-class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter, SocketIOTransportDelegate {
+class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
     
     private let requester: SocketIORequester
     private let transport: SocketIOTransport
+    private let transportDelegate: TransportDelegate
     
     convenience init(transport: SocketIOTransport.Type) {
         self.init(requester: SessionRequest(), transport: transport)
@@ -38,9 +21,13 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter, SocketIOTranspo
     init(requester: SocketIORequester, transport: SocketIOTransport.Type) {
         // Connection transport
         self.requester = requester
-        self.transport = transport(delegate: self)
+        self.transportDelegate = TransportDelegate()
+        self.transport = transport(delegate: transportDelegate)
         // Designated
         super.init()
+        
+        // ToDo - Don't like this solution! (RP)
+        self.transportDelegate.connection = self
     }
     
     func open(hostUrl: NSURL) {
@@ -136,8 +123,41 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter, SocketIOTranspo
         performEvent(event, withError: error)
     }
     
+}
+
+
+// MARK: Private Classes
+
+private class SessionRequest: SocketIORequester {
     
-    // MARK: SocketIOTransportDelegate
+    // Request session
+    private let session: NSURLSession
+    // Handling a lot of requests at once
+    private var requestsQueue = NSOperationQueue()
+    
+    init() {
+        session = NSURLSession(configuration: NSURLSessionConfiguration.ephemeralSessionConfiguration(), delegate: nil, delegateQueue: self.requestsQueue)
+    }
+    
+    func sendRequest(request: NSURLRequest, completion: RequestCompletionHandler) {
+        // Do request
+        session.dataTaskWithRequest(request, completionHandler: completion).resume()
+    }
+    
+}
+
+private class TransportDelegate: SocketIOTransportDelegate {
+    
+    private var internalConnection: SocketIOConnection!
+
+    var connection: SocketIOConnection {
+        get {
+            return internalConnection
+        }
+        set(value) {
+            self.internalConnection = value
+        }
+    }
     
     func didReceiveMessage(event: String, withString message: String) {
         
