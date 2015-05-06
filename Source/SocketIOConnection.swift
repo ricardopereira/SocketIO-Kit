@@ -113,6 +113,8 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
     final func emit(event: String, withMessage message: String) {
         performEvent(event, withMessage: message)
         performGlobalEvents(message)
+        
+        // ToDo - Send message
     }
     
     func emit(event: SocketIOEvent, withError error: SocketIOError) {
@@ -121,6 +123,8 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
     
     func emit(event: String, withError error: SocketIOError) {
         performEvent(event, withError: error)
+        
+        // ToDo - Send message
     }
     
 }
@@ -160,11 +164,11 @@ private class TransportDelegate: SocketIOTransportDelegate {
     }
     
     func didReceiveMessage(event: String, withString message: String) {
-        
+        println("didReceiveMessage: \(event)=\(message)")
     }
     
     func didReceiveMessage(event: String, withDictionary message: NSDictionary) {
-        
+        println("didReceiveMessage: \(event)=\(message)")
     }
     
 }
