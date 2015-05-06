@@ -164,11 +164,11 @@ private class TransportDelegate: SocketIOTransportDelegate {
     }
     
     func didReceiveMessage(event: String, withString message: String) {
-        println("didReceiveMessage: \(event)=\(message)")
+        internalConnection.performEvent(event, withMessage: message)
     }
     
     func didReceiveMessage(event: String, withDictionary message: NSDictionary) {
-        println("didReceiveMessage: \(event)=\(message)")
+        internalConnection.performEvent(event, withJSON: message)
     }
     
 }

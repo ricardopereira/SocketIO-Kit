@@ -51,6 +51,21 @@ class SocketIOEventHandler: SocketIOEventHandlerProtocol {
         }
     }
     
+    final func performEvent(event: String, withJSON json: NSDictionary) {
+        // Call current callback
+        if let currentCallback = activeEvents[event] {
+            #if DEBUG
+                println("Call event: \"\(event)\"")
+            #endif
+            currentCallback(SocketIOArg.JSON(json: json))
+        }
+        else {
+            #if DEBUG
+                println("No events")
+            #endif
+        }
+    }
+    
     final func performGlobalEvents(message: String) {
         #if DEBUG
             println("Call global events: \(globalEvents.count)")
