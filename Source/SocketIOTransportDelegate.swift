@@ -8,6 +8,9 @@
 
 import Foundation
 
-class SocketIOTransportDelegate {
+protocol SocketIOTransportDelegate {
+    
+    func didReceiveMessage(event: String, withString message: String)
+    func didReceiveMessage(event: String, withDictionary message: NSDictionary)
     
 }

@@ -26,7 +26,7 @@ private class SessionRequest: SocketIORequester {
     
 }
 
-class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
+class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter, SocketIOTransportDelegate {
     
     private let requester: SocketIORequester
     private let transport: SocketIOTransport
@@ -134,6 +134,17 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
     
     func emit(event: String, withError error: SocketIOError) {
         performEvent(event, withError: error)
+    }
+    
+    
+    // MARK: SocketIOTransportDelegate
+    
+    func didReceiveMessage(event: String, withString message: String) {
+        
+    }
+    
+    func didReceiveMessage(event: String, withDictionary message: NSDictionary) {
+        
     }
     
 }

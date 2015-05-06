@@ -60,13 +60,13 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         if valid {
             switch (id, key) {
             case (PacketTypeID.Message, PacketTypeKey.Connect):
-                println("done")
+                println("Connected")
             case (PacketTypeID.Message, PacketTypeKey.Event):
-                // Message data
+                // Event data
                 if data.count == 2 {
                     
-                    println(data[0]) // Event name
-                    println(data[1]) // String or NSDictionary
+                    let eventName: AnyObject = data[0]
+                    let eventData: AnyObject = data[1] //String or NSDictionary
                     
                     if let dict = data[1] as? NSDictionary {
                         println(dict["name"])
