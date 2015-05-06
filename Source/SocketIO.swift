@@ -15,7 +15,7 @@ class SocketIO: SocketIOEventHandlerProtocol, SocketIOEmitter {
     private let url: NSURL
         
     // Default transport: WebSocket
-    private lazy var connection = SocketIOConnection(transport: SocketIOWebSocket())
+    private lazy var connection = SocketIOConnection(transport: SocketIOWebSocket.self)
     
     convenience init(url: String) {
         if let url = NSURL(string: url) {
@@ -51,12 +51,12 @@ class SocketIO: SocketIOEventHandlerProtocol, SocketIOEmitter {
         connection.open(url)
     }
     
-    final func connect(customTransport: SocketIOTransport) {
-        connection = SocketIOConnection(transport: customTransport)
+    final func connect(customTransport: SocketIOTransport.Type) {
+        connection = SocketIOConnection(transport: customTransport.self)
     }
     
-    final func connect(customRequest: SocketIORequester, customTransport: SocketIOTransport) {
-        connection = SocketIOConnection(requester: customRequest, transport: customTransport)
+    final func connect(customRequest: SocketIORequester, customTransport: SocketIOTransport.Type) {
+        connection = SocketIOConnection(requester: customRequest, transport: customTransport.self)
     }
     
     func canConnect(url: NSURL) -> Bool {

@@ -8,8 +8,16 @@
 
 import Foundation
 
-protocol SocketIOTransport {
+class SocketIOTransport {
     
-    func connect(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake)
+    let delegate: SocketIOTransportDelegate
+    
+    required init(delegate: SocketIOTransportDelegate) {
+        self.delegate = delegate;
+    }
+    
+    func connect(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake) {
+        
+    }
     
 }

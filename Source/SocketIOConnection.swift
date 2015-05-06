@@ -31,14 +31,14 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter, SocketIOTranspo
     private let requester: SocketIORequester
     private let transport: SocketIOTransport
     
-    convenience init(transport: SocketIOTransport) {
+    convenience init(transport: SocketIOTransport.Type) {
         self.init(requester: SessionRequest(), transport: transport)
     }
     
-    init(requester: SocketIORequester, transport: SocketIOTransport) {
+    init(requester: SocketIORequester, transport: SocketIOTransport.Type) {
         // Connection transport
         self.requester = requester
-        self.transport = transport
+        self.transport = transport(delegate: self)
         // Designated
         super.init()
     }

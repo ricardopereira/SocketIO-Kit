@@ -12,7 +12,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
     var socket: WebSocket?
     
-    func connect(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake) {
+    override func connect(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake) {
         // WebSocket
         if let scheme = hostUrl.scheme, let host = hostUrl.host, let port = hostUrl.port {
             // Establish connection
