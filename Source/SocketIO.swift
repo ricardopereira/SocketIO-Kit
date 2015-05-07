@@ -78,6 +78,10 @@ class SocketIO: SocketIOEventHandlerProtocol, SocketIOEmitter {
     
     //MARK: SocketIOEventHandlerProtocol
     
+    func on(event: SocketIOEvent, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
+        return connection.on(event, withCallback: callback)
+    }
+    
     func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         return connection.on(event, withCallback: callback)
     }

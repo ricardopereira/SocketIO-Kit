@@ -10,9 +10,10 @@ import Foundation
 
 protocol SocketIOEventHandlerProtocol {
     
-    func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler;
-    func onAny(callback: SocketIOCallback) -> SocketIOEventHandler;
-    func off() -> SocketIOEventHandler;
+    func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler
+    func on(event: SocketIOEvent, withCallback callback: SocketIOCallback) -> SocketIOEventHandler
+    func onAny(callback: SocketIOCallback) -> SocketIOEventHandler
+    func off() -> SocketIOEventHandler
     
 }
 

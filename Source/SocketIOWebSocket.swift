@@ -12,7 +12,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
     var socket: WebSocket?
     
-    override func connect(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake) {
+    final override func connect(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake) {
         // WebSocket
         if let scheme = hostUrl.scheme, let host = hostUrl.host, let port = hostUrl.port {
             // Establish connection
@@ -33,7 +33,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
     // MARK: WebSocketDelegate
     
-    func websocketDidConnect(socket: WebSocket) {
+    final func websocketDidConnect(socket: WebSocket) {
         println("Connect websocket")
         
         // Complete upgrade to WebSocket
@@ -44,15 +44,15 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         
     }
     
-    func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
+    final func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
         println("Disconnet websocket: \(error)")
     }
     
-    func websocketDidReceiveData(socket: WebSocket, data: NSData) {
+    final func websocketDidReceiveData(socket: WebSocket, data: NSData) {
         println("Received: \(data)")
     }
     
-    func websocketDidReceiveMessage(socket: WebSocket, text: String) {
+    final func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         println("Message: \(text)")
         
         let (valid, id, key, data) = SocketIOPacket.decode(text)
