@@ -34,8 +34,6 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     // MARK: WebSocketDelegate
     
     func websocketDidConnect(socket: WebSocket) {
-        println("Connect websocket")
-        
         // Complete upgrade to WebSocket
         // 5 upgrade + 2 event
         socket.writeString("52")
@@ -53,14 +51,20 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     }
     
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
-        println("Message: \(text)")
+        #if DEBUG
+            println("--- WebSocket")
+            println("\(SocketIO.name): received message> \(text)")
+        #endif
         
         let (valid, id, key, data) = SocketIOPacket.decode(text)
         
         if valid {
             switch (id, key) {
             case (PacketTypeID.Message, PacketTypeKey.Connect):
-                println("Connected")
+                #if DEBUG
+                    println("--- packet decoded")
+                    println("\(SocketIO.name): connected")
+                #endif
             case (PacketTypeID.Message, PacketTypeKey.Event):
                 // Event data
                 if data.count == 2, let eventName = data[0] as? String {
@@ -74,7 +78,10 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
                     }
                 }
             default:
-                println("none")
+                #if DEBUG
+                    println("--- packet decoded")
+                    println("\(SocketIO.name): not supported")
+                #endif
             }
         }
                 

@@ -35,6 +35,7 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
         let url = NSURL(string: "socket.io/?transport=polling&b64=1", relativeToURL: hostUrl.URLByAppendingTrailingSlash())!;
         
         #if DEBUG
+            println("--- connection")
             println("\(SocketIO.name) - open: \(url)")
         #endif
 
@@ -50,6 +51,7 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
     
     private func requestCompletion(data: NSData!, response: NSURLResponse?, error: NSError?) {
         #if DEBUG
+            println("--- request")
             println("\(SocketIO.name) - data: \(data)")
             println("\(SocketIO.name) - response: \(response)")
             println("\(SocketIO.name) - error: \(error)")
@@ -74,6 +76,7 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
         
         if let payload = NSString(data: data, encoding: NSUTF8StringEncoding) {
             #if DEBUG
+                println("--- response")
                 println("\(SocketIO.name) - data with UTF8 encoding: \(payload)")
             #endif
             

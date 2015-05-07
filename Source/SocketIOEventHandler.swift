@@ -17,12 +17,14 @@ class SocketIOEventHandler: SocketIOReceiver {
         // Call current callback
         if let currentCallback = activeEvents[event] {
             #if DEBUG
+                println("--- event handler")
                 println("Call event: \"\(event)\"")
             #endif
             currentCallback(SocketIOArg.Message(message: message))
         }
         else {
             #if DEBUG
+                println("--- event handler")
                 println("No events")
             #endif
         }
@@ -32,12 +34,14 @@ class SocketIOEventHandler: SocketIOReceiver {
         // Call current callback
         if let currentCallback = activeEvents[event] {
             #if DEBUG
+                println("--- event handler")
                 println("Call event: \"\(event)\"")
             #endif
             currentCallback(SocketIOArg.Failure(error))
         }
         else {
             #if DEBUG
+                println("--- event handler")
                 println("No events")
             #endif
         }
@@ -47,12 +51,14 @@ class SocketIOEventHandler: SocketIOReceiver {
         // Call current callback
         if let currentCallback = activeEvents[event] {
             #if DEBUG
+                println("--- event handler")
                 println("Call event: \"\(event)\"")
             #endif
             currentCallback(SocketIOArg.JSON(json: json))
         }
         else {
             #if DEBUG
+                println("--- event handler")
                 println("No events")
             #endif
         }
@@ -60,6 +66,7 @@ class SocketIOEventHandler: SocketIOReceiver {
     
     final func performGlobalEvents(message: String) {
         #if DEBUG
+            println("--- event handler")
             println("Call global events: \(globalEvents.count)")
         #endif
         for callback in globalEvents {
@@ -75,11 +82,13 @@ class SocketIOEventHandler: SocketIOReceiver {
         // Check current callback
         if let currentCallback = activeEvents[event] {
             #if DEBUG
+                println("--- event handler")
                 println("Set event \"\(event)\" with new callback")
             #endif
         }
         else {
             #if DEBUG
+                println("--- event handler")
                 println("Set callback event \"\(event)\"")
             #endif
         }
@@ -90,6 +99,7 @@ class SocketIOEventHandler: SocketIOReceiver {
     
     func onAny(callback: SocketIOCallback) -> SocketIOEventHandler {
         #if DEBUG
+            println("--- event handler")
             println("Append global event")
         #endif
         // Set new callback
@@ -99,6 +109,7 @@ class SocketIOEventHandler: SocketIOReceiver {
     
     func off() -> SocketIOEventHandler {
         #if DEBUG
+            println("--- event handler")
             println("Remove all events")
         #endif
         if (activeEvents.count > 0) {
