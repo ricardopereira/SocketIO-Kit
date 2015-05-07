@@ -79,7 +79,7 @@ public class WebSocket : NSObject, NSStreamDelegate {
         var buffer: NSMutableData?
     }
     
-    public var delegate: WebSocketDelegate? //weak 
+    public var delegate: WebSocketDelegate? //weak, unowned
     
     private var url: NSURL
     private var inputStream: NSInputStream?

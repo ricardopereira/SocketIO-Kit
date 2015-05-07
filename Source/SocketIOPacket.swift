@@ -15,6 +15,8 @@ enum PacketTypeID: Int {
     case Ping
     case Pong
     case Message
+    case Upgrade
+    case Noop
     
     var value: String {
         return String(self.rawValue)
@@ -43,6 +45,10 @@ class SocketIOPacket {
     static private func regEx() -> NSRegularExpression? {
         // Regular Expression: <packet type>[<data>]
         return NSRegularExpression(pattern: "^[0-9][0-9]", options: .CaseInsensitive, error: nil)
+    }
+    
+    static func encode(id: PacketTypeID, key: PacketTypeKey) -> String {
+        return id.value + key.value
     }
     
     static func decode(value: String) -> (Bool, PacketTypeID, PacketTypeKey, NSArray) {

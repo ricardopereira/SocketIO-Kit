@@ -35,11 +35,10 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
     func websocketDidConnect(socket: WebSocket) {
         // Complete upgrade to WebSocket
-        // 5 upgrade + 2 event
-        socket.writeString("52")
+        let confirmation = SocketIOPacket.encode(.Upgrade, key: .Event)
+        socket.writeString(confirmation)
         
         // Server flushes and closes old transport and switches to new
-        
     }
     
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
@@ -88,6 +87,12 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         //There's two distinct types of encodings
         // - packet
         // - payload
+        
+        // engine:ws received "42["chat message","hello men"]"
+        // decoded 2["chat message","hello men"] as {"type":2,"nsp":"/","data":["chat message","hello men"]}
+        
+        // encoding packet {"type":2,"data":["chat message","hello men"],"nsp":"/"}
+        // encoded {"type":2,"data":["chat message","hello men"],"nsp":"/"} as 2["chat message","hello men"]
     }
     
 }
