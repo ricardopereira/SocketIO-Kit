@@ -27,7 +27,7 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
         super.init()
         
         // ToDo - Don't like this solution! (RP)
-        self.transportDelegate.connection = self
+        self.transportDelegate.eventHandler = self
     }
     
     func open(hostUrl: NSURL) {
@@ -152,23 +152,23 @@ private class SessionRequest: SocketIORequester {
 
 private class TransportDelegate: SocketIOTransportDelegate {
     
-    private var internalConnection: SocketIOConnection!
+    private var events: SocketIOEventHandler!
 
-    var connection: SocketIOConnection {
+    var eventHandler: SocketIOEventHandler {
         get {
-            return internalConnection
+            return events
         }
         set(value) {
-            self.internalConnection = value
+            self.events = value
         }
     }
     
     func didReceiveMessage(event: String, withString message: String) {
-        internalConnection.performEvent(event, withMessage: message)
+        events.performEvent(event, withMessage: message)
     }
     
     func didReceiveMessage(event: String, withDictionary message: NSDictionary) {
-        internalConnection.performEvent(event, withJSON: message)
+        events.performEvent(event, withJSON: message)
     }
     
 }
