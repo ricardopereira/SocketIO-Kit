@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SocketIO: SocketIOEventHandlerProtocol, SocketIOEmitter {
+class SocketIO: SocketIOReceiver, SocketIOEmitter {
     
     static internal let name = "SocketIO"
     
@@ -76,7 +76,7 @@ class SocketIO: SocketIOEventHandlerProtocol, SocketIOEmitter {
     }
     
     
-    //MARK: SocketIOEventHandlerProtocol
+    //MARK: SocketIOReceiver
     
     func on(event: SocketIOEvent, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         return connection.on(event, withCallback: callback)

@@ -8,9 +8,10 @@
 
 import Foundation
 
-class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
+class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
     
     private let requester: SocketIORequester
+    private let eventHandler: SocketIOEventHandler
     private let transport: SocketIOTransport
     private let transportDelegate: TransportDelegate
     
@@ -21,13 +22,9 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
     init(requester: SocketIORequester, transport: SocketIOTransport.Type) {
         // Connection transport
         self.requester = requester
-        self.transportDelegate = TransportDelegate()
-        self.transport = transport(delegate: transportDelegate)
-        // Designated
-        super.init()
-        
-        // ToDo - Don't like this solution! (RP)
-        self.transportDelegate.eventHandler = self
+        self.eventHandler = SocketIOEventHandler()
+        self.transportDelegate = TransportDelegate(eventHandler: eventHandler)
+        self.transport = transport(delegate: transportDelegate)        
     }
     
     func open(hostUrl: NSURL) {
@@ -111,8 +108,8 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
     }
     
     final func emit(event: String, withMessage message: String) {
-        performEvent(event, withMessage: message)
-        performGlobalEvents(message)
+        eventHandler.performEvent(event, withMessage: message)
+        eventHandler.performGlobalEvents(message)
         
         // ToDo - Send message
     }
@@ -122,9 +119,28 @@ class SocketIOConnection: SocketIOEventHandler, SocketIOEmitter {
     }
     
     func emit(event: String, withError error: SocketIOError) {
-        performEvent(event, withError: error)
+        eventHandler.performEvent(event, withError: error)
         
         // ToDo - Send message
+    }
+    
+    
+    // MARK: SocketIOReceiver
+    
+    func on(event: SocketIOEvent, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
+        return eventHandler.on(event, withCallback: callback)
+    }
+    
+    func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
+        return eventHandler.on(event, withCallback: callback)
+    }
+    
+    func onAny(callback: SocketIOCallback) -> SocketIOEventHandler {
+        return eventHandler.onAny(callback)
+    }
+    
+    func off() -> SocketIOEventHandler {
+        return eventHandler.off()
     }
     
 }
@@ -152,15 +168,10 @@ private class SessionRequest: SocketIORequester {
 
 private class TransportDelegate: SocketIOTransportDelegate {
     
-    private var events: SocketIOEventHandler!
-
-    var eventHandler: SocketIOEventHandler {
-        get {
-            return events
-        }
-        set(value) {
-            self.events = value
-        }
+    private let events: SocketIOEventHandler
+    
+    init(eventHandler: SocketIOEventHandler) {
+        self.events = eventHandler
     }
     
     func didReceiveMessage(event: String, withString message: String) {
