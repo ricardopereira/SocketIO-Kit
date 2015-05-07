@@ -79,7 +79,8 @@ public class WebSocket : NSObject, NSStreamDelegate {
         var buffer: NSMutableData?
     }
     
-    public weak var delegate: WebSocketDelegate?
+    public var delegate: WebSocketDelegate? //weak 
+    
     private var url: NSURL
     private var inputStream: NSInputStream?
     private var outputStream: NSOutputStream?
@@ -97,6 +98,7 @@ public class WebSocket : NSObject, NSStreamDelegate {
     private var disconnectedBlock: ((NSError?) -> Void)? = nil
     private var receivedTextBlock: ((String) -> Void)? = nil
     private var receivedDataBlock: ((NSData) -> Void)? = nil
+    
     public var isConnected :Bool {
         return connected
     }
@@ -363,7 +365,9 @@ public class WebSocket : NSObject, NSStreamDelegate {
                     if let connectBlock = self.connectedBlock {
                         connectBlock()
                     }
-                    self.delegate?.websocketDidConnect(self)
+                    if let delegate = self.delegate {
+                        delegate.websocketDidConnect(self)
+                    }
                 })
                 totalSize += 1 //skip the last \n
                 let restSize = bufferLen - totalSize
@@ -378,13 +382,13 @@ public class WebSocket : NSObject, NSStreamDelegate {
     
     ///validates the HTTP is a 101 as per the RFC spec
     private func validateResponse(buffer: UnsafePointer<UInt8>, bufferLen: Int) -> Bool {
-        let response = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, 0)
-        CFHTTPMessageAppendBytes(response.takeUnretainedValue(), buffer, bufferLen)
-        if CFHTTPMessageGetResponseStatusCode(response.takeUnretainedValue()) != 101 {
+        let response = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, 0).takeRetainedValue()
+        CFHTTPMessageAppendBytes(response, buffer, bufferLen)
+        if CFHTTPMessageGetResponseStatusCode(response) != 101 {
             return false
         }
-        let cfHeaders = CFHTTPMessageCopyAllHeaderFields(response.takeUnretainedValue())
-        let headers: NSDictionary = cfHeaders.takeUnretainedValue()
+        let cfHeaders = CFHTTPMessageCopyAllHeaderFields(response)
+        let headers: NSDictionary = cfHeaders.takeRetainedValue()
         let acceptKey = headers[headerWSAcceptName] as! NSString
         if acceptKey.length > 0 {
             return true

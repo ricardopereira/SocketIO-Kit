@@ -10,7 +10,7 @@ import Foundation
 
 class SocketIOTransport {
     
-    let delegate: SocketIOTransportDelegate
+    internal let delegate: SocketIOTransportDelegate
     
     required init(delegate: SocketIOTransportDelegate) {
         self.delegate = delegate;

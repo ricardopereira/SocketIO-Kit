@@ -10,7 +10,7 @@ import Foundation
 
 class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
-    var socket: WebSocket?
+    var socket: WebSocket!
     
     final override func connect(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake) {
         // WebSocket
@@ -25,15 +25,15 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
                 socket = WebSocket(url: NSURL(scheme: "wss", host: "\(host):\(port)", path: "/socket.io/?transport=websocket&sid=\(handshake.sid)")!)
             }
             
-            socket?.delegate = self
-            socket?.connect()
+            socket.delegate = self
+            socket.connect()
         }
     }
     
     
     // MARK: WebSocketDelegate
     
-    final func websocketDidConnect(socket: WebSocket) {
+    func websocketDidConnect(socket: WebSocket) {
         println("Connect websocket")
         
         // Complete upgrade to WebSocket
@@ -44,15 +44,15 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         
     }
     
-    final func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
+    func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
         println("Disconnet websocket: \(error)")
     }
     
-    final func websocketDidReceiveData(socket: WebSocket, data: NSData) {
+    func websocketDidReceiveData(socket: WebSocket, data: NSData) {
         println("Received: \(data)")
     }
     
-    final func websocketDidReceiveMessage(socket: WebSocket, text: String) {
+    func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         println("Message: \(text)")
         
         let (valid, id, key, data) = SocketIOPacket.decode(text)

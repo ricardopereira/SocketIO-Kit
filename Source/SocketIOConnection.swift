@@ -24,7 +24,7 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
         self.requester = requester
         self.eventHandler = SocketIOEventHandler()
         self.transportDelegate = TransportDelegate(eventHandler: eventHandler)
-        self.transport = transport(delegate: transportDelegate)        
+        self.transport = transport(delegate: transportDelegate)
     }
     
     func open(hostUrl: NSURL) {
@@ -114,11 +114,11 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
         // ToDo - Send message
     }
     
-    func emit(event: SocketIOEvent, withError error: SocketIOError) {
+    final func emit(event: SocketIOEvent, withError error: SocketIOError) {
         emit(event.description, withError: error)
     }
     
-    func emit(event: String, withError error: SocketIOError) {
+    final func emit(event: String, withError error: SocketIOError) {
         eventHandler.performEvent(event, withError: error)
         
         // ToDo - Send message
@@ -127,19 +127,19 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
     
     // MARK: SocketIOReceiver
     
-    func on(event: SocketIOEvent, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
+    final func on(event: SocketIOEvent, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         return eventHandler.on(event, withCallback: callback)
     }
     
-    func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
+    final func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         return eventHandler.on(event, withCallback: callback)
     }
     
-    func onAny(callback: SocketIOCallback) -> SocketIOEventHandler {
+    final func onAny(callback: SocketIOCallback) -> SocketIOEventHandler {
         return eventHandler.onAny(callback)
     }
     
-    func off() -> SocketIOEventHandler {
+    final func off() -> SocketIOEventHandler {
         return eventHandler.off()
     }
     
@@ -159,7 +159,7 @@ private class SessionRequest: SocketIORequester {
         session = NSURLSession(configuration: NSURLSessionConfiguration.ephemeralSessionConfiguration(), delegate: nil, delegateQueue: self.requestsQueue)
     }
     
-    func sendRequest(request: NSURLRequest, completion: RequestCompletionHandler) {
+    final func sendRequest(request: NSURLRequest, completion: RequestCompletionHandler) {
         // Do request
         session.dataTaskWithRequest(request, completionHandler: completion).resume()
     }
@@ -174,11 +174,11 @@ private class TransportDelegate: SocketIOTransportDelegate {
         self.events = eventHandler
     }
     
-    func didReceiveMessage(event: String, withString message: String) {
+    final func didReceiveMessage(event: String, withString message: String) {
         events.performEvent(event, withMessage: message)
     }
     
-    func didReceiveMessage(event: String, withDictionary message: NSDictionary) {
+    final func didReceiveMessage(event: String, withDictionary message: NSDictionary) {
         events.performEvent(event, withJSON: message)
     }
     
