@@ -20,4 +20,8 @@ class SocketIOTransport {
         
     }
     
+    func send() {
+        
+    }
+    
 }
