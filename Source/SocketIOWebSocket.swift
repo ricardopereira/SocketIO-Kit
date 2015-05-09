@@ -36,7 +36,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     }
     
     final override func send(event: String, withDictionary message: NSDictionary) {
-        
+
     }
     
     

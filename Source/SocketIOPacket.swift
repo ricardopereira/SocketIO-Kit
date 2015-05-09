@@ -52,7 +52,25 @@ class SocketIOPacket {
     }
     
     static func encode(id: PacketTypeID, withKey key: PacketTypeKey, withEvent event: String, andMessage message: String) -> String {
+        // TODO: When event is empty
         return id.value + key.value + "[\"" + event + "\",\"" + message + "\"]"
+    }
+    
+    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, withEvent event: String, andDictionary dict: NSDictionary) -> String {
+        let array = [event, dict]
+        
+        if NSJSONSerialization.isValidJSONObject(array) {
+            let jsonData = NSJSONSerialization.dataWithJSONObject(array, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
+            
+            if let data = jsonData {
+                let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
+                if let str = jsonStr {
+                    return id.value + key.value + (str as String)
+                }
+            }
+        }
+        // TODO: When event is invalid
+        return ""
     }
     
     static func decode(value: String) -> (Bool, PacketTypeID, PacketTypeKey, NSArray) {
