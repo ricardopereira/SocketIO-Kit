@@ -11,7 +11,7 @@ import Foundation
 class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
     var socket: WebSocket!
-    
+        
     final override func connect(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake) {
         // WebSocket
         if let scheme = hostUrl.scheme, let host = hostUrl.host, let port = hostUrl.port {
@@ -28,6 +28,14 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             socket.delegate = self
             socket.connect()
         }
+    }
+    
+    final override func send(event: String, withString message: String) {
+        
+    }
+    
+    final override func send(event: String, withDictionary message: NSDictionary) {
+        
     }
     
     

@@ -21,7 +21,7 @@ enum SocketIOResult {
     
     case Success(status: Int)
     case Failure(message: String)
-    
+
 }
 
 typealias SocketIOCallback = (SocketIOArg<SocketIOError>) -> (SocketIOResult)
