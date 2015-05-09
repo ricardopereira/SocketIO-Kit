@@ -47,8 +47,12 @@ class SocketIOPacket {
         return NSRegularExpression(pattern: "^[0-9][0-9]", options: .CaseInsensitive, error: nil)
     }
     
-    static func encode(id: PacketTypeID, key: PacketTypeKey) -> String {
+    static func encode(id: PacketTypeID, withKey key: PacketTypeKey) -> String {
         return id.value + key.value
+    }
+    
+    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, withEvent event: String, andMessage message: String) -> String {
+        return id.value + key.value + "[\"" + event + "\",\"" + message + "\"]"
     }
     
     static func decode(value: String) -> (Bool, PacketTypeID, PacketTypeKey, NSArray) {

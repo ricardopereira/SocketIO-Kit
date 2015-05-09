@@ -31,7 +31,8 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     }
     
     final override func send(event: String, withString message: String) {
-        
+        let packet = SocketIOPacket.encode(.Message, withKey: .Event, withEvent: event, andMessage: message)
+        socket.writeString(packet)
     }
     
     final override func send(event: String, withDictionary message: NSDictionary) {
@@ -43,7 +44,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
     func websocketDidConnect(socket: WebSocket) {
         // Complete upgrade to WebSocket
-        let confirmation = SocketIOPacket.encode(.Upgrade, key: .Event)
+        let confirmation = SocketIOPacket.encode(.Upgrade, withKey: .Event)
         socket.writeString(confirmation)
         
         // Server flushes and closes old transport and switches to new
