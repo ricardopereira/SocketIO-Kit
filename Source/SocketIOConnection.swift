@@ -111,10 +111,11 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
     }
     
     final func emit(event: String, withMessage message: String) {
+        // Call internal defined events
         eventHandler.performEvent(event, withMessage: message)
         eventHandler.performGlobalEvents(message)
-        
-        // ToDo - Send message
+        // Send message
+        transport.send(event, withString: message)
     }
     
     final func emit(event: SocketIOEvent, withError error: SocketIOError) {
@@ -125,6 +126,7 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
         eventHandler.performEvent(event, withError: error)
         
         // ToDo - Send message
+        
     }
     
     
