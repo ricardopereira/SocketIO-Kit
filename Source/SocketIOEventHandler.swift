@@ -17,15 +17,15 @@ class SocketIOEventHandler: SocketIOReceiver {
         // Call current callback
         if let currentCallback = activeEvents[event] {
             #if DEBUG
-                println("--- event handler")
-                println("Call event: \"\(event)\"")
+                println("--- \(SocketIO.name): Event handler")
+                println("call event: \"\(event)\"")
             #endif
             currentCallback(SocketIOArg.Message(message: message))
         }
         else {
             #if DEBUG
-                println("--- event handler")
-                println("No events")
+                println("--- \(SocketIO.name): Event handler")
+                println("no events")
             #endif
         }
     }
@@ -34,15 +34,15 @@ class SocketIOEventHandler: SocketIOReceiver {
         // Call current callback
         if let currentCallback = activeEvents[event] {
             #if DEBUG
-                println("--- event handler")
-                println("Call event: \"\(event)\"")
+                println("--- \(SocketIO.name): Event handler")
+                println("call event: \"\(event)\"")
             #endif
             currentCallback(SocketIOArg.Failure(error))
         }
         else {
             #if DEBUG
-                println("--- event handler")
-                println("No events")
+                println("--- \(SocketIO.name): Event handler")
+                println("no events")
             #endif
         }
     }
@@ -51,23 +51,23 @@ class SocketIOEventHandler: SocketIOReceiver {
         // Call current callback
         if let currentCallback = activeEvents[event] {
             #if DEBUG
-                println("--- event handler")
-                println("Call event: \"\(event)\"")
+                println("--- \(SocketIO.name): Event handler")
+                println("call event: \"\(event)\"")
             #endif
             currentCallback(SocketIOArg.JSON(json: json))
         }
         else {
             #if DEBUG
-                println("--- event handler")
-                println("No events")
+                println("--- \(SocketIO.name): Event handler")
+                println("no events")
             #endif
         }
     }
     
     final func performGlobalEvents(message: String) {
         #if DEBUG
-            println("--- event handler")
-            println("Call global events: \(globalEvents.count)")
+            println("--- \(SocketIO.name): Event handler")
+            println("call global events: \(globalEvents.count)")
         #endif
         for callback in globalEvents {
             callback(SocketIOArg.Message(message: message))
@@ -82,14 +82,14 @@ class SocketIOEventHandler: SocketIOReceiver {
         // Check current callback
         if let currentCallback = activeEvents[event] {
             #if DEBUG
-                println("--- event handler")
-                println("Set event \"\(event)\" with new callback")
+                println("--- \(SocketIO.name): Event handler")
+                println("set event \"\(event)\" with new callback")
             #endif
         }
         else {
             #if DEBUG
-                println("--- event handler")
-                println("Set callback event \"\(event)\"")
+                println("--- \(SocketIO.name): Event handler")
+                println("set callback event \"\(event)\"")
             #endif
         }
         // Set new callback
@@ -99,8 +99,8 @@ class SocketIOEventHandler: SocketIOReceiver {
     
     func onAny(callback: SocketIOCallback) -> SocketIOEventHandler {
         #if DEBUG
-            println("--- event handler")
-            println("Append global event")
+            println("--- \(SocketIO.name): Event handler")
+            println("append global event")
         #endif
         // Set new callback
         globalEvents.append(callback)
@@ -109,8 +109,8 @@ class SocketIOEventHandler: SocketIOReceiver {
     
     func off() -> SocketIOEventHandler {
         #if DEBUG
-            println("--- event handler")
-            println("Remove all events")
+            println("--- \(SocketIO.name): Event handler")
+            println("remove all events")
         #endif
         if (activeEvents.count > 0) {
             // Remove all events
