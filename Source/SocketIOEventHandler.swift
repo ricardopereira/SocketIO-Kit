@@ -20,7 +20,9 @@ class SocketIOEventHandler: SocketIOReceiver {
                 println("--- \(SocketIO.name): Event handler")
                 println("call event: \"\(event)\"")
             #endif
-            currentCallback(SocketIOArg.Message(message: message))
+            dispatch_async(dispatch_get_main_queue()) {
+                currentCallback(SocketIOArg.Message(message: message))
+            }
         }
         else {
             #if DEBUG
@@ -37,7 +39,9 @@ class SocketIOEventHandler: SocketIOReceiver {
                 println("--- \(SocketIO.name): Event handler")
                 println("call event: \"\(event)\"")
             #endif
-            currentCallback(SocketIOArg.Failure(error))
+            dispatch_async(dispatch_get_main_queue()) {
+                currentCallback(SocketIOArg.Failure(error))
+            }
         }
         else {
             #if DEBUG
@@ -54,7 +58,9 @@ class SocketIOEventHandler: SocketIOReceiver {
                 println("--- \(SocketIO.name): Event handler")
                 println("call event: \"\(event)\"")
             #endif
-            currentCallback(SocketIOArg.JSON(json: json))
+            dispatch_async(dispatch_get_main_queue()) {
+                currentCallback(SocketIOArg.JSON(json: json))
+            }
         }
         else {
             #if DEBUG
@@ -70,7 +76,9 @@ class SocketIOEventHandler: SocketIOReceiver {
             println("call global events: \(globalEvents.count)")
         #endif
         for callback in globalEvents {
-            callback(SocketIOArg.Message(message: message))
+            dispatch_async(dispatch_get_main_queue()) {
+                callback(SocketIOArg.Message(message: message))
+            }
         }
     }
     
