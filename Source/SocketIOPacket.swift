@@ -59,18 +59,23 @@ class SocketIOPacket {
     static func encode(id: PacketTypeID, withKey key: PacketTypeKey, withEvent event: String, andDictionary dict: NSDictionary) -> String {
         let array = [event, dict]
         
-        if NSJSONSerialization.isValidJSONObject(array) {
-            let jsonData = NSJSONSerialization.dataWithJSONObject(array, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
-            
-            if let data = jsonData {
-                let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-                if let str = jsonStr {
-                    return id.value + key.value + (str as String)
-                }
-            }
+        if NSJSONSerialization.isValidJSONObject(array) == false {
+            return id.value + key.value
         }
-        // TODO: When event is invalid
-        return ""
+        
+        let jsonData : NSArray -> NSData? = {
+            NSJSONSerialization.dataWithJSONObject($0, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
+        }
+        
+        let jsonStr : NSData -> NSString? = {
+            NSString(data: $0, encoding: NSUTF8StringEncoding)
+        }
+        
+        let result : NSString -> String? = {
+            $0 as String
+        }
+        
+        return id.value + key.value + (array >>- jsonData >>- jsonStr >>- result ?? "")
     }
     
     static func decode(value: String) -> (Bool, PacketTypeID, PacketTypeKey, NSArray) {
