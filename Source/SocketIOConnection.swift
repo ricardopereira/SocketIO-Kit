@@ -119,6 +119,13 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
     }
     
     final func emit(event: String, withMessage message: String) {
+        // Check system events
+        for systemEvent in SocketIOEvent.system {
+            if event == systemEvent.description {
+                return
+            }
+        }
+
         // Call internal defined events
         eventHandler.performEvent(event, withMessage: message)
         eventHandler.performGlobalEvents(message)

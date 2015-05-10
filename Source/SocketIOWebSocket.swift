@@ -96,6 +96,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
                     println("--- \(SocketIO.name): Packet decoded")
                     println("connected")
                 #endif
+                delegate.didReceiveMessage(SocketIOEvent.Connected.description, withString: "")
             case (PacketTypeID.Message, PacketTypeKey.Event):
                 // Event data
                 if data.count == 2, let eventName = data[0] as? String {

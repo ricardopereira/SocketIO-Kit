@@ -20,4 +20,8 @@ enum SocketIOEvent: String, Printable {
         return self.rawValue
     }
     
+    static var system: [SocketIOEvent] {
+        return [.Connected, .Disconnected]
+    }
+    
 }
