@@ -32,11 +32,19 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
         //  - Indicate the transport: polling
         //  - b64: (XHR2 is not supported) signal the server that all binary data should be sent base64 encoded
         
+        if transport.isOpen {
+            #if DEBUG
+                println("--- \(SocketIO.name): Connection")
+                println("connection is already open")
+            #endif
+            return
+        }
+        
         let url = NSURL(string: "socket.io/?transport=polling&b64=1", relativeToURL: hostUrl.URLByAppendingTrailingSlash())!;
         
         #if DEBUG
-            println("--- connection")
-            println("\(SocketIO.name) - open: \(url)")
+            println("--- \(SocketIO.name): Connection")
+            println("open: \(url)")
         #endif
 
         let request = NSURLRequest(URL: url)
@@ -88,7 +96,7 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
             
             if valid, let url = response?.URL, let hostUrl = url.relativeURL {
                 // Connect
-                transport.connect(hostUrl, withHandshake: handshake)
+                transport.open(hostUrl, withHandshake: handshake)
             }
             else {
                 // Teste

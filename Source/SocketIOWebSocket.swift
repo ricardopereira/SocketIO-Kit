@@ -12,8 +12,14 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
     var socket: WebSocket!
         
-    final override func connect(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake) {
+    final override func open(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake) {
         // WebSocket
+        // - requires that you put your Socket either into “string mode” or “binary mode”
+        
+        if isOpen {
+            return
+        }
+        
         if let scheme = hostUrl.scheme, let host = hostUrl.host, let port = hostUrl.port {
             // Establish connection
             if scheme.lowercaseString == "http" {
@@ -29,14 +35,24 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             socket.connect()
         }
     }
+
+    override var isOpen: Bool {
+        return socket != nil
+    }
     
     final override func send(event: String, withString message: String) {
+        if !isOpen {
+            return
+        }
         let packet = SocketIOPacket.encode(.Message, withKey: .Event, withEvent: event, andMessage: message)
         socket.writeString(packet)
     }
     
     final override func send(event: String, withDictionary message: NSDictionary) {
-
+        if !isOpen {
+            return
+        }
+        // TODO: NSDictionary
     }
     
     

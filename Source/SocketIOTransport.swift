@@ -15,8 +15,10 @@ class SocketIOTransport {
     required init(delegate: SocketIOTransportDelegate) {
         self.delegate = delegate;
     }
+    
+    var isOpen: Bool { return false }
 
-    func connect(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake) {}
+    func open(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake) {}
     func send(event: String, withString message: String) {}
     func send(event: String, withDictionary message: NSDictionary) {}
 
