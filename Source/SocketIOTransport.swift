@@ -19,6 +19,7 @@ class SocketIOTransport {
     var isOpen: Bool { return false }
 
     func open(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake) {}
+    func close() {}
     func send(event: String, withString message: String) {}
     func send(event: String, withDictionary message: NSDictionary) {}
 

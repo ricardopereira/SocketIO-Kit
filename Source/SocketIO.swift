@@ -59,6 +59,10 @@ class SocketIO: SocketIOReceiver, SocketIOEmitter {
         connection = SocketIOConnection(requester: customRequest, transport: customTransport.self)
     }
     
+    final func disconnect() {
+        connection.close()
+    }
+    
     func canConnect(url: NSURL) -> Bool {
         // ?
         return NSURLConnection.canHandleRequest(NSURLRequest(URL: url))

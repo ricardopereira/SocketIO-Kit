@@ -54,15 +54,15 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
     }
     
     func close() {
-        
+        transport.close()
     }
     
     private func requestCompletion(data: NSData!, response: NSURLResponse?, error: NSError?) {
         #if DEBUG
-            println("--- request")
-            println("\(SocketIO.name) - data: \(data)")
-            println("\(SocketIO.name) - response: \(response)")
-            println("\(SocketIO.name) - error: \(error)")
+            println("--- \(SocketIO.name): Request")
+            println("data: \(data)")
+            println("response: \(response)")
+            println("error: \(error)")
         #endif
         
         // Got error
@@ -84,8 +84,8 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
         
         if let payload = NSString(data: data, encoding: NSUTF8StringEncoding) {
             #if DEBUG
-                println("--- response")
-                println("\(SocketIO.name) - data with UTF8 encoding: \(payload)")
+                println("--- \(SocketIO.name): Response")
+                println("data with UTF8 encoding: \(payload)")
             #endif
             
             // Interpret server response

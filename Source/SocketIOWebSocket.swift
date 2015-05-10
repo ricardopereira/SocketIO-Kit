@@ -10,7 +10,7 @@ import Foundation
 
 class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
-    var socket: WebSocket!
+    private var socket: WebSocket!
         
     final override func open(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake) {
         // WebSocket
@@ -35,8 +35,15 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             socket.connect()
         }
     }
+    
+    final override func close() {
+        if isOpen {
+            socket.disconnect()
+            socket = nil
+        }
+    }
 
-    override var isOpen: Bool {
+    final override var isOpen: Bool {
         return socket != nil
     }
     
@@ -76,8 +83,8 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         #if DEBUG
-            println("--- WebSocket")
-            println("\(SocketIO.name): received message> \(text)")
+            println("--- \(SocketIO.name): WebSocket")
+            println("received message> \(text)")
         #endif
         
         let (valid, id, key, data) = SocketIOPacket.decode(text)
@@ -86,8 +93,8 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             switch (id, key) {
             case (PacketTypeID.Message, PacketTypeKey.Connect):
                 #if DEBUG
-                    println("--- packet decoded")
-                    println("\(SocketIO.name): connected")
+                    println("--- \(SocketIO.name): Packet decoded")
+                    println("connected")
                 #endif
             case (PacketTypeID.Message, PacketTypeKey.Event):
                 // Event data
@@ -103,8 +110,8 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
                 }
             default:
                 #if DEBUG
-                    println("--- packet decoded")
-                    println("\(SocketIO.name): not supported")
+                    println("--- \(SocketIO.name): Packet decoded")
+                    println("not supported")
                 #endif
             }
         }
