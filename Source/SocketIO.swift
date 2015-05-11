@@ -44,7 +44,7 @@ class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     init(nsurl: NSURL, withOptions options: SocketIOOptions) {
         url = nsurl
         
-        // ToDo: Options
+        // TODO: Options
     }
     
     final func connect() {
@@ -61,6 +61,13 @@ class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     
     final func disconnect() {
         connection.close()
+    }
+    
+    final func reconnect() {
+        connection.close()
+        connection = SocketIOConnection(transport: SocketIOWebSocket.self)
+        
+        // TODO: Reuse options
     }
     
     func canConnect(url: NSURL) -> Bool {
@@ -82,6 +89,7 @@ class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     func emit(event: String, withMessage message: String) {
         connection.emit(event, withMessage: message)
     }
+    
     
     //MARK: SocketIOReceiver
     
