@@ -75,15 +75,22 @@ class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
         emit(event.description, withMessage: message)
     }
     
+    func emit(event: T, withMessage message: String) {
+        emit(event.description, withMessage: message)
+    }
+    
     func emit(event: String, withMessage message: String) {
         connection.emit(event, withMessage: message)
     }
-    
     
     //MARK: SocketIOReceiver
     
     func on(event: SocketIOEvent, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         return connection.on(event, withCallback: callback)
+    }
+    
+    func on(event: T, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
+        return on(event.description, withCallback: callback)
     }
     
     func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
