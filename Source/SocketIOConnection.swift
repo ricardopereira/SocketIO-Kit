@@ -125,7 +125,6 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
                 return
             }
         }
-
         // Call internal defined events
         eventHandler.performEvent(event, withMessage: message)
         eventHandler.performGlobalEvents(message)
@@ -138,6 +137,12 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
     }
     
     final func emit(event: String, withError error: SocketIOError) {
+        // Check system events
+        for systemEvent in SocketIOEvent.system {
+            if event == systemEvent.description {
+                return
+            }
+        }
         eventHandler.performEvent(event, withError: error)
         
         // ToDo - Send message
