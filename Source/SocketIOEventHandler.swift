@@ -17,7 +17,7 @@ class SocketIOEventHandler: SocketIOReceiver {
         // Call current callback
         if let currentCallback = activeEvents[event] {
             #if DEBUG
-                println("--- \(SocketIO.name): Event handler")
+                println("--- \(SocketIOName): Event handler")
                 println("call event: \"\(event)\"")
             #endif
             dispatch_async(dispatch_get_main_queue()) {
@@ -26,7 +26,7 @@ class SocketIOEventHandler: SocketIOReceiver {
         }
         else {
             #if DEBUG
-                println("--- \(SocketIO.name): Event handler")
+                println("--- \(SocketIOName): Event handler")
                 println("no events")
             #endif
         }
@@ -36,7 +36,7 @@ class SocketIOEventHandler: SocketIOReceiver {
         // Call current callback
         if let currentCallback = activeEvents[event] {
             #if DEBUG
-                println("--- \(SocketIO.name): Event handler")
+                println("--- \(SocketIOName): Event handler")
                 println("call event: \"\(event)\"")
             #endif
             dispatch_async(dispatch_get_main_queue()) {
@@ -45,7 +45,7 @@ class SocketIOEventHandler: SocketIOReceiver {
         }
         else {
             #if DEBUG
-                println("--- \(SocketIO.name): Event handler")
+                println("--- \(SocketIOName): Event handler")
                 println("no events")
             #endif
         }
@@ -55,7 +55,7 @@ class SocketIOEventHandler: SocketIOReceiver {
         // Call current callback
         if let currentCallback = activeEvents[event] {
             #if DEBUG
-                println("--- \(SocketIO.name): Event handler")
+                println("--- \(SocketIOName): Event handler")
                 println("call event: \"\(event)\"")
             #endif
             dispatch_async(dispatch_get_main_queue()) {
@@ -64,7 +64,7 @@ class SocketIOEventHandler: SocketIOReceiver {
         }
         else {
             #if DEBUG
-                println("--- \(SocketIO.name): Event handler")
+                println("--- \(SocketIOName): Event handler")
                 println("no events")
             #endif
         }
@@ -72,7 +72,7 @@ class SocketIOEventHandler: SocketIOReceiver {
     
     final func performGlobalEvents(message: String) {
         #if DEBUG
-            println("--- \(SocketIO.name): Event handler")
+            println("--- \(SocketIOName): Event handler")
             println("call global events: \(globalEvents.count)")
         #endif
         for callback in globalEvents {
@@ -90,13 +90,13 @@ class SocketIOEventHandler: SocketIOReceiver {
         // Check current callback
         if let currentCallback = activeEvents[event] {
             #if DEBUG
-                println("--- \(SocketIO.name): Event handler")
+                println("--- \(SocketIOName): Event handler")
                 println("set event \"\(event)\" with new callback")
             #endif
         }
         else {
             #if DEBUG
-                println("--- \(SocketIO.name): Event handler")
+                println("--- \(SocketIOName): Event handler")
                 println("set callback event \"\(event)\"")
             #endif
         }
@@ -107,7 +107,7 @@ class SocketIOEventHandler: SocketIOReceiver {
     
     func onAny(callback: SocketIOCallback) -> SocketIOEventHandler {
         #if DEBUG
-            println("--- \(SocketIO.name): Event handler")
+            println("--- \(SocketIOName): Event handler")
             println("append global event")
         #endif
         // Set new callback
@@ -117,7 +117,7 @@ class SocketIOEventHandler: SocketIOReceiver {
     
     func off() -> SocketIOEventHandler {
         #if DEBUG
-            println("--- \(SocketIO.name): Event handler")
+            println("--- \(SocketIOName): Event handler")
             println("remove all events")
         #endif
         if (activeEvents.count > 0) {

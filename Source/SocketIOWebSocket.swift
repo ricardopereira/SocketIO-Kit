@@ -83,7 +83,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         #if DEBUG
-            println("--- \(SocketIO.name): WebSocket")
+            println("--- \(SocketIOName): WebSocket")
             println("received message> \(text)")
         #endif
         
@@ -93,7 +93,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             switch (id, key) {
             case (PacketTypeID.Message, PacketTypeKey.Connect):
                 #if DEBUG
-                    println("--- \(SocketIO.name): Packet decoded")
+                    println("--- \(SocketIOName): Packet decoded")
                     println("connected")
                 #endif
                 delegate.didReceiveMessage(SocketIOEvent.Connected.description, withString: "")
@@ -111,7 +111,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
                 }
             default:
                 #if DEBUG
-                    println("--- \(SocketIO.name): Packet decoded")
+                    println("--- \(SocketIOName): Packet decoded")
                     println("not supported")
                 #endif
             }

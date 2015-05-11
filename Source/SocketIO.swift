@@ -8,9 +8,9 @@
 
 import Foundation
 
-class SocketIO: SocketIOReceiver, SocketIOEmitter {
-    
-    static internal let name = "SocketIO"
+internal let SocketIOName = "SocketIO"
+
+class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     
     private let url: NSURL
         
@@ -22,7 +22,7 @@ class SocketIO: SocketIOReceiver, SocketIOEmitter {
             self.init(nsurl: url)
         }
         else {
-            assertionFailure("\(SocketIO.name): Invalid URL")
+            assertionFailure("\(SocketIOName): Invalid URL")
             self.init(url: "")
         }
     }
@@ -36,7 +36,7 @@ class SocketIO: SocketIOReceiver, SocketIOEmitter {
             self.init(nsurl: url, withOptions: options)
         }
         else {
-            assertionFailure("\(SocketIO.name): Invalid URL")
+            assertionFailure("\(SocketIOName): Invalid URL")
             self.init(url: "", withOptions: options)
         }
     }

@@ -34,7 +34,7 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
         
         if transport.isOpen {
             #if DEBUG
-                println("--- \(SocketIO.name): Connection")
+                println("--- \(SocketIOName): Connection")
                 println("connection is already open")
             #endif
             return
@@ -43,7 +43,7 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
         let url = NSURL(string: "socket.io/?transport=polling&b64=1", relativeToURL: hostUrl.URLByAppendingTrailingSlash())!;
         
         #if DEBUG
-            println("--- \(SocketIO.name): Connection")
+            println("--- \(SocketIOName): Connection")
             println("open: \(url)")
         #endif
 
@@ -59,7 +59,7 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
     
     private func requestCompletion(data: NSData!, response: NSURLResponse?, error: NSError?) {
         #if DEBUG
-            println("--- \(SocketIO.name): Request")
+            println("--- \(SocketIOName): Request")
             println("data: \(data)")
             println("response: \(response)")
             println("error: \(error)")
@@ -84,7 +84,7 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
         
         if let payload = NSString(data: data, encoding: NSUTF8StringEncoding) {
             #if DEBUG
-                println("--- \(SocketIO.name): Response")
+                println("--- \(SocketIOName): Response")
                 println("data with UTF8 encoding: \(payload)")
             #endif
             
