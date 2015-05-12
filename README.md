@@ -35,9 +35,25 @@ socket.connect()
 socket.emit("chat message", withMessage: "I'm iOS")
 ```
 
-**Image**
+----
+
+**Retrieving an image**
+
+```js
+// NodeJS Server
+io.on('connection', function(socket) {
+  socket.on('getimage', function(msg) {
+    // Image
+    fs.readFile(__dirname + '/image.png', function(err, buf){
+      // It's possible to embed binary data within arbitrarily-complex objects
+      socket.emit('image', { image: true, buffer: buf.toString('base64') });
+    });
+  });
+});
+```
 
 ```swift
+// SocketIO-Kit
 socket.on(.Image) {
     switch $0 {
     case .JSON(let json):
