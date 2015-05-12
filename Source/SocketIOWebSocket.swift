@@ -108,6 +108,9 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
                     if let dict = data[1] as? NSDictionary {
                         delegate.didReceiveMessage(eventName, withDictionary: dict)
                     }
+                    if let list = data[1] as? NSArray {
+                        delegate.didReceiveMessage(eventName, withList: list)
+                    }
                     else if let value = data[1] as? String {
                         delegate.didReceiveMessage(eventName, withString: value)
                     }

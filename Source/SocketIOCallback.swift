@@ -11,9 +11,9 @@ import Foundation
 enum SocketIOArg<E: SocketIOError> {
     
     case Message(message: String)
+    case List(list: NSArray)
     case JSON(json: NSDictionary)
     case Failure(E)
-    case Binary(data: NSData)
     
 }
 

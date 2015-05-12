@@ -111,6 +111,16 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
         }
     }
     
+    final func emit(event: SocketIOEvent, withError error: SocketIOError) {
+        // Check system events
+        for systemEvent in SocketIOEvent.system {
+            if event == systemEvent {
+                return
+            }
+        }
+        eventHandler.performEvent(event.description, withError: error)
+    }
+    
     
     // MARK: SocketIOEmitter
 
@@ -125,28 +135,40 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
                 return
             }
         }
-        // Call internal defined events
+        
+        // TODO: Call internal defined events
         eventHandler.performEvent(event, withMessage: message)
-        eventHandler.performGlobalEvents(message)
+        
         // Send message
         transport.send(event, withString: message)
     }
     
-    final func emit(event: SocketIOEvent, withError error: SocketIOError) {
-        emit(event.description, withError: error)
+    final func emit(event: SocketIOEvent, withList list: NSArray) {
+        emit(event.description, withList: list)
     }
     
-    final func emit(event: String, withError error: SocketIOError) {
+    final func emit(event: String, withList list: NSArray) {
         // Check system events
         for systemEvent in SocketIOEvent.system {
             if event == systemEvent.description {
                 return
             }
         }
-        eventHandler.performEvent(event, withError: error)
-        
-        // ToDo - Send message
-        
+        transport.send(event, withList: list)
+    }
+    
+    final func emit(event: SocketIOEvent, withDictionary dict: NSDictionary) {
+        emit(event.description, withDictionary: dict)
+    }
+    
+    final func emit(event: String, withDictionary dict: NSDictionary) {
+        // Check system events
+        for systemEvent in SocketIOEvent.system {
+            if event == systemEvent.description {
+                return
+            }
+        }
+        transport.send(event, withDictionary: dict)
     }
     
     
@@ -200,11 +222,17 @@ private class TransportDelegate: SocketIOTransportDelegate {
     }
     
     final func didReceiveMessage(event: String, withString message: String) {
+        // Invoke Callbacks
         events.performEvent(event, withMessage: message)
+        events.performGlobalEvents(message)
     }
     
-    final func didReceiveMessage(event: String, withDictionary message: NSDictionary) {
-        events.performEvent(event, withJSON: message)
+    final func didReceiveMessage(event: String, withList list: NSArray) {
+        events.performEvent(event, withList: list)
+    }
+    
+    final func didReceiveMessage(event: String, withDictionary dict: NSDictionary) {
+        events.performEvent(event, withJSON: dict)
     }
     
 }

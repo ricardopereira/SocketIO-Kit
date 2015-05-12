@@ -78,38 +78,62 @@ class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     
     //MARK: SocketIOEmitter
     
-    func emit(event: SocketIOEvent, withMessage message: String) {
+    final func emit(event: SocketIOEvent, withMessage message: String) {
         emit(event.description, withMessage: message)
     }
     
-    func emit(event: T, withMessage message: String) {
+    final func emit(event: T, withMessage message: String) {
         emit(event.description, withMessage: message)
     }
     
-    func emit(event: String, withMessage message: String) {
+    final func emit(event: String, withMessage message: String) {
         connection.emit(event, withMessage: message)
+    }
+    
+    final func emit(event: SocketIOEvent, withList list: NSArray) {
+        emit(event.description, withList: list)
+    }
+    
+    final func emit(event: T, withList list: NSArray) {
+        emit(event.description, withList: list)
+    }
+    
+    final func emit(event: String, withList list: NSArray) {
+        connection.emit(event, withList: list)
+    }
+    
+    final func emit(event: SocketIOEvent, withDictionary dict: NSDictionary) {
+        emit(event.description, withDictionary: dict)
+    }
+
+    final func emit(event: T, withDictionary dict: NSDictionary) {
+        emit(event.description, withDictionary: dict)
+    }
+
+    final func emit(event: String, withDictionary dict: NSDictionary) {
+        connection.emit(event, withDictionary: dict)
     }
     
     
     //MARK: SocketIOReceiver
     
-    func on(event: SocketIOEvent, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
+    final func on(event: SocketIOEvent, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         return connection.on(event, withCallback: callback)
     }
     
-    func on(event: T, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
+    final func on(event: T, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         return on(event.description, withCallback: callback)
     }
     
-    func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
+    final func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         return connection.on(event, withCallback: callback)
     }
     
-    func onAny(callback: SocketIOCallback) -> SocketIOEventHandler {
+    final func onAny(callback: SocketIOCallback) -> SocketIOEventHandler {
         return connection.onAny(callback)
     }
     
-    func off() -> SocketIOEventHandler {
+    final func off() -> SocketIOEventHandler {
         return connection.off()
     }
     

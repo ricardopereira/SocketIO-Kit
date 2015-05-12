@@ -51,6 +51,25 @@ class SocketIOEventHandler: SocketIOReceiver {
         }
     }
     
+    final func performEvent(event: String, withList list: NSArray) {
+        // Call current callback
+        if let currentCallback = activeEvents[event] {
+            #if DEBUG
+                println("--- \(SocketIOName): Event handler")
+                println("call event: \"\(event)\"")
+            #endif
+            dispatch_async(dispatch_get_main_queue()) {
+                currentCallback(SocketIOArg.List(list: list))
+            }
+        }
+        else {
+            #if DEBUG
+                println("--- \(SocketIOName): Event handler")
+                println("call event: \"\(event)\" - none")
+            #endif
+        }
+    }
+    
     final func performEvent(event: String, withJSON json: NSDictionary) {
         // Call current callback
         if let currentCallback = activeEvents[event] {
