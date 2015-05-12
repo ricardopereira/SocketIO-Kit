@@ -76,15 +76,7 @@ io.on('connection', function(socket) {
 socket.on(.Image) {
     switch $0 {
     case .JSON(let json):
-        let decodeBufferUsingBase64 : String -> NSData? = {
-            NSData(base64EncodedString: $0, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-        }
-        
-        let base64ToUIImage : NSData -> UIImage? = {
-            UIImage(data: $0)
-        }
-        
-        if let image = json["buffer"] as? String >>- decodeBufferUsingBase64 >>- base64ToUIImage {
+        if let image = json["buffer"] as? String >>- Utilities.base64EncodedStringToUIImage {
             println(image)
         }
     default:
