@@ -14,8 +14,6 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         
     final override func open(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake) {
         // WebSocket
-        // - requires that you put your Socket either into “string mode” or “binary mode”
-        
         if isOpen {
             return
         }
@@ -69,16 +67,21 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         // Complete upgrade to WebSocket
         let confirmation = SocketIOPacket.encode(.Upgrade, withKey: .Event)
         socket.writeString(confirmation)
-        
-        // Server flushes and closes old transport and switches to new
+        // ... then server flushes and closes old transport and switches to new
     }
     
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
-        println("Disconnet websocket: \(error)")
+        #if DEBUG
+            println("--- \(SocketIOName): WebSocket")
+            println("disconnected")
+            println(error)
+        #endif
+        delegate.didReceiveMessage(SocketIOEvent.Disconnected.description, withString: "")
     }
     
     func websocketDidReceiveData(socket: WebSocket, data: NSData) {
-        println("Received: \(data)")
+        // WebSocket requires that you put your Socket either into “string mode” or “binary mode”
+        //  - SocketIO use "string mode"
     }
     
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
@@ -93,7 +96,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             switch (id, key) {
             case (PacketTypeID.Message, PacketTypeKey.Connect):
                 #if DEBUG
-                    println("--- \(SocketIOName): Packet decoded")
+                    println("--- \(SocketIOName): WebSocket Packet decoded")
                     println("connected")
                 #endif
                 delegate.didReceiveMessage(SocketIOEvent.Connected.description, withString: "")
@@ -111,7 +114,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
                 }
             default:
                 #if DEBUG
-                    println("--- \(SocketIOName): Packet decoded")
+                    println("--- \(SocketIOName): WebSocket Packet decoded")
                     println("not supported")
                 #endif
             }

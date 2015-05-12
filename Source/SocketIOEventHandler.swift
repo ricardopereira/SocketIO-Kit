@@ -27,7 +27,7 @@ class SocketIOEventHandler: SocketIOReceiver {
         else {
             #if DEBUG
                 println("--- \(SocketIOName): Event handler")
-                println("no events")
+                println("call event: \"\(event)\" - none")
             #endif
         }
     }
@@ -46,7 +46,7 @@ class SocketIOEventHandler: SocketIOReceiver {
         else {
             #if DEBUG
                 println("--- \(SocketIOName): Event handler")
-                println("no events")
+                println("call event: \"\(event)\" - none")
             #endif
         }
     }
@@ -65,7 +65,7 @@ class SocketIOEventHandler: SocketIOReceiver {
         else {
             #if DEBUG
                 println("--- \(SocketIOName): Event handler")
-                println("no events")
+                println("call event: \"\(event)\" - none")
             #endif
         }
     }
