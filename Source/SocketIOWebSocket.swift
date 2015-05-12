@@ -53,11 +53,20 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         socket.writeString(packet)
     }
     
-    final override func send(event: String, withDictionary message: NSDictionary) {
+    final override func send(event: String, withList list: NSArray) {
         if !isOpen {
             return
         }
-        // TODO: NSDictionary
+        let packet = SocketIOPacket.encode(.Message, withKey: .Event, withEvent: event, andList: list)
+        socket.writeString(packet)
+    }
+    
+    final override func send(event: String, withDictionary dict: NSDictionary) {
+        if !isOpen {
+            return
+        }
+        let packet = SocketIOPacket.encode(.Message, withKey: .Event, withEvent: event, andDictionary: dict)
+        socket.writeString(packet)
     }
     
     

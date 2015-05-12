@@ -10,6 +10,28 @@ import UIKit
 
 class Utilities {
     
+    // MARK: base64EncodedStringToUIImage
+    
+    static private let arrayToJSONData : NSArray -> NSData? = {
+        NSJSONSerialization.dataWithJSONObject($0, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
+    }
+    
+    static private let dataToJSONString : NSData -> NSString? = {
+        NSString(data: $0, encoding: NSUTF8StringEncoding)
+    }
+    
+    static private let getJSONString : NSString -> String? = {
+        $0 as String
+    }
+    
+    static let arrayToJSON : NSArray -> String? = {
+        $0 >>- arrayToJSONData >>- dataToJSONString >>- getJSONString
+    }
+
+    
+    
+    // MARK: base64EncodedStringToUIImage
+    
     static private let decodeBuffer : String -> NSData? = {
         NSData(base64EncodedString: $0, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
     }

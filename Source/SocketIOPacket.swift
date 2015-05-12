@@ -52,30 +52,30 @@ class SocketIOPacket {
     }
     
     static func encode(id: PacketTypeID, withKey key: PacketTypeKey, withEvent event: String, andMessage message: String) -> String {
-        // TODO: When event is empty
+        if event.isEmpty {
+            return id.value + key.value
+        }
         return id.value + key.value + "[\"" + event + "\",\"" + message + "\"]"
+    }
+    
+    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, withEvent event: String, andList list: NSArray) -> String {
+        let array = [event, list]
+        
+        if event.isEmpty || !NSJSONSerialization.isValidJSONObject(array) {
+            return id.value + key.value
+        }
+        
+        return id.value + key.value + (array >>- Utilities.arrayToJSON ?? "")
     }
     
     static func encode(id: PacketTypeID, withKey key: PacketTypeKey, withEvent event: String, andDictionary dict: NSDictionary) -> String {
         let array = [event, dict]
         
-        if NSJSONSerialization.isValidJSONObject(array) == false {
+        if event.isEmpty || !NSJSONSerialization.isValidJSONObject(array) {
             return id.value + key.value
         }
         
-        let jsonData : NSArray -> NSData? = {
-            NSJSONSerialization.dataWithJSONObject($0, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
-        }
-        
-        let jsonStr : NSData -> NSString? = {
-            NSString(data: $0, encoding: NSUTF8StringEncoding)
-        }
-        
-        let result : NSString -> String? = {
-            $0 as String
-        }
-        
-        return id.value + key.value + (array >>- jsonData >>- jsonStr >>- result ?? "")
+        return id.value + key.value + (array >>- Utilities.arrayToJSON ?? "")
     }
     
     static func decode(value: String) -> (Bool, PacketTypeID, PacketTypeKey, NSArray) {
