@@ -31,10 +31,10 @@ socket.on(.ConnectError) {
     default:
         break
     }
-    return SocketIOResult.Success(status: 0)
+    return .Success(status: 0)
 }.on(.Connected) { (arg: SocketIOArg) -> (SocketIOResult) in
     println("Connected")
-    return SocketIOResult.Success(status: 0)
+    return .Success(status: 0)
 }
 
 socket.on(.ChatMessage, withCallback: { (arg: SocketIOArg) -> (SocketIOResult) in
@@ -44,7 +44,7 @@ socket.on(.ChatMessage, withCallback: { (arg: SocketIOArg) -> (SocketIOResult) i
     default:
         println("Not supported")
     }
-    return SocketIOResult.Success(status: 0)
+    return .Success(status: 0)
 })
 
 socket.connect()
@@ -90,6 +90,6 @@ socket.on(.Image) {
     default:
         println("Not supported")
     }
-    return SocketIOResult.Success(status: 0)
+    return .Success(status: 0)
 }
 ```
