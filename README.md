@@ -5,6 +5,20 @@
 ###Usage
 
 ```swift
+// Type safety events
+enum AppEvents: String, Printable {
+    case ChatMessage = "chat message"
+    case GetImage = "getimage"
+    case Image = "image"
+    
+    var description: String {
+        return self.rawValue
+    }
+}
+
+// Let's go
+var socket: SocketIO<AppEvents>!
+
 socket = SocketIO(url: "http://localhost:8000/")
 
 socket.on(.ConnectError) {
@@ -20,7 +34,7 @@ socket.on(.ConnectError) {
     return SocketIOResult.Success(status: 0)
 }
 
-socket.on("chat message", withCallback: { (arg: SocketIOArg) -> (SocketIOResult) in
+socket.on(.ChatMessage, withCallback: { (arg: SocketIOArg) -> (SocketIOResult) in
     switch arg {
     case .Message(let message):
         println("Remote: \(message)")
@@ -32,7 +46,7 @@ socket.on("chat message", withCallback: { (arg: SocketIOArg) -> (SocketIOResult)
 
 socket.connect()
 
-socket.emit("chat message", withMessage: "I'm iOS")
+socket.emit(.ChatMessage, withMessage: "I'm iOS")
 ```
 
 ----
@@ -41,6 +55,8 @@ socket.emit("chat message", withMessage: "I'm iOS")
 
 ```js
 // NodeJS Server
+var io = require('socket.io')(http)
+
 io.on('connection', function(socket) {
   socket.on('getimage', function(msg) {
     // Image
@@ -53,7 +69,7 @@ io.on('connection', function(socket) {
 ```
 
 ```swift
-// SocketIO-Kit
+// SocketIO-Kit Client
 socket.on(.Image) {
     switch $0 {
     case .JSON(let json):
