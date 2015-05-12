@@ -31,20 +31,17 @@ socket.on(.ConnectError) {
     default:
         break
     }
-    return .Success(status: 0)
-}.on(.Connected) { (arg: SocketIOArg) -> (SocketIOResult) in
+}.on(.Connected) { (arg: SocketIOArg) -> () in
     println("Connected")
-    return .Success(status: 0)
 }
 
-socket.on(.ChatMessage, withCallback: { (arg: SocketIOArg) -> (SocketIOResult) in
+socket.on(.ChatMessage, withCallback: { (arg: SocketIOArg) -> () in
     switch arg {
     case .Message(let message):
         println("Remote: \(message)")
     default:
         println("Not supported")
     }
-    return .Success(status: 0)
 })
 
 socket.connect()
@@ -82,6 +79,5 @@ socket.on(.Image) {
     default:
         println("Not supported")
     }
-    return .Success(status: 0)
 }
 ```
