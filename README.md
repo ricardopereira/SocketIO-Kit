@@ -16,10 +16,13 @@ enum AppEvents: String, Printable {
     }
 }
 
-// Let's go
+// Mutable
 var socket: SocketIO<AppEvents>!
-
 socket = SocketIO(url: "http://localhost:8000/")
+
+// or 
+// Immutable
+let socket = SocketIO<AppEvents>(url: "http://localhost:8000/")
 
 socket.on(.ConnectError) {
     switch $0 {
