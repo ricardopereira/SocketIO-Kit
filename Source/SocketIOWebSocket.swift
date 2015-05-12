@@ -74,7 +74,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         #if DEBUG
             println("--- \(SocketIOName): WebSocket")
             println("disconnected")
-            println(error)
+            println("error: \(error)")
         #endif
         delegate.didReceiveMessage(SocketIOEvent.Disconnected.description, withString: "")
     }
