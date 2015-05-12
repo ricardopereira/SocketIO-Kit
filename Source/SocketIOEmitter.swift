@@ -16,5 +16,7 @@ protocol SocketIOEmitter {
     func emit(event: String, withList list: NSArray)
     func emit(event: SocketIOEvent, withDictionary dict: NSDictionary)
     func emit(event: String, withDictionary dict: NSDictionary)
+    func emit(event: SocketIOEvent, withObject object: SocketIOObject)
+    func emit(event: String, withObject object: SocketIOObject)
     
 }

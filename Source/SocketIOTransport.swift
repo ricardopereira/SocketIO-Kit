@@ -23,5 +23,6 @@ class SocketIOTransport {
     func send(event: String, withString message: String) {}
     func send(event: String, withList list: NSArray) {}
     func send(event: String, withDictionary dict: NSDictionary) {}
+    func send(event: String, withObject object: SocketIOObject) {}
 
 }

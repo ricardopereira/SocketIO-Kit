@@ -171,6 +171,21 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
         transport.send(event, withDictionary: dict)
     }
     
+    func emit(event: SocketIOEvent, withObject object: SocketIOObject) {
+        emit(event.description, withObject: object)
+    }
+    
+    func emit(event: String, withObject object: SocketIOObject) {
+        // Check system events
+        for systemEvent in SocketIOEvent.system {
+            if event == systemEvent.description {
+                return
+            }
+        }
+        transport.send(event, withObject: object)
+    }
+
+    
     
     // MARK: SocketIOReceiver
     

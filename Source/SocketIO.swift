@@ -114,6 +114,19 @@ class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
         connection.emit(event, withDictionary: dict)
     }
     
+    final func emit(event: SocketIOEvent, withObject object: SocketIOObject) {
+        emit(event.description, withObject: object)
+    }
+    
+    final func emit(event: T, withObject object: SocketIOObject) {
+        emit(event.description, withObject: object)
+    }
+    
+    final func emit(event: String, withObject object: SocketIOObject) {
+        connection.emit(event, withObject: object)
+    }
+
+    
     
     //MARK: SocketIOReceiver
     

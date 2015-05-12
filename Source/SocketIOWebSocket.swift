@@ -69,6 +69,10 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         socket.writeString(packet)
     }
     
+    final override func send(event: String, withObject object: SocketIOObject) {
+        send(event, withDictionary: object.asDictionary)
+    }
+    
     
     // MARK: WebSocketDelegate
     
