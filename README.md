@@ -2,6 +2,8 @@
 
 ###### Version 1.0 Alpha
 
+SocketIO-Kit is a Socket.io iOS client with type safe, clean syntax and speed in mind.
+
 ###Usage
 
 ```swift
@@ -148,7 +150,7 @@ class Person: SocketIOObject {
 
 ```swift
 // Example sending John instance
-let john = Person("John")
+let john = Person(name: "John")
 
 socket.emit(.Login, withObject: john)
 ```
