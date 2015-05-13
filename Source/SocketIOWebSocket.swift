@@ -50,6 +50,11 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             return
         }
         let packet = SocketIOPacket.encode(.Message, withKey: .Event, withEvent: event, andMessage: message)
+        
+        #if DEBUG
+            println("--- \(SocketIOName): WebSocket")
+            println("sending> \(packet)")
+        #endif
         socket.writeString(packet)
     }
     
@@ -64,6 +69,10 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             return
         }
         
+        #if DEBUG
+            println("--- \(SocketIOName): WebSocket")
+            println("sending> \(packet)")
+        #endif
         socket.writeString(packet)
     }
     
@@ -78,6 +87,10 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             return
         }
         
+        #if DEBUG
+            println("--- \(SocketIOName): WebSocket")
+            println("sending> \(packet)")
+        #endif
         socket.writeString(packet)
     }
     
