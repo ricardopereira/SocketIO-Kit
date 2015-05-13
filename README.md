@@ -1,6 +1,6 @@
 #SocketIO-Kit
 
-###### Version 0.1 - Work in progress...
+###### Version 1.0 Alpha
 
 ###Usage
 
@@ -110,8 +110,6 @@ struct ImageInfo: SocketIOObject {
 // Example using ImageInfo
 socket.on(.Image) {
     switch $0 {
-    case .Message(let message):
-        println("Finally: \(message)")
     case .JSON(let json):
         let imageInfo = ImageInfo(dict: json) //<---
         
