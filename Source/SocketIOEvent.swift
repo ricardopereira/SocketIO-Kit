@@ -15,13 +15,14 @@ enum SocketIOEvent: String, Printable {
     case Disconnected = "disconnected" //Called on a disconnection
     case ConnectError = "connect_error" //Called on a connection error
     case ReconnectAttempt = "reconnect_attempt" //Attempt for reconnection
+    case EmitError = "emit_error" //Sending errors
     
     var description: String {
         return self.rawValue
     }
     
     static var system: [SocketIOEvent] {
-        return [.Connected, .Disconnected]
+        return [.Connected, .Disconnected, .ReconnectAttempt, .EmitError]
     }
     
 }

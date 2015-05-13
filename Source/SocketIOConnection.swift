@@ -236,6 +236,10 @@ private class TransportDelegate: SocketIOTransportDelegate {
         self.events = eventHandler
     }
     
+    final func failure(event: SocketIOEvent, error: SocketIOError) {
+        events.performEvent(event.description, withError: error)
+    }
+    
     final func didReceiveMessage(event: String, withString message: String) {
         // Invoke Callbacks
         events.performEvent(event, withMessage: message)

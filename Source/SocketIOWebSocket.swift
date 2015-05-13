@@ -57,7 +57,13 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         if !isOpen {
             return
         }
-        let packet = SocketIOPacket.encode(.Message, withKey: .Event, withEvent: event, andList: list)
+        let (packet, error) = SocketIOPacket.encode(.Message, withKey: .Event, withEvent: event, andList: list)
+
+        if let e = error {
+            delegate.failure(.EmitError, error: e)
+            return
+        }
+        
         socket.writeString(packet)
     }
     
@@ -65,7 +71,13 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         if !isOpen {
             return
         }
-        let packet = SocketIOPacket.encode(.Message, withKey: .Event, withEvent: event, andDictionary: dict)
+        let (packet, error) = SocketIOPacket.encode(.Message, withKey: .Event, withEvent: event, andDictionary: dict)
+        
+        if let e = error {
+            delegate.failure(.EmitError, error: e)
+            return
+        }
+        
         socket.writeString(packet)
     }
     

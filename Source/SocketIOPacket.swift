@@ -58,24 +58,24 @@ class SocketIOPacket {
         return id.value + key.value + "[\"" + event + "\",\"" + message + "\"]"
     }
     
-    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, withEvent event: String, andList list: NSArray) -> String {
+    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, withEvent event: String, andList list: NSArray) -> (String, SocketIOError?) {
         let array = [event, list]
         
         if event.isEmpty || !NSJSONSerialization.isValidJSONObject(array) {
-            return id.value + key.value
+            return (id.value + key.value, SocketIOError(message: "Invalid JSON Object", withInfo: ["Event: \(event)"]))
         }
         
-        return id.value + key.value + (array >>- Utilities.arrayToJSON ?? "")
+        return (id.value + key.value + (array >>- Utilities.arrayToJSON ?? ""), nil)
     }
     
-    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, withEvent event: String, andDictionary dict: NSDictionary) -> String {
+    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, withEvent event: String, andDictionary dict: NSDictionary) -> (String, SocketIOError?) {
         let array = [event, dict]
         
         if event.isEmpty || !NSJSONSerialization.isValidJSONObject(array) {
-            return id.value + key.value
+            return (id.value + key.value, SocketIOError(message: "Invalid JSON Object", withInfo: ["Event: \(event)"]))
         }
         
-        return id.value + key.value + (array >>- Utilities.arrayToJSON ?? "")
+        return (id.value + key.value + (array >>- Utilities.arrayToJSON ?? ""), nil)
     }
     
     static func decode(value: String) -> (Bool, PacketTypeID, PacketTypeKey, NSArray) {
