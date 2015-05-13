@@ -81,3 +81,76 @@ socket.on(.Image) {
     }
 }
 ```
+
+----
+
+**Working with structs**
+
+```swift
+struct ImageInfo: SocketIOObject {
+    
+    let buffer: String
+    
+    init(buffer: String) {
+        self.buffer = buffer
+    }
+    
+    init(dict: NSDictionary) {
+        self.init(buffer: dict["buffer"] as! String)
+    }
+    
+    var asDictionary: NSDictionary {
+        return ["buffer": buffer]
+    }
+    
+}
+```
+
+```swift
+// Example using ImageInfo
+socket.on(.Image) {
+    switch $0 {
+    case .Message(let message):
+        println("Finally: \(message)")
+    case .JSON(let json):
+        let imageInfo = ImageInfo(dict: json) //<---
+        
+        if let image = imageInfo.buffer >>- Utilities.base64EncodedStringToUIImage {
+            println(image)
+        }
+    default:
+        println("Not supported")
+    }
+}
+```
+
+----
+
+**Working with classes**
+
+```swift
+class Person: SocketIOObject {
+    
+    let name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    convenience required init(dict: NSDictionary) {
+        self.init(name: dict["name"] as! String)
+    }
+    
+    var asDictionary: NSDictionary {
+        return ["name": name]
+    }
+    
+}
+```
+
+```swift
+// Example sending John instance
+let john = Person("John")
+
+socket.emit(.Login, withObject: john)
+```
