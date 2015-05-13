@@ -78,50 +78,122 @@ class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     
     //MARK: SocketIOEmitter
     
+    /**
+    Sends a text message to the server.
+    
+    :param: event     Event name provided with SocketIOEvent.
+    :param: message   Message to send.
+    */
     final func emit(event: SocketIOEvent, withMessage message: String) {
         emit(event.description, withMessage: message)
     }
+
+    /**
+    Sends a text message to the server.
     
+    :param: event     Event name provided with generic type.
+    :param: message   Message to send.
+    */
     final func emit(event: T, withMessage message: String) {
         emit(event.description, withMessage: message)
     }
+
+    /**
+    Sends a text message to the server.
     
+    :param: event     Event name.
+    :param: message   Message to send.
+    */
     final func emit(event: String, withMessage message: String) {
         connection.emit(event, withMessage: message)
     }
+
+    /**
+    Sends a list of items to the server.
     
+    :param: event   Event name provided with SocketIOEvent.
+    :param: list    List of type NSArray to send.
+    */
     final func emit(event: SocketIOEvent, withList list: NSArray) {
         emit(event.description, withList: list)
     }
+
+    /**
+    Sends a list of items to the server.
     
+    :param: event   Event name provided with generic type.
+    :param: list    List of type NSArray to send.
+    */
     final func emit(event: T, withList list: NSArray) {
         emit(event.description, withList: list)
     }
     
+    /**
+    Sends a list of items to the server.
+    
+    :param: event   Event name.
+    :param: list    List of type NSArray to send.
+    */
     final func emit(event: String, withList list: NSArray) {
         connection.emit(event, withList: list)
     }
     
+    /**
+    Sends a dictionary (key-value) to the server.
+    
+    :param: event   Event name provided with SocketIOEvent.
+    :param: dict    Key-value object of type NSDictionary to send.
+    */
     final func emit(event: SocketIOEvent, withDictionary dict: NSDictionary) {
         emit(event.description, withDictionary: dict)
     }
 
+    /**
+    Sends a dictionary (key-value) to the server.
+    
+    :param: event   Event name provided with generic type.
+    :param: dict    Key-value object of type NSDictionary to send.
+    */
     final func emit(event: T, withDictionary dict: NSDictionary) {
         emit(event.description, withDictionary: dict)
     }
 
+    /**
+    Sends a dictionary (key-value) to the server.
+    
+    :param: event   Event name.
+    :param: dict    Key-value object of type NSDictionary to send.
+    */
     final func emit(event: String, withDictionary dict: NSDictionary) {
         connection.emit(event, withDictionary: dict)
     }
     
+    /**
+    Sends a object to the server.
+    
+    :param: event   Event name provided with SocketIOEvent.
+    :param: object  Object that comply SocketIOObject protocol.
+    */
     final func emit(event: SocketIOEvent, withObject object: SocketIOObject) {
         emit(event.description, withObject: object)
     }
     
+    /**
+    Sends a object to the server.
+    
+    :param: event   Event name provided with generic type.
+    :param: object  Object that comply SocketIOObject protocol.
+    */
     final func emit(event: T, withObject object: SocketIOObject) {
         emit(event.description, withObject: object)
     }
     
+    /**
+    Sends a object to the server.
+    
+    :param: event   Event name provided.
+    :param: object  Object that comply SocketIOObject protocol.
+    */
     final func emit(event: String, withObject object: SocketIOObject) {
         connection.emit(event, withObject: object)
     }
