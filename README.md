@@ -4,7 +4,21 @@
 
 SocketIO-Kit is a Socket.io iOS client with type safe, clean syntax and speed in mind.
 
-###Usage
+### Installation
+
+#### Carthage
+
+(work in progress)
+
+#### CocoaPods
+
+(work in progress)
+
+#### Manually
+
+[Download](https://github.com/ricardopereira/SocketIO-Kit/archive/master.zip) the project and copy the `SocketIO-Kit` folder into your project to use it in.
+
+## Usage
 
 ```swift
 // Type safety events
