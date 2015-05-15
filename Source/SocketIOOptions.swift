@@ -10,10 +10,6 @@ import Foundation
 
 struct SocketIOOptions {
     
-    var reconnect = false
-    
-    init() {
-        
-    }
-    
+    var namespace: String = ""
+
 }
