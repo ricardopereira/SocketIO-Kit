@@ -106,6 +106,17 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         let confirmation = SocketIOPacket.encode(.Upgrade, withKey: .Event)
         socket.writeString(confirmation)
         // ... then server flushes and closes old transport and switches to new
+
+        // Test: Namespace
+        //let namespace = SocketIOPacket.encode(.Message, withKey: .Connect)
+        //socket.writeString(namespace + "/gallery")
+        
+        // Example: namespace "/gallery"
+        // Message:
+        //42/gallery,["event", {}]
+        
+        // Connect:
+        //40/gallery
     }
     
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
