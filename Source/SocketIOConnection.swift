@@ -135,10 +135,6 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
                 return
             }
         }
-        
-        // TODO: Call internal defined events
-        eventHandler.performEvent(event, withMessage: message)
-        
         // Send message
         transport.send(event, withString: message)
     }
@@ -154,6 +150,7 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
                 return
             }
         }
+        // Send message
         transport.send(event, withList: list)
     }
     
@@ -168,6 +165,7 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
                 return
             }
         }
+        // Send message
         transport.send(event, withDictionary: dict)
     }
     
@@ -182,6 +180,7 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
                 return
             }
         }
+        // Send message
         transport.send(event, withObject: object)
     }
 
