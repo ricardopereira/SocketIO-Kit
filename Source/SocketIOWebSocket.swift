@@ -107,16 +107,17 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         socket.writeString(confirmation)
         // ... then server flushes and closes old transport and switches to new
 
-        // Test: Namespace
-        //let namespace = SocketIOPacket.encode(.Message, withKey: .Connect)
-        //socket.writeString(namespace + "/gallery")
-        
-        // Example: namespace "/gallery"
-        // Message:
-        //42/gallery,["event", {}]
-        
-        // Connect:
-        //40/gallery
+        if !delegate.options.namespace.isEmpty {
+            let connectToNamespace = SocketIOPacket.encode(.Message, withKey: .Connect)
+            socket.writeString(connectToNamespace + delegate.options.namespace)
+            
+            // Connect:
+            //40/gallery
+            
+            // Example: namespace "/gallery"
+            // Message:
+            //42/gallery,["event", {}]
+        }
     }
     
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {

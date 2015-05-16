@@ -15,18 +15,14 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
     private let transport: SocketIOTransport
     private let transportDelegate: TransportDelegate
     
-    convenience init(transport: SocketIOTransport.Type) {
-        self.init(requester: SessionRequest(), transport: transport)
-    }
-    
-    init(requester: SocketIORequester, transport: SocketIOTransport.Type) {
+    init(options: SocketIOOptions, requester: SocketIORequester, transport: SocketIOTransport.Type) {
         // Connection transport
         self.requester = requester
         self.eventHandler = SocketIOEventHandler()
-        self.transportDelegate = TransportDelegate(eventHandler: eventHandler)
+        self.transportDelegate = TransportDelegate(eventHandler: eventHandler, withOptions: options)
         self.transport = transport(delegate: transportDelegate)
     }
-    
+        
     func open(hostUrl: NSURL) {
         // GET request for Handshake
         //  - Indicate the transport: polling
@@ -99,7 +95,6 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
                 transport.open(hostUrl, withHandshake: handshake)
             }
             else {
-                // Teste
                 emit(.ConnectError, withError: SocketIOError(message: jsonStr, withInfo: []))
             }
             
@@ -207,32 +202,16 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
 }
 
 
-// MARK: Private Classes
-
-private class SessionRequest: SocketIORequester {
-    
-    // Request session
-    private let session: NSURLSession
-    // Handling a lot of requests at once
-    private var requestsQueue = NSOperationQueue()
-    
-    init() {
-        session = NSURLSession(configuration: NSURLSessionConfiguration.ephemeralSessionConfiguration(), delegate: nil, delegateQueue: self.requestsQueue)
-    }
-    
-    final func sendRequest(request: NSURLRequest, completion: RequestCompletionHandler) {
-        // Do request
-        session.dataTaskWithRequest(request, completionHandler: completion).resume()
-    }
-    
-}
+// MARK: SocketIOTransport Delegate
 
 private class TransportDelegate: SocketIOTransportDelegate {
     
     private let events: SocketIOEventHandler
+    private let options: SocketIOOptions
     
-    init(eventHandler: SocketIOEventHandler) {
+    init(eventHandler: SocketIOEventHandler, withOptions options: SocketIOOptions) {
         self.events = eventHandler
+        self.options = options
     }
     
     final func failure(event: SocketIOEvent, error: SocketIOError) {

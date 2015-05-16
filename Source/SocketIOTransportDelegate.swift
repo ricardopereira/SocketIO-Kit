@@ -10,6 +10,8 @@ import Foundation
 
 protocol SocketIOTransportDelegate {
     
+    var options: SocketIOOptions { get }
+    
     func failure(event: SocketIOEvent, error: SocketIOError)
     func didReceiveMessage(event: String, withString message: String)
     func didReceiveMessage(event: String, withList list: NSArray)

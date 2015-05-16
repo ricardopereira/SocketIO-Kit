@@ -10,12 +10,29 @@ import Foundation
 
 internal let SocketIOName = "SocketIO"
 
+private class SessionRequest: SocketIORequester {
+    
+    // Request session
+    private let session: NSURLSession
+    // Handling a lot of requests at once
+    private var requestsQueue = NSOperationQueue()
+    
+    init() {
+        session = NSURLSession(configuration: NSURLSessionConfiguration.ephemeralSessionConfiguration(), delegate: nil, delegateQueue: self.requestsQueue)
+    }
+    
+    final func sendRequest(request: NSURLRequest, completion: RequestCompletionHandler) {
+        // Do request
+        session.dataTaskWithRequest(request, completionHandler: completion).resume()
+    }
+    
+}
+
 class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     
     private let url: NSURL
-        
-    // Default transport: WebSocket
-    private lazy var connection = SocketIOConnection(transport: SocketIOWebSocket.self)
+    private let options: SocketIOOptions
+    private let connection: SocketIOConnection
     
     convenience init(url: String) {
         if let url = NSURL(string: url) {
@@ -27,37 +44,27 @@ class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
         }
     }
     
-    convenience init(nsurl: NSURL) {
-        self.init(nsurl: nsurl, withOptions: SocketIOOptions())
-    }
-    
     convenience init(url: String, withOptions options: SocketIOOptions) {
         if let url = NSURL(string: url) {
-            self.init(nsurl: url, withOptions: options)
+            self.init(nsurl: url, withOptions: options, withRequest: SessionRequest(), withTransport: SocketIOWebSocket.self)
         }
         else {
             assertionFailure("\(SocketIOName): Invalid URL")
             self.init(url: "", withOptions: options)
         }
     }
+    
+    convenience init(nsurl: NSURL) {
+        self.init(nsurl: nsurl, withOptions: SocketIOOptions(), withRequest: SessionRequest(), withTransport: SocketIOWebSocket.self)
+    }
 
-    init(nsurl: NSURL, withOptions options: SocketIOOptions) {
+    init(nsurl: NSURL, withOptions options: SocketIOOptions, withRequest request: SocketIORequester, withTransport transport: SocketIOTransport.Type) {
         url = nsurl
-        
-        // TODO: Options
+        self.options = options
+        connection = SocketIOConnection(options: options, requester: request, transport: transport.self)
     }
     
     final func connect() {
-        connection.open(url)
-    }
-    
-    final func connect(transport: SocketIOTransport.Type) {
-        connection = SocketIOConnection(transport: transport.self)
-        connection.open(url)
-    }
-    
-    final func connect(request: SocketIORequester, withTransport transport: SocketIOTransport.Type) {
-        connection = SocketIOConnection(requester: request, transport: transport.self)
         connection.open(url)
     }
     
@@ -67,9 +74,7 @@ class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     
     final func reconnect() {
         connection.close()
-        connection = SocketIOConnection(transport: SocketIOWebSocket.self)
-        
-        // TODO: Reuse options
+        connection.open(url)
     }
     
     func canConnect(url: NSURL) -> Bool {
