@@ -49,7 +49,10 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         if !isOpen {
             return
         }
-        let packet = SocketIOPacket.encode(.Message, withKey: .Event, withEvent: event, andMessage: message)
+        
+        //delegate.options.namespace
+        
+        let packet = SocketIOPacket.encode(.Message, withKey: .Event, andEvent: event, andMessage: message)
         
         #if DEBUG
             println("--- \(SocketIOName): WebSocket")
@@ -62,7 +65,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         if !isOpen {
             return
         }
-        let (packet, error) = SocketIOPacket.encode(.Message, withKey: .Event, withEvent: event, andList: list)
+        let (packet, error) = SocketIOPacket.encode(.Message, withKey: .Event, andEvent: event, andList: list)
 
         if let e = error {
             delegate.failure(.EmitError, error: e)
@@ -80,7 +83,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         if !isOpen {
             return
         }
-        let (packet, error) = SocketIOPacket.encode(.Message, withKey: .Event, withEvent: event, andDictionary: dict)
+        let (packet, error) = SocketIOPacket.encode(.Message, withKey: .Event, andEvent: event, andDictionary: dict)
         
         if let e = error {
             delegate.failure(.EmitError, error: e)
@@ -108,8 +111,8 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         // ... then server flushes and closes old transport and switches to new
 
         if !delegate.options.namespace.isEmpty {
-            let connectToNamespace = SocketIOPacket.encode(.Message, withKey: .Connect)
-            socket.writeString(connectToNamespace + delegate.options.namespace)
+            let connectToNamespace = SocketIOPacket.encode(.Message, withKey: .Connect, andNamespace: delegate.options.namespace)
+            socket.writeString(connectToNamespace)
             
             // Connect:
             //40/gallery

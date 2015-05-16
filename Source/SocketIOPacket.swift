@@ -47,35 +47,68 @@ class SocketIOPacket {
         return NSRegularExpression(pattern: "^[0-9][0-9]", options: .CaseInsensitive, error: nil)
     }
     
+    static private func regEx(namespace nsp: String) -> NSRegularExpression? {
+        // Regular Expression: <packet type>/nsp,[<data>]
+        return NSRegularExpression(pattern: "^[0-9][0-9]/" + nsp + ",", options: .CaseInsensitive, error: nil)
+    }
+    
     static func encode(id: PacketTypeID, withKey key: PacketTypeKey) -> String {
         return id.value + key.value
     }
     
-    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, withEvent event: String, andMessage message: String) -> String {
-        if event.isEmpty {
-            return id.value + key.value
-        }
-        return id.value + key.value + "[\"" + event + "\",\"" + message + "\"]"
+    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, andNamespace nsp: String) -> String {
+        return id.value + key.value + nsp
     }
     
-    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, withEvent event: String, andList list: NSArray) -> (String, SocketIOError?) {
+    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, andEvent event: String, andMessage message: String) -> String {
+        return encode(id, withKey: key, andNamespace: "", andEvent: event, andMessage: message)
+    }
+    
+    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, andNamespace nsp: String, andEvent event: String, andMessage message: String) -> String {
+        if nsp.isEmpty {
+            if event.isEmpty {
+                return id.value + key.value
+            }
+            return id.value + key.value + nsp + "[\"" + event + "\",\"" + message + "\"]"
+        }
+        else {
+            if event.isEmpty {
+                return id.value + key.value + nsp + ","
+            }
+            return id.value + key.value + nsp + ",[\"" + event + "\",\"" + message + "\"]"
+        }
+    }
+    
+    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, andEvent event: String, andList list: NSArray) -> (String, SocketIOError?) {
+        return encode(id, withKey: key, andNamespace: "", andEvent: event, andList: list)
+    }
+    
+    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, andNamespace nsp: String, andEvent event: String, andList list: NSArray) -> (String, SocketIOError?) {
         let array = [event, list]
         
         if event.isEmpty || !NSJSONSerialization.isValidJSONObject(array) {
             return (id.value + key.value, SocketIOError(message: "Invalid JSON Object", withInfo: ["Event: \(event)"]))
         }
         
-        return (id.value + key.value + (array >>- Utilities.arrayToJSON ?? ""), nil)
+        let message = array >>- Utilities.arrayToJSON ?? ""
+        
+        return (encode(id, withKey: key, andNamespace: nsp, andEvent: event, andMessage: message), nil)
     }
     
-    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, withEvent event: String, andDictionary dict: NSDictionary) -> (String, SocketIOError?) {
+    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, andEvent event: String, andDictionary dict: NSDictionary) -> (String, SocketIOError?) {
+        return encode(id, withKey: key, andNamespace: "", andEvent: event, andDictionary: dict)
+    }
+    
+    static func encode(id: PacketTypeID, withKey key: PacketTypeKey, andNamespace nsp: String, andEvent event: String, andDictionary dict: NSDictionary) -> (String, SocketIOError?) {
         let array = [event, dict]
         
         if event.isEmpty || !NSJSONSerialization.isValidJSONObject(array) {
             return (id.value + key.value, SocketIOError(message: "Invalid JSON Object", withInfo: ["Event: \(event)"]))
         }
         
-        return (id.value + key.value + (array >>- Utilities.arrayToJSON ?? ""), nil)
+        let message = array >>- Utilities.arrayToJSON ?? ""
+        
+        return (encode(id, withKey: key, andNamespace: nsp, andEvent: event, andMessage: message), nil)
     }
     
     static func decode(value: String) -> (Bool, PacketTypeID, PacketTypeKey, NSArray) {
