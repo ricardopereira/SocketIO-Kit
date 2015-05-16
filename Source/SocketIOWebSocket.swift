@@ -11,6 +11,14 @@ import Foundation
 class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
     private var socket: WebSocket!
+    
+    private var nsp: String {
+        return delegate.options.namespace
+    }
+    
+    private var hasNamespace: Bool {
+        return !nsp.isEmpty
+    }
         
     final override func open(hostUrl: NSURL, withHandshake handshake: SocketIOHandshake) {
         // WebSocket
@@ -50,9 +58,18 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             return
         }
         
-        //delegate.options.namespace
+        let packet: String
         
-        let packet = SocketIOPacket.encode(.Message, withKey: .Event, andEvent: event, andMessage: message)
+        if hasNamespace {
+            packet = SocketIOPacket.encode(.Message, withKey: .Event, andNamespace: nsp, andEvent: event, andMessage: message)
+            
+            // Example: namespace "/gallery"
+            // Message:
+            //  - 42/gallery,["event", {}]
+        }
+        else {
+            packet = SocketIOPacket.encode(.Message, withKey: .Event, andEvent: event, andMessage: message)
+        }
         
         #if DEBUG
             println("--- \(SocketIOName): WebSocket")
@@ -65,7 +82,16 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         if !isOpen {
             return
         }
-        let (packet, error) = SocketIOPacket.encode(.Message, withKey: .Event, andEvent: event, andList: list)
+        
+        let packet: String
+        let error: SocketIOError?
+        
+        if hasNamespace {
+            (packet, error) = SocketIOPacket.encode(.Message, withKey: .Event, andNamespace: nsp, andEvent: event, andList: list)
+        }
+        else {
+            (packet, error) = SocketIOPacket.encode(.Message, withKey: .Event, andEvent: event, andList: list)
+        }
 
         if let e = error {
             delegate.failure(.EmitError, error: e)
@@ -83,7 +109,16 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         if !isOpen {
             return
         }
-        let (packet, error) = SocketIOPacket.encode(.Message, withKey: .Event, andEvent: event, andDictionary: dict)
+        
+        let packet: String
+        let error: SocketIOError?
+        
+        if hasNamespace {
+            (packet, error) = SocketIOPacket.encode(.Message, withKey: .Event, andNamespace: nsp, andEvent: event, andDictionary: dict)
+        }
+        else {
+            (packet, error) = SocketIOPacket.encode(.Message, withKey: .Event, andEvent: event, andDictionary: dict)
+        }
         
         if let e = error {
             delegate.failure(.EmitError, error: e)
@@ -116,10 +151,6 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             
             // Connect:
             //40/gallery
-            
-            // Example: namespace "/gallery"
-            // Message:
-            //42/gallery,["event", {}]
         }
     }
     
