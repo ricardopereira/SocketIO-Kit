@@ -49,8 +49,11 @@ class SocketIOPacket {
     
     static private func regEx(namespace nsp: String) -> NSRegularExpression? {
         // Regular Expression: <packet type>/nsp,[<data>]
-        return NSRegularExpression(pattern: "^[0-9][0-9]/" + nsp + ",", options: .CaseInsensitive, error: nil)
+        return NSRegularExpression(pattern: "^[0-9][0-9]" + nsp, options: .CaseInsensitive, error: nil)
     }
+    
+    
+    // MARK: Encode
     
     static func encode(id: PacketTypeID, withKey key: PacketTypeKey) -> String {
         return id.value + key.value
@@ -120,6 +123,9 @@ class SocketIOPacket {
             return (id.value + key.value + nsp + "," + message, nil)
         }
     }
+
+    
+    // MARK: Decode
     
     static func decode(value: String) -> (Bool, PacketTypeID, PacketTypeKey, NSArray) {
         if let regex = regEx() {
@@ -130,7 +136,6 @@ class SocketIOPacket {
             
             //42["chat message","example"]
             //42["object message",{"id":1,"name":"Xpto"}]
-            //42/gallery,["chat message","message for gallery group"]
             
             // Check pattern and get remaining part: message data
             if let match = regex.firstMatchInString(value, options: .ReportProgress, range: all) {
@@ -151,7 +156,51 @@ class SocketIOPacket {
                         data = parsedArray
                     }
                 }
-
+                
+                // Result: ID and Key
+                if let firstDigit = (value as NSString).substringToIndex(1).toInt(), let packetID = PacketTypeID(rawValue: firstDigit),
+                    let secondDigit = (value as NSString).substringWithRange(NSMakeRange(1, 1)).toInt(), let packetKey = PacketTypeKey(rawValue: secondDigit)
+                {
+                    return (true, packetID, packetKey, data)
+                }
+            }
+        }
+        return (false, PacketTypeID.Close, PacketTypeKey.Error, [])
+    }
+    
+    static func decode(value: String, withNamespace nsp: String) -> (Bool, PacketTypeID, PacketTypeKey, NSArray) {
+        if nsp.isEmpty {
+            return decode(value)
+        }
+        
+        if let regex = regEx(namespace: nsp) {
+            let all = NSMakeRange(0, count(value))
+            
+            //42/gallery,["chat message","message for gallery group"]
+            
+            // Check pattern and get remaining part: message data
+            if let match = regex.firstMatchInString(value, options: .ReportProgress, range: all) {
+                
+                var data = []
+                
+                if match.range.length < count(value) {
+                    let comma = 1
+                    // Data
+                    let remaining = NSMakeRange(match.range.length + comma, count(value) - match.range.length - comma)
+                    // Ex: ["object message",{"id":1,"name":"Xpto"}]
+                    let remainingData = (value as NSString).substringWithRange(remaining)
+                    
+                    if !remainingData.isEmpty, let jsonData = remainingData.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+                        // Parse JSON
+                        var err: NSError?
+                        let parsed: AnyObject? = NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableLeaves, error: &err)
+                        
+                        if let parsedArray = parsed as? NSArray {
+                            data = parsedArray
+                        }
+                    }
+                }
+                
                 // Result: ID and Key
                 if let firstDigit = (value as NSString).substringToIndex(1).toInt(), let packetID = PacketTypeID(rawValue: firstDigit),
                     let secondDigit = (value as NSString).substringWithRange(NSMakeRange(1, 1)).toInt(), let packetKey = PacketTypeKey(rawValue: secondDigit)

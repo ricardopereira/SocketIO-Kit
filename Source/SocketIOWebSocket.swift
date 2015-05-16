@@ -174,7 +174,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             println("received message> \(text)")
         #endif
         
-        let (valid, id, key, data) = SocketIOPacket.decode(text)
+        let (valid, id, key, data) = SocketIOPacket.decode(text, withNamespace: nsp)
         
         if valid {
             switch (id, key) {
