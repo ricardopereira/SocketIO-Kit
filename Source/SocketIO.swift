@@ -51,12 +51,14 @@ class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
         connection.open(url)
     }
     
-    final func connect(customTransport: SocketIOTransport.Type) {
-        connection = SocketIOConnection(transport: customTransport.self)
+    final func connect(transport: SocketIOTransport.Type) {
+        connection = SocketIOConnection(transport: transport.self)
+        connection.open(url)
     }
     
-    final func connect(customRequest: SocketIORequester, customTransport: SocketIOTransport.Type) {
-        connection = SocketIOConnection(requester: customRequest, transport: customTransport.self)
+    final func connect(request: SocketIORequester, withTransport transport: SocketIOTransport.Type) {
+        connection = SocketIOConnection(requester: request, transport: transport.self)
+        connection.open(url)
     }
     
     final func disconnect() {
