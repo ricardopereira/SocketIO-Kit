@@ -69,7 +69,7 @@ class SocketIOPacket {
             if event.isEmpty {
                 return id.value + key.value
             }
-            return id.value + key.value + nsp + "[\"" + event + "\",\"" + message + "\"]"
+            return id.value + key.value + "[\"" + event + "\",\"" + message + "\"]"
         }
         else {
             if event.isEmpty {
@@ -92,7 +92,12 @@ class SocketIOPacket {
         
         let message = array >>- Utilities.arrayToJSON ?? ""
         
-        return (encode(id, withKey: key, andNamespace: nsp, andEvent: event, andMessage: message), nil)
+        if nsp.isEmpty {
+            return (id.value + key.value + message, nil)
+        }
+        else {
+            return (id.value + key.value + nsp + "," + message, nil)
+        }
     }
     
     static func encode(id: PacketTypeID, withKey key: PacketTypeKey, andEvent event: String, andDictionary dict: NSDictionary) -> (String, SocketIOError?) {
@@ -108,7 +113,12 @@ class SocketIOPacket {
         
         let message = array >>- Utilities.arrayToJSON ?? ""
         
-        return (encode(id, withKey: key, andNamespace: nsp, andEvent: event, andMessage: message), nil)
+        if nsp.isEmpty {
+            return (id.value + key.value + message, nil)
+        }
+        else {
+            return (id.value + key.value + nsp + "," + message, nil)
+        }
     }
     
     static func decode(value: String) -> (Bool, PacketTypeID, PacketTypeKey, NSArray) {
@@ -120,6 +130,7 @@ class SocketIOPacket {
             
             //42["chat message","example"]
             //42["object message",{"id":1,"name":"Xpto"}]
+            //42/gallery,["chat message","message for gallery group"]
             
             // Check pattern and get remaining part: message data
             if let match = regex.firstMatchInString(value, options: .ReportProgress, range: all) {

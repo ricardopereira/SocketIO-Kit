@@ -145,7 +145,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         socket.writeString(confirmation)
         // ... then server flushes and closes old transport and switches to new
 
-        if !delegate.options.namespace.isEmpty {
+        if hasNamespace {
             let connectToNamespace = SocketIOPacket.encode(.Message, withKey: .Connect, andNamespace: delegate.options.namespace)
             socket.writeString(connectToNamespace)
             
