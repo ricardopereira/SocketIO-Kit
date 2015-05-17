@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SocketIOError {
+class SocketIOError: Printable {
     
     let message: String
     let info: [String]
@@ -20,6 +20,10 @@ class SocketIOError {
     
     convenience init(error: NSError) {
         self.init(message: error.localizedDescription, withInfo: [""])
+    }
+    
+    var description: String {
+        return message + ": " + info.description
     }
     
 }

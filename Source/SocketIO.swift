@@ -76,12 +76,7 @@ class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
         connection.close()
         connection.open(url)
     }
-    
-    func canConnect(url: NSURL) -> Bool {
-        // ?
-        return NSURLConnection.canHandleRequest(NSURLRequest(URL: url))
-    }
-    
+
     
     //MARK: SocketIOEmitter
     

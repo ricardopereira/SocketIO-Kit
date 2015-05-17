@@ -22,6 +22,14 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
         self.transportDelegate = TransportDelegate(eventHandler: eventHandler, withOptions: options)
         self.transport = transport(delegate: transportDelegate)
     }
+    
+    private var nsp: String {
+        return transportDelegate.options.namespace
+    }
+    
+    private var hasNamespace: Bool {
+        return !nsp.isEmpty
+    }
         
     func open(hostUrl: NSURL) {
         // GET request for Handshake
@@ -33,6 +41,10 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
                 println("--- \(SocketIOName): Connection")
                 println("connection is already open")
             #endif
+            return
+        }
+        
+        if !canConnect(hostUrl) {
             return
         }
         
@@ -51,6 +63,22 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
     
     func close() {
         transport.close()
+    }
+    
+    func canConnect(url: NSURL) -> Bool {
+        // URL
+        if !NSURLConnection.canHandleRequest(NSURLRequest(URL: url)) {
+            emit(.ConnectError, withError: SocketIOError(message: "URL is invalid", withInfo: [url.debugDescription]))
+            return false
+        }
+        
+        // Namespace
+        if hasNamespace && !SocketIONamespace.isValid(nsp) {
+            emit(.ConnectError, withError: SocketIOError(message: "Namespace is invalid", withInfo: [nsp]))
+            return false
+        }
+        
+        return true
     }
     
     private func requestCompletion(data: NSData!, response: NSURLResponse?, error: NSError?) {
