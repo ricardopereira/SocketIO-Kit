@@ -65,7 +65,18 @@ socket.connect()
 socket.emit(.ChatMessage, withMessage: "I'm iOS")
 ```
 
+**Options**
+
+```swift
+var options = SocketIOOptions()
+options.namespace = "/gallery"
+
+socket = SocketIO(url: "http://localhost:8001/", withOptions: options)
+```
+
 ----
+
+#### Examples
 
 **Retrieving an image**
 
