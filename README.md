@@ -123,7 +123,7 @@ struct ImageInfo: SocketIOObject {
     }
     
     init(dict: NSDictionary) {
-        self.init(buffer: dict["buffer"] as! String)
+        self.init(buffer: dict["buffer"] as! String) //Force casts should be avoided!
     }
     
     var asDictionary: NSDictionary {
@@ -163,7 +163,7 @@ class Person: SocketIOObject {
     }
     
     convenience required init(dict: NSDictionary) {
-        self.init(name: dict["name"] as! String)
+        self.init(name: dict["name"] as! String) //Force casts should be avoided!
     }
     
     var asDictionary: NSDictionary {
