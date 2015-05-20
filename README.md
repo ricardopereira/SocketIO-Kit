@@ -4,7 +4,7 @@
 
 SocketIO-Kit is a [Socket.io](http://socket.io) iOS client with type safe, clean syntax and speed in mind.
 
-### Installation
+## Installation
 
 #### Carthage
 
@@ -179,6 +179,10 @@ let john = Person(name: "John")
 
 socket.emit(.Login, withObject: john)
 ```
+
+## Debugging
+
+You can opt into seeing messages by supplying the DEBUG flag. Just add `-D DEBUG` in `Build Settings > Swift Compiler - Custom Flags: Other Swift Flags`.
 
 ## License (MIT)
 
