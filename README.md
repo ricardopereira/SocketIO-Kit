@@ -68,10 +68,7 @@ socket.emit(.ChatMessage, withMessage: "I'm iOS")
 **Options**
 
 ```swift
-var options = SocketIOOptions()
-options.namespace = "/gallery"
-
-socket = SocketIO(url: "http://localhost:8001/", withOptions: options)
+socket = SocketIO(url: "http://localhost:8001/", withOptions: SocketIOOptions().namespace("/gallery"))
 ```
 
 ----
