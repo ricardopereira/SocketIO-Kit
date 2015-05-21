@@ -8,8 +8,13 @@
 
 import Foundation
 
-struct SocketIOOptions {
+class SocketIOOptions {
     
     var namespace: String = ""
+    
+    func namespace(aNamespace: String?) -> SocketIOOptions {
+        namespace = aNamespace ?? ""
+        return self
+    }
 
 }
