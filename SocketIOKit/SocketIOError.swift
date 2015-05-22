@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SocketIOError: Printable {
+public class SocketIOError: Printable {
     
     let message: String
     let info: [String]
@@ -22,7 +22,7 @@ class SocketIOError: Printable {
         self.init(message: error.localizedDescription, withInfo: [""])
     }
     
-    var description: String {
+    public var description: String {
         return message + ": " + info.description
     }
     

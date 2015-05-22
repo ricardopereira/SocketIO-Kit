@@ -9,7 +9,7 @@
 import Foundation
 
 // System events
-enum SocketIOEvent: String, Printable {
+public enum SocketIOEvent: String, Printable {
     
     case Connected = "connected" //Called on a successful connection
     case Disconnected = "disconnected" //Called on a disconnection
@@ -17,7 +17,7 @@ enum SocketIOEvent: String, Printable {
     case ReconnectAttempt = "reconnect_attempt" //Attempt for reconnection
     case EmitError = "emit_error" //Sending errors
     
-    var description: String {
+    public var description: String {
         return self.rawValue
     }
     

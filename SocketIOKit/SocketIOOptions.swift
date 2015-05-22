@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SocketIOOptions {
+public class SocketIOOptions {
     
     var namespace: String = ""
     

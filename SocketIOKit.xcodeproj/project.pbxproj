@@ -49,8 +49,6 @@
 		D70F6E5F1B0F4586007DDF31 /* SocketIOOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E331B0F4586007DDF31 /* SocketIOOptions.swift */; };
 		D70F6E601B0F4586007DDF31 /* SocketIOPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E341B0F4586007DDF31 /* SocketIOPacket.swift */; };
 		D70F6E611B0F4586007DDF31 /* SocketIOPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E341B0F4586007DDF31 /* SocketIOPacket.swift */; };
-		D70F6E621B0F4586007DDF31 /* SocketIOParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E351B0F4586007DDF31 /* SocketIOParser.swift */; };
-		D70F6E631B0F4586007DDF31 /* SocketIOParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E351B0F4586007DDF31 /* SocketIOParser.swift */; };
 		D70F6E641B0F4586007DDF31 /* SocketIOPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E361B0F4586007DDF31 /* SocketIOPayload.swift */; };
 		D70F6E651B0F4586007DDF31 /* SocketIOPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E361B0F4586007DDF31 /* SocketIOPayload.swift */; };
 		D70F6E661B0F4586007DDF31 /* SocketIOReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E371B0F4586007DDF31 /* SocketIOReceiver.swift */; };
@@ -86,7 +84,7 @@
 		D70F6DD61B0F3F1F007DDF31 /* SocketIOKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SocketIOKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70F6DDA1B0F3F1F007DDF31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D70F6DDB1B0F3F1F007DDF31 /* SocketIOKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketIOKit.h; sourceTree = "<group>"; };
-		D70F6DE11B0F3F1F007DDF31 /* SocketIOKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = SocketIOKitTests.xctest; path = "SocketIOKit-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D70F6DE11B0F3F1F007DDF31 /* SocketIOKit-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SocketIOKit-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70F6DE71B0F3F1F007DDF31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D70F6DE81B0F3F1F007DDF31 /* SocketIOKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOKitTests.swift; sourceTree = "<group>"; };
 		D70F6DF71B0F4008007DDF31 /* SocketIOKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SocketIOKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,7 +108,6 @@
 		D70F6E321B0F4586007DDF31 /* SocketIOObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOObject.swift; sourceTree = "<group>"; };
 		D70F6E331B0F4586007DDF31 /* SocketIOOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOOptions.swift; sourceTree = "<group>"; };
 		D70F6E341B0F4586007DDF31 /* SocketIOPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOPacket.swift; sourceTree = "<group>"; };
-		D70F6E351B0F4586007DDF31 /* SocketIOParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOParser.swift; sourceTree = "<group>"; };
 		D70F6E361B0F4586007DDF31 /* SocketIOPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOPayload.swift; sourceTree = "<group>"; };
 		D70F6E371B0F4586007DDF31 /* SocketIOReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOReceiver.swift; sourceTree = "<group>"; };
 		D70F6E381B0F4586007DDF31 /* SocketIORequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIORequester.swift; sourceTree = "<group>"; };
@@ -166,7 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				D70F6DD61B0F3F1F007DDF31 /* SocketIOKit.framework */,
-				D70F6DE11B0F3F1F007DDF31 /* SocketIOKitTests.xctest */,
+				D70F6DE11B0F3F1F007DDF31 /* SocketIOKit-iOSTests.xctest */,
 				D70F6DF71B0F4008007DDF31 /* SocketIOKit.framework */,
 				D70F6E011B0F4008007DDF31 /* SocketIOKit-MacTests.xctest */,
 			);
@@ -191,7 +188,6 @@
 				D70F6E321B0F4586007DDF31 /* SocketIOObject.swift */,
 				D70F6E331B0F4586007DDF31 /* SocketIOOptions.swift */,
 				D70F6E341B0F4586007DDF31 /* SocketIOPacket.swift */,
-				D70F6E351B0F4586007DDF31 /* SocketIOParser.swift */,
 				D70F6E361B0F4586007DDF31 /* SocketIOPayload.swift */,
 				D70F6E371B0F4586007DDF31 /* SocketIOReceiver.swift */,
 				D70F6E381B0F4586007DDF31 /* SocketIORequester.swift */,
@@ -303,7 +299,7 @@
 			);
 			name = "SocketIOKit-iOSTests";
 			productName = SocketIOKitTests;
-			productReference = D70F6DE11B0F3F1F007DDF31 /* SocketIOKitTests.xctest */;
+			productReference = D70F6DE11B0F3F1F007DDF31 /* SocketIOKit-iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		D70F6DF61B0F4008007DDF31 /* SocketIOKit-Mac */ = {
@@ -424,7 +420,6 @@
 				D70F6E6A1B0F4586007DDF31 /* SocketIOTransport.swift in Sources */,
 				D70F6E5A1B0F4586007DDF31 /* SocketIONamespace.swift in Sources */,
 				D70F6E681B0F4586007DDF31 /* SocketIORequester.swift in Sources */,
-				D70F6E621B0F4586007DDF31 /* SocketIOParser.swift in Sources */,
 				D70F6E501B0F4586007DDF31 /* SocketIOEvent.swift in Sources */,
 				D70F6E3E1B0F4586007DDF31 /* Functional.swift in Sources */,
 				D70F6E541B0F4586007DDF31 /* SocketIOHandshake.swift in Sources */,
@@ -465,7 +460,6 @@
 				D70F6E6B1B0F4586007DDF31 /* SocketIOTransport.swift in Sources */,
 				D70F6E5B1B0F4586007DDF31 /* SocketIONamespace.swift in Sources */,
 				D70F6E691B0F4586007DDF31 /* SocketIORequester.swift in Sources */,
-				D70F6E631B0F4586007DDF31 /* SocketIOParser.swift in Sources */,
 				D70F6E511B0F4586007DDF31 /* SocketIOEvent.swift in Sources */,
 				D70F6E3F1B0F4586007DDF31 /* Functional.swift in Sources */,
 				D70F6E551B0F4586007DDF31 /* SocketIOHandshake.swift in Sources */,
