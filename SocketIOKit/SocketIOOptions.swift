@@ -12,6 +12,10 @@ public class SocketIOOptions {
     
     public var namespace: String = ""
     
+    public init() {
+        
+    }
+    
     public func namespace(aNamespace: String?) -> SocketIOOptions {
         namespace = aNamespace ?? ""
         return self
