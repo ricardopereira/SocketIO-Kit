@@ -10,12 +10,12 @@ import Foundation
 
 infix operator >>- { associativity left precedence 135 }
 
-func >>-<A, B>(a: A?, f: A -> B?) -> B?
+internal func >>-<A, B>(a: A?, f: A -> B?) -> B?
 {
     return bind(a, f)
 }
 
-func bind<A, B>(a: A?, f: A -> B?) -> B?
+internal func bind<A, B>(a: A?, f: A -> B?) -> B?
 {
     if let x = a {
         return f(x)

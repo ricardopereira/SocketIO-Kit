@@ -12,7 +12,7 @@ import UIKit
 import Foundation
 #endif
 
-class Utilities {
+public class Utilities {
     
     // MARK: base64EncodedStringToUIImage
     
@@ -28,7 +28,7 @@ class Utilities {
         $0 as String
     }
     
-    static let arrayToJSON : NSArray -> String? = {
+    static public let arrayToJSON : NSArray -> String? = {
         $0 >>- arrayToJSONData >>- dataToJSONString >>- getJSONString
     }
 
@@ -45,14 +45,14 @@ class Utilities {
         UIImage(data: $0)
     }
     
-    static let base64EncodedStringToUIImage : String -> UIImage? = {
+    static public let base64EncodedStringToUIImage : String -> UIImage? = {
         $0 >>- decodeBuffer >>- base64ToUIImage
     }
     #endif
     
 }
 
-func hasValue<T>(value: T?) -> Bool {
+internal func hasValue<T>(value: T?) -> Bool {
     switch (value) {
     case .Some(_): return true
     case .None: return false

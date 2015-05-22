@@ -34,7 +34,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     private let options: SocketIOOptions
     private let connection: SocketIOConnection
     
-    convenience init(url: String) {
+    convenience public init(url: String) {
         if let url = NSURL(string: url) {
             self.init(nsurl: url)
         }
@@ -44,7 +44,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
         }
     }
     
-    convenience init(url: String, withOptions options: SocketIOOptions) {
+    convenience public init(url: String, withOptions options: SocketIOOptions) {
         if let url = NSURL(string: url) {
             self.init(nsurl: url, withOptions: options, withRequest: SessionRequest(), withTransport: SocketIOWebSocket.self)
         }
@@ -54,7 +54,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
         }
     }
     
-    convenience init(nsurl: NSURL) {
+    convenience public init(nsurl: NSURL) {
         self.init(nsurl: nsurl, withOptions: SocketIOOptions(), withRequest: SessionRequest(), withTransport: SocketIOWebSocket.self)
     }
 
@@ -64,15 +64,15 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
         connection = SocketIOConnection(options: options, requester: request, transport: transport.self)
     }
     
-    final func connect() {
+    public final func connect() {
         connection.open(url)
     }
     
-    final func disconnect() {
+    public final func disconnect() {
         connection.close()
     }
     
-    final func reconnect() {
+    public final func reconnect() {
         connection.close()
         connection.open(url)
     }
@@ -86,7 +86,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     :param: event     Event name provided with SocketIOEvent.
     :param: message   Message to send.
     */
-    final func emit(event: SocketIOEvent, withMessage message: String) {
+    public final func emit(event: SocketIOEvent, withMessage message: String) {
         emit(event.description, withMessage: message)
     }
 
@@ -96,7 +96,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     :param: event     Event name provided with generic type.
     :param: message   Message to send.
     */
-    final func emit(event: T, withMessage message: String) {
+    public final func emit(event: T, withMessage message: String) {
         emit(event.description, withMessage: message)
     }
 
@@ -106,7 +106,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     :param: event     Event name.
     :param: message   Message to send.
     */
-    final func emit(event: String, withMessage message: String) {
+    public final func emit(event: String, withMessage message: String) {
         connection.emit(event, withMessage: message)
     }
 
@@ -116,7 +116,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     :param: event   Event name provided with SocketIOEvent.
     :param: list    List of type NSArray to send.
     */
-    final func emit(event: SocketIOEvent, withList list: NSArray) {
+    public final func emit(event: SocketIOEvent, withList list: NSArray) {
         emit(event.description, withList: list)
     }
 
@@ -126,7 +126,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     :param: event   Event name provided with generic type.
     :param: list    List of type NSArray to send.
     */
-    final func emit(event: T, withList list: NSArray) {
+    public final func emit(event: T, withList list: NSArray) {
         emit(event.description, withList: list)
     }
     
@@ -136,7 +136,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     :param: event   Event name.
     :param: list    List of type NSArray to send.
     */
-    final func emit(event: String, withList list: NSArray) {
+    public final func emit(event: String, withList list: NSArray) {
         connection.emit(event, withList: list)
     }
     
@@ -146,7 +146,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     :param: event   Event name provided with SocketIOEvent.
     :param: dict    Key-value object of type NSDictionary to send.
     */
-    final func emit(event: SocketIOEvent, withDictionary dict: NSDictionary) {
+    public final func emit(event: SocketIOEvent, withDictionary dict: NSDictionary) {
         emit(event.description, withDictionary: dict)
     }
 
@@ -156,7 +156,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     :param: event   Event name provided with generic type.
     :param: dict    Key-value object of type NSDictionary to send.
     */
-    final func emit(event: T, withDictionary dict: NSDictionary) {
+    public final func emit(event: T, withDictionary dict: NSDictionary) {
         emit(event.description, withDictionary: dict)
     }
 
@@ -166,7 +166,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     :param: event   Event name.
     :param: dict    Key-value object of type NSDictionary to send.
     */
-    final func emit(event: String, withDictionary dict: NSDictionary) {
+    public final func emit(event: String, withDictionary dict: NSDictionary) {
         connection.emit(event, withDictionary: dict)
     }
     
@@ -176,7 +176,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     :param: event   Event name provided with SocketIOEvent.
     :param: object  Object that comply SocketIOObject protocol.
     */
-    final func emit(event: SocketIOEvent, withObject object: SocketIOObject) {
+    public final func emit(event: SocketIOEvent, withObject object: SocketIOObject) {
         emit(event.description, withObject: object)
     }
     
@@ -186,7 +186,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     :param: event   Event name provided with generic type.
     :param: object  Object that comply SocketIOObject protocol.
     */
-    final func emit(event: T, withObject object: SocketIOObject) {
+    public final func emit(event: T, withObject object: SocketIOObject) {
         emit(event.description, withObject: object)
     }
     
@@ -196,7 +196,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     :param: event   Event name provided.
     :param: object  Object that comply SocketIOObject protocol.
     */
-    final func emit(event: String, withObject object: SocketIOObject) {
+    public final func emit(event: String, withObject object: SocketIOObject) {
         connection.emit(event, withObject: object)
     }
 
@@ -204,23 +204,23 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     
     //MARK: SocketIOReceiver
     
-    final func on(event: SocketIOEvent, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
+    public final func on(event: SocketIOEvent, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         return connection.on(event, withCallback: callback)
     }
     
-    final func on(event: T, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
+    public final func on(event: T, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         return on(event.description, withCallback: callback)
     }
     
-    final func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
+    public final func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         return connection.on(event, withCallback: callback)
     }
     
-    final func onAny(callback: SocketIOCallback) -> SocketIOEventHandler {
+    public final func onAny(callback: SocketIOCallback) -> SocketIOEventHandler {
         return connection.onAny(callback)
     }
     
-    final func off() -> SocketIOEventHandler {
+    public final func off() -> SocketIOEventHandler {
         return connection.off()
     }
     

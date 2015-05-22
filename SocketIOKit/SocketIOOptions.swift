@@ -10,9 +10,9 @@ import Foundation
 
 public class SocketIOOptions {
     
-    var namespace: String = ""
+    public var namespace: String = ""
     
-    func namespace(aNamespace: String?) -> SocketIOOptions {
+    public func namespace(aNamespace: String?) -> SocketIOOptions {
         namespace = aNamespace ?? ""
         return self
     }
