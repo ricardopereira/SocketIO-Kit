@@ -13,8 +13,6 @@
 		D70F6E021B0F4008007DDF31 /* SocketIOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D70F6DF71B0F4008007DDF31 /* SocketIOKit.framework */; };
 		D70F6E3C1B0F4586007DDF31 /* NSURL+TrailingSlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E211B0F4586007DDF31 /* NSURL+TrailingSlash.swift */; };
 		D70F6E3D1B0F4586007DDF31 /* NSURL+TrailingSlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E211B0F4586007DDF31 /* NSURL+TrailingSlash.swift */; };
-		D70F6E3E1B0F4586007DDF31 /* Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E231B0F4586007DDF31 /* Functional.swift */; };
-		D70F6E3F1B0F4586007DDF31 /* Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E231B0F4586007DDF31 /* Functional.swift */; };
 		D70F6E401B0F4586007DDF31 /* LumaJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E241B0F4586007DDF31 /* LumaJSON.swift */; };
 		D70F6E411B0F4586007DDF31 /* LumaJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E241B0F4586007DDF31 /* LumaJSON.swift */; };
 		D70F6E421B0F4586007DDF31 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E251B0F4586007DDF31 /* Utilities.swift */; };
@@ -90,7 +88,6 @@
 		D70F6DF71B0F4008007DDF31 /* SocketIOKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SocketIOKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70F6E011B0F4008007DDF31 /* SocketIOKit-MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SocketIOKit-MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70F6E211B0F4586007DDF31 /* NSURL+TrailingSlash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+TrailingSlash.swift"; sourceTree = "<group>"; };
-		D70F6E231B0F4586007DDF31 /* Functional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functional.swift; sourceTree = "<group>"; };
 		D70F6E241B0F4586007DDF31 /* LumaJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LumaJSON.swift; sourceTree = "<group>"; };
 		D70F6E251B0F4586007DDF31 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		D70F6E261B0F4586007DDF31 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
@@ -237,7 +234,6 @@
 		D70F6E221B0F4586007DDF31 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				D70F6E231B0F4586007DDF31 /* Functional.swift */,
 				D70F6E241B0F4586007DDF31 /* LumaJSON.swift */,
 				D70F6E251B0F4586007DDF31 /* Utilities.swift */,
 				D70F6E261B0F4586007DDF31 /* WebSocket.swift */,
@@ -274,6 +270,7 @@
 				D70F6DD21B0F3F1F007DDF31 /* Frameworks */,
 				D70F6DD31B0F3F1F007DDF31 /* Headers */,
 				D70F6DD41B0F3F1F007DDF31 /* Resources */,
+				D7CC0C7C1B113ADE00D5E036 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -412,6 +409,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D7CC0C7C1B113ADE00D5E036 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "$(SRCROOT)/Carthage/Build/iOS/Runes.framework";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D70F6DD11B0F3F1F007DDF31 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -421,7 +434,6 @@
 				D70F6E5A1B0F4586007DDF31 /* SocketIONamespace.swift in Sources */,
 				D70F6E681B0F4586007DDF31 /* SocketIORequester.swift in Sources */,
 				D70F6E501B0F4586007DDF31 /* SocketIOEvent.swift in Sources */,
-				D70F6E3E1B0F4586007DDF31 /* Functional.swift in Sources */,
 				D70F6E541B0F4586007DDF31 /* SocketIOHandshake.swift in Sources */,
 				D70F6E4E1B0F4586007DDF31 /* SocketIOError.swift in Sources */,
 				D70F6E401B0F4586007DDF31 /* LumaJSON.swift in Sources */,
@@ -461,7 +473,6 @@
 				D70F6E5B1B0F4586007DDF31 /* SocketIONamespace.swift in Sources */,
 				D70F6E691B0F4586007DDF31 /* SocketIORequester.swift in Sources */,
 				D70F6E511B0F4586007DDF31 /* SocketIOEvent.swift in Sources */,
-				D70F6E3F1B0F4586007DDF31 /* Functional.swift in Sources */,
 				D70F6E551B0F4586007DDF31 /* SocketIOHandshake.swift in Sources */,
 				D70F6E4F1B0F4586007DDF31 /* SocketIOError.swift in Sources */,
 				D70F6E411B0F4586007DDF31 /* LumaJSON.swift in Sources */,
@@ -608,6 +619,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SocketIOKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -626,6 +641,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SocketIOKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

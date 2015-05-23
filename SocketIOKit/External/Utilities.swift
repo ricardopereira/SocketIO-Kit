@@ -12,6 +12,8 @@ import UIKit
 import Foundation
 #endif
 
+import Runes
+
 public class Utilities {
     
     // MARK: base64EncodedStringToUIImage
