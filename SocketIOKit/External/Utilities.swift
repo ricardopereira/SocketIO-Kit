@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Ricardo Pereira. All rights reserved.
 //
 
-#if TARGET_OS_IPHONE
+#if os(iOS)
 import UIKit
 #else
 import Foundation
@@ -42,7 +42,7 @@ public class Utilities {
         NSData(base64EncodedString: $0, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
     }
 
-    #if TARGET_OS_IPHONE
+    #if os(iOS)
     static private let base64ToUIImage : NSData -> UIImage? = {
         UIImage(data: $0)
     }
