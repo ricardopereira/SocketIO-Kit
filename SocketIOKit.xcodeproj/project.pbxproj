@@ -130,7 +130,6 @@
 		D70F6DD81B0F3F1F007DDF31 /* SocketIOKit */ = {
 			isa = PBXGroup;
 			children = (
-				D70F6DDB1B0F3F1F007DDF31 /* SocketIOKit.h */,
 				D70F6E271B0F4586007DDF31 /* SocketIO.swift */,
 				D70F6E281B0F4586007DDF31 /* SocketIOCallback.swift */,
 				D70F6E291B0F4586007DDF31 /* SocketIOConnection.swift */,
@@ -161,6 +160,7 @@
 		D70F6DD91B0F3F1F007DDF31 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D70F6DDB1B0F3F1F007DDF31 /* SocketIOKit.h */,
 				D70F6DDA1B0F3F1F007DDF31 /* Info.plist */,
 			);
 			name = "Supporting Files";

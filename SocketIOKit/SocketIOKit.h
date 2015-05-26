@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Ricardo Pereira. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for SocketIOKit.
 FOUNDATION_EXPORT double SocketIOKitVersionNumber;
