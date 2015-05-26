@@ -8,9 +8,9 @@
 
 import Foundation
 
-typealias RequestCompletionHandler = (NSData!, NSURLResponse?, NSError?) -> Void
+public typealias RequestCompletionHandler = (NSData!, NSURLResponse?, NSError?) -> Void
 
-protocol SocketIORequester {
+public protocol SocketIORequester {
     
     func sendRequest(request: NSURLRequest, completion: RequestCompletionHandler)
     

@@ -8,21 +8,21 @@
 
 import Foundation
 
-class SocketIOError: Printable {
+public class SocketIOError: Printable {
     
-    let message: String
-    let info: [String]
+    public let message: String
+    public let info: [String]
     
-    init(message: String, withInfo info: [String]) {
+    public init(message: String, withInfo info: [String]) {
         self.message = message
         self.info = info
     }
     
-    convenience init(error: NSError) {
+    public convenience init(error: NSError) {
         self.init(message: error.localizedDescription, withInfo: [""])
     }
     
-    var description: String {
+    public var description: String {
         return message + ": " + info.description
     }
     

@@ -12,7 +12,7 @@ import SocketIOKit
 
 class SocketIOKitSpec: QuickSpec {
     override func spec() {
-        it("is url error prone") {
+        it("is 1 + 1 = 2") {
             // TODO
             expect(1 + 1).to(equal(2))
         }

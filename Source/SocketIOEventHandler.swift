@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SocketIOEventHandler: SocketIOReceiver {
+public class SocketIOEventHandler: SocketIOReceiver {
     
     private lazy var activeEvents = [String: SocketIOCallback]()
     private lazy var globalEvents = [SocketIOCallback]()
@@ -101,11 +101,11 @@ class SocketIOEventHandler: SocketIOReceiver {
         }
     }
     
-    func on(event: SocketIOEvent, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
+    public final func on(event: SocketIOEvent, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         return self.on(event.description, withCallback: callback)
     }
 
-    func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
+    public final func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         // Check current callback
         if let currentCallback = activeEvents[event] {
             #if DEBUG
@@ -124,7 +124,7 @@ class SocketIOEventHandler: SocketIOReceiver {
         return self
     }
     
-    func onAny(callback: SocketIOCallback) -> SocketIOEventHandler {
+    public final func onAny(callback: SocketIOCallback) -> SocketIOEventHandler {
         #if DEBUG
             println("--- \(SocketIOName): Event handler")
             println("append global event")
@@ -134,7 +134,7 @@ class SocketIOEventHandler: SocketIOReceiver {
         return self
     }
     
-    func off() -> SocketIOEventHandler {
+    public final func off() -> SocketIOEventHandler {
         #if DEBUG
             println("--- \(SocketIOName): Event handler")
             println("remove all events")

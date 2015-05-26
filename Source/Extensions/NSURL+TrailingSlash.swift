@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension NSURL {
+internal extension NSURL {
     
     func hasTrailingSlash() -> Bool {
         if let urlAsString = self.absoluteString {
