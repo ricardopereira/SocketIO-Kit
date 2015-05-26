@@ -65,8 +65,6 @@
 		D7B7D0191B14A2950081BC15 /* Runes.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = D7B7D0111B14A24F0081BC15 /* Runes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D7B7D01A1B14A2F30081BC15 /* Nimble.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = D7B7D00F1B14A24F0081BC15 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D7B7D01B1B14A2F60081BC15 /* Quick.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = D7B7D0101B14A24F0081BC15 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D7B7D0201B14AE8F0081BC15 /* FakeHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B7D01E1B14A8C40081BC15 /* FakeHTTPRequest.swift */; };
-		D7B7D0211B14AE930081BC15 /* FakeTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B7D01C1B14A8AA0081BC15 /* FakeTransport.swift */; };
 		D7B7D03D1B15271D0081BC15 /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B7D03C1B15271D0081BC15 /* Runes.framework */; };
 /* End PBXBuildFile section */
 
@@ -131,8 +129,6 @@
 		D7B7D00F1B14A24F0081BC15 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = SOURCE_ROOT; };
 		D7B7D0101B14A24F0081BC15 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = SOURCE_ROOT; };
 		D7B7D0111B14A24F0081BC15 /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = Carthage/Build/iOS/Runes.framework; sourceTree = SOURCE_ROOT; };
-		D7B7D01C1B14A8AA0081BC15 /* FakeTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeTransport.swift; sourceTree = "<group>"; };
-		D7B7D01E1B14A8C40081BC15 /* FakeHTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeHTTPRequest.swift; sourceTree = "<group>"; };
 		D7B7D03C1B15271D0081BC15 /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = Carthage/Build/iOS/Runes.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -247,8 +243,6 @@
 			isa = PBXGroup;
 			children = (
 				D7B7D0061B1482D30081BC15 /* Tests.swift */,
-				D7B7D01E1B14A8C40081BC15 /* FakeHTTPRequest.swift */,
-				D7B7D01C1B14A8AA0081BC15 /* FakeTransport.swift */,
 				D7B7D0351B14BB140081BC15 /* Resources */,
 				D7B7D00B1B1482E20081BC15 /* Supporting Files */,
 			);
@@ -488,8 +482,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7B7D0211B14AE930081BC15 /* FakeTransport.swift in Sources */,
-				D7B7D0201B14AE8F0081BC15 /* FakeHTTPRequest.swift in Sources */,
 				D7B7D0091B1482D30081BC15 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

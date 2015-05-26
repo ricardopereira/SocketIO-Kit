@@ -13,9 +13,7 @@ import SocketIOKit
 class SocketIOKitSpec: QuickSpec {
     override func spec() {
         it("is url error prone") {
-            let socket = SocketIO<SocketIOEvent>(nsurl: NSURL(), withOptions: SocketIOOptions(), withRequest: FakeHTTPRequest(), withTransport: FakeTransport.self)
-            
-            //XCTAssert(false, "Test")
+            // TODO
             expect(1 + 1).to(equal(2))
         }
     }
