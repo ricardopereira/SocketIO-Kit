@@ -62,6 +62,7 @@ socket.on(.ConnectError) {
     }
 }.on(.Connected) { (arg: SocketIOArg) -> () in
     println("Connected")
+    socket.emit(.ChatMessage, withMessage: "I'm iOS")
 }
 
 socket.on(.ChatMessage, withCallback: { (arg: SocketIOArg) -> () in
@@ -74,8 +75,6 @@ socket.on(.ChatMessage, withCallback: { (arg: SocketIOArg) -> () in
 })
 
 socket.connect()
-
-socket.emit(.ChatMessage, withMessage: "I'm iOS")
 ```
 
 **Options**
