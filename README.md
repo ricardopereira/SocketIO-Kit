@@ -1,14 +1,23 @@
 # ![SocketIO-Kit Logo](https://github.com/ricardopereira/SocketIO-Kit/blob/master/Logo/SocketIOKit.png?raw=true =36x36) SocketIO-Kit
 
-###### Version 1.0 Alpha
-
 SocketIO-Kit is a [Socket.io](http://socket.io) iOS client with type safe, clean syntax and speed in mind.
 
 ## Installation
 
-#### Carthage
+#### [Carthage]
 
-(work in progress)
+[Carthage]: https://github.com/Carthage/Carthage
+
+```
+github "ricardopereira/SocketIO-Kit"
+```
+
+Then run `carthage update`.
+
+Follow the current instructions in [Carthage's README][carthage-installation]
+for up to date installation instructions.
+
+[carthage-installation]: https://github.com/Carthage/Carthage#adding-frameworks-to-an-application
 
 #### CocoaPods
 
@@ -16,7 +25,9 @@ SocketIO-Kit is a [Socket.io](http://socket.io) iOS client with type safe, clean
 
 #### Manually
 
-[Download](https://github.com/ricardopereira/SocketIO-Kit/archive/master.zip) the project and copy the `SocketIO-Kit` folder into your project to use it in.
+[Download](https://github.com/ricardopereira/SocketIO-Kit/archive/master.zip) the project and copy the `SocketIO-Kit` folder into your project and use the `Source` files. You need [Runes] framework to run SocketIO-Kit because it uses infix operators for monadic functions.
+
+[Runes]: https://github.com/thoughtbot/Runes
 
 ## Usage
 
@@ -181,24 +192,15 @@ socket.emit(.Login, withObject: john)
 
 You can opt into seeing messages by supplying the DEBUG flag. Just add `-D DEBUG` in `Build Settings > Swift Compiler - Custom Flags: Other Swift Flags`.
 
-## License (MIT)
+## Contributing
 
-Copyright (c) 2015 - Ricardo Pereira
+See the [CONTRIBUTING] document. Thank you, [contributors]!
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+[CONTRIBUTING]: CONTRIBUTING.md
+[contributors]: https://github.com/ricardopereira/SocketIO-Kit/graphs/contributors
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+## License
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+It is free software and may be redistributed under the terms specified in the [LICENSE] file.
+
+[LICENSE]: /LICENSE
