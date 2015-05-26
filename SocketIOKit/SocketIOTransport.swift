@@ -8,11 +8,11 @@
 
 import Foundation
 
-class SocketIOTransport {
+public class SocketIOTransport {
     
-    internal let delegate: SocketIOTransportDelegate
+    let delegate: SocketIOTransportDelegate
     
-    required init(delegate: SocketIOTransportDelegate) {
+    public required init(delegate: SocketIOTransportDelegate) {
         self.delegate = delegate;
     }
     

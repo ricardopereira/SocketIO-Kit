@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		D70F6DDC1B0F3F1F007DDF31 /* SocketIOKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D70F6DDB1B0F3F1F007DDF31 /* SocketIOKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D70F6DE21B0F3F1F007DDF31 /* SocketIOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D70F6DD61B0F3F1F007DDF31 /* SocketIOKit.framework */; };
-		D70F6DE91B0F3F1F007DDF31 /* SocketIOKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6DE81B0F3F1F007DDF31 /* SocketIOKitTests.swift */; };
 		D70F6E021B0F4008007DDF31 /* SocketIOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D70F6DF71B0F4008007DDF31 /* SocketIOKit.framework */; };
 		D70F6E3C1B0F4586007DDF31 /* NSURL+TrailingSlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E211B0F4586007DDF31 /* NSURL+TrailingSlash.swift */; };
 		D70F6E3D1B0F4586007DDF31 /* NSURL+TrailingSlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E211B0F4586007DDF31 /* NSURL+TrailingSlash.swift */; };
@@ -59,6 +58,18 @@
 		D70F6E6D1B0F4586007DDF31 /* SocketIOTransportDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E3A1B0F4586007DDF31 /* SocketIOTransportDelegate.swift */; };
 		D70F6E6E1B0F4586007DDF31 /* SocketIOWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E3B1B0F4586007DDF31 /* SocketIOWebSocket.swift */; };
 		D70F6E6F1B0F4586007DDF31 /* SocketIOWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E3B1B0F4586007DDF31 /* SocketIOWebSocket.swift */; };
+		D7B7D0091B1482D30081BC15 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B7D0061B1482D30081BC15 /* Tests.swift */; };
+		D7B7D0121B14A24F0081BC15 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B7D00F1B14A24F0081BC15 /* Nimble.framework */; };
+		D7B7D0131B14A24F0081BC15 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B7D00F1B14A24F0081BC15 /* Nimble.framework */; };
+		D7B7D0141B14A24F0081BC15 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B7D0101B14A24F0081BC15 /* Quick.framework */; };
+		D7B7D0151B14A24F0081BC15 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B7D0101B14A24F0081BC15 /* Quick.framework */; };
+		D7B7D0161B14A24F0081BC15 /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B7D0111B14A24F0081BC15 /* Runes.framework */; };
+		D7B7D0171B14A24F0081BC15 /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B7D0111B14A24F0081BC15 /* Runes.framework */; };
+		D7B7D0191B14A2950081BC15 /* Runes.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = D7B7D0111B14A24F0081BC15 /* Runes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D7B7D01A1B14A2F30081BC15 /* Nimble.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = D7B7D00F1B14A24F0081BC15 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D7B7D01B1B14A2F60081BC15 /* Quick.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = D7B7D0101B14A24F0081BC15 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D7B7D0201B14AE8F0081BC15 /* FakeHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B7D01E1B14A8C40081BC15 /* FakeHTTPRequest.swift */; };
+		D7B7D0211B14AE930081BC15 /* FakeTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B7D01C1B14A8AA0081BC15 /* FakeTransport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,13 +89,27 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D7B7D0181B14A2880081BC15 /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D7B7D01B1B14A2F60081BC15 /* Quick.framework in Copy Files */,
+				D7B7D01A1B14A2F30081BC15 /* Nimble.framework in Copy Files */,
+				D7B7D0191B14A2950081BC15 /* Runes.framework in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		D70F6DD61B0F3F1F007DDF31 /* SocketIOKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SocketIOKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70F6DDA1B0F3F1F007DDF31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D70F6DDB1B0F3F1F007DDF31 /* SocketIOKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketIOKit.h; sourceTree = "<group>"; };
 		D70F6DE11B0F3F1F007DDF31 /* SocketIOKit-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SocketIOKit-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D70F6DE71B0F3F1F007DDF31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D70F6DE81B0F3F1F007DDF31 /* SocketIOKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOKitTests.swift; sourceTree = "<group>"; };
 		D70F6DF71B0F4008007DDF31 /* SocketIOKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SocketIOKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70F6E011B0F4008007DDF31 /* SocketIOKit-MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SocketIOKit-MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70F6E211B0F4586007DDF31 /* NSURL+TrailingSlash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+TrailingSlash.swift"; sourceTree = "<group>"; };
@@ -111,6 +136,13 @@
 		D70F6E391B0F4586007DDF31 /* SocketIOTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOTransport.swift; sourceTree = "<group>"; };
 		D70F6E3A1B0F4586007DDF31 /* SocketIOTransportDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOTransportDelegate.swift; sourceTree = "<group>"; };
 		D70F6E3B1B0F4586007DDF31 /* SocketIOWebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOWebSocket.swift; sourceTree = "<group>"; };
+		D7B7D0051B1482D30081BC15 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7B7D0061B1482D30081BC15 /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		D7B7D00F1B14A24F0081BC15 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = SOURCE_ROOT; };
+		D7B7D0101B14A24F0081BC15 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = SOURCE_ROOT; };
+		D7B7D0111B14A24F0081BC15 /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = Carthage/Build/iOS/Runes.framework; sourceTree = SOURCE_ROOT; };
+		D7B7D01C1B14A8AA0081BC15 /* FakeTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeTransport.swift; sourceTree = "<group>"; };
+		D7B7D01E1B14A8C40081BC15 /* FakeHTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeHTTPRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +157,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7B7D0161B14A24F0081BC15 /* Runes.framework in Frameworks */,
 				D70F6DE21B0F3F1F007DDF31 /* SocketIOKit.framework in Frameworks */,
+				D7B7D0121B14A24F0081BC15 /* Nimble.framework in Frameworks */,
+				D7B7D0141B14A24F0081BC15 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +175,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7B7D0171B14A24F0081BC15 /* Runes.framework in Frameworks */,
 				D70F6E021B0F4008007DDF31 /* SocketIOKit.framework in Frameworks */,
+				D7B7D0131B14A24F0081BC15 /* Nimble.framework in Frameworks */,
+				D7B7D0151B14A24F0081BC15 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,7 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				D70F6DD81B0F3F1F007DDF31 /* SocketIOKit */,
-				D70F6DE51B0F3F1F007DDF31 /* SocketIOKitTests */,
+				D7B7D0041B1482D30081BC15 /* Tests */,
 				D70F6DD71B0F3F1F007DDF31 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -206,23 +244,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D70F6DE51B0F3F1F007DDF31 /* SocketIOKitTests */ = {
-			isa = PBXGroup;
-			children = (
-				D70F6DE81B0F3F1F007DDF31 /* SocketIOKitTests.swift */,
-				D70F6DE61B0F3F1F007DDF31 /* Supporting Files */,
-			);
-			path = SocketIOKitTests;
-			sourceTree = "<group>";
-		};
-		D70F6DE61B0F3F1F007DDF31 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D70F6DE71B0F3F1F007DDF31 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		D70F6E201B0F4586007DDF31 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +260,28 @@
 				D70F6E261B0F4586007DDF31 /* WebSocket.swift */,
 			);
 			path = External;
+			sourceTree = "<group>";
+		};
+		D7B7D0041B1482D30081BC15 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D7B7D0061B1482D30081BC15 /* Tests.swift */,
+				D7B7D01E1B14A8C40081BC15 /* FakeHTTPRequest.swift */,
+				D7B7D01C1B14A8AA0081BC15 /* FakeTransport.swift */,
+				D7B7D00F1B14A24F0081BC15 /* Nimble.framework */,
+				D7B7D0101B14A24F0081BC15 /* Quick.framework */,
+				D7B7D0111B14A24F0081BC15 /* Runes.framework */,
+				D7B7D00B1B1482E20081BC15 /* Supporting Files */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		D7B7D00B1B1482E20081BC15 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D7B7D0051B1482D30081BC15 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +331,7 @@
 				D70F6DDD1B0F3F1F007DDF31 /* Sources */,
 				D70F6DDE1B0F3F1F007DDF31 /* Frameworks */,
 				D70F6DDF1B0F3F1F007DDF31 /* Resources */,
+				D7B7D0181B14A2880081BC15 /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -371,8 +415,8 @@
 			projectRoot = "";
 			targets = (
 				D70F6DD51B0F3F1F007DDF31 /* SocketIOKit-iOS */,
-				D70F6DE01B0F3F1F007DDF31 /* SocketIOKit-iOSTests */,
 				D70F6DF61B0F4008007DDF31 /* SocketIOKit-Mac */,
+				D70F6DE01B0F3F1F007DDF31 /* SocketIOKit-iOSTests */,
 				D70F6E001B0F4008007DDF31 /* SocketIOKit-MacTests */,
 			);
 		};
@@ -461,7 +505,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D70F6DE91B0F3F1F007DDF31 /* SocketIOKitTests.swift in Sources */,
+				D7B7D0211B14AE930081BC15 /* FakeTransport.swift in Sources */,
+				D7B7D0201B14AE8F0081BC15 /* FakeHTTPRequest.swift in Sources */,
+				D7B7D0091B1482D30081BC15 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,12 +705,14 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SocketIOKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -676,8 +724,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = SocketIOKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -741,12 +791,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SocketIOKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -761,8 +812,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = SocketIOKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";

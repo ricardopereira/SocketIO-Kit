@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol SocketIOTransportDelegate {
+public protocol SocketIOTransportDelegate {
     
     var options: SocketIOOptions { get }
     
