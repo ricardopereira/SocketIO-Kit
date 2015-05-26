@@ -16,7 +16,7 @@ class SocketIOKitSpec: QuickSpec {
             let socket = SocketIO<SocketIOEvent>(nsurl: NSURL(), withOptions: SocketIOOptions(), withRequest: FakeHTTPRequest(), withTransport: FakeTransport.self)
             
             //XCTAssert(false, "Test")
-            expect(1 + 1).to(equal(3))
+            expect(1 + 1).to(equal(2))
         }
     }
 }

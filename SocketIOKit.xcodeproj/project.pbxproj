@@ -57,6 +57,7 @@
 		D70F6E6D1B0F4586007DDF31 /* SocketIOTransportDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E3A1B0F4586007DDF31 /* SocketIOTransportDelegate.swift */; };
 		D70F6E6E1B0F4586007DDF31 /* SocketIOWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E3B1B0F4586007DDF31 /* SocketIOWebSocket.swift */; };
 		D70F6E6F1B0F4586007DDF31 /* SocketIOWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70F6E3B1B0F4586007DDF31 /* SocketIOWebSocket.swift */; };
+		D7904C291B15339A00FF50D1 /* SocketIOKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D70F6DDB1B0F3F1F007DDF31 /* SocketIOKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D7B7D0091B1482D30081BC15 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B7D0061B1482D30081BC15 /* Tests.swift */; };
 		D7B7D0121B14A24F0081BC15 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B7D00F1B14A24F0081BC15 /* Nimble.framework */; };
 		D7B7D0141B14A24F0081BC15 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B7D0101B14A24F0081BC15 /* Quick.framework */; };
@@ -295,6 +296,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7904C291B15339A00FF50D1 /* SocketIOKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
