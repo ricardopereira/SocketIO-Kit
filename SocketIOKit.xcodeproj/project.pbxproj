@@ -66,6 +66,7 @@
 		D7B7D01B1B14A2F60081BC15 /* Quick.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = D7B7D0101B14A24F0081BC15 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D7B7D0201B14AE8F0081BC15 /* FakeHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B7D01E1B14A8C40081BC15 /* FakeHTTPRequest.swift */; };
 		D7B7D0211B14AE930081BC15 /* FakeTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B7D01C1B14A8AA0081BC15 /* FakeTransport.swift */; };
+		D7B7D03D1B15271D0081BC15 /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B7D03C1B15271D0081BC15 /* Runes.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		D7B7D0111B14A24F0081BC15 /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = Carthage/Build/iOS/Runes.framework; sourceTree = SOURCE_ROOT; };
 		D7B7D01C1B14A8AA0081BC15 /* FakeTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeTransport.swift; sourceTree = "<group>"; };
 		D7B7D01E1B14A8C40081BC15 /* FakeHTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeHTTPRequest.swift; sourceTree = "<group>"; };
+		D7B7D03C1B15271D0081BC15 /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = Carthage/Build/iOS/Runes.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7B7D03D1B15271D0081BC15 /* Runes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				D70F6DD81B0F3F1F007DDF31 /* SocketIOKit */,
+				D7B7D03C1B15271D0081BC15 /* Runes.framework */,
 				D7B7D0041B1482D30081BC15 /* Tests */,
 				D70F6DD71B0F3F1F007DDF31 /* Products */,
 			);
