@@ -1,4 +1,4 @@
-#SocketIO-Kit
+# ![SocketIO-Kit Logo](https://github.com/ricardopereira/SocketIO-Kit/blob/master/Logo/SocketIOKit.png?raw=true =36x36) SocketIO-Kit
 
 ###### Version 1.0 Alpha
 
