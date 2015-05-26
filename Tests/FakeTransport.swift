@@ -8,7 +8,7 @@
 
 import SocketIOKit
 
-class FakeTransport: SocketIOTransport {
+public class FakeTransport: SocketIOTransport {
 
 
     

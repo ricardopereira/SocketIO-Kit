@@ -8,9 +8,9 @@
 
 import SocketIOKit
 
-class FakeHTTPRequest: SocketIORequester {
+public class FakeHTTPRequest: SocketIORequester {
 
-    final func sendRequest(request: NSURLRequest, completion: RequestCompletionHandler) {
+    public final func sendRequest(request: NSURLRequest, completion: RequestCompletionHandler) {
         // Check request
         
         // Do request
