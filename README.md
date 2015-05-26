@@ -19,7 +19,9 @@ for up to date installation instructions.
 
 [carthage-installation]: https://github.com/Carthage/Carthage#adding-frameworks-to-an-application
 
-#### CocoaPods
+#### [CocoaPods]
+
+[CocoaPods]: http://cocoapods.org
 
 (work in progress)
 
