@@ -1,6 +1,8 @@
 # ![SocketIO-Kit Logo](https://github.com/ricardopereira/SocketIO-Kit/blob/master/Logo/SocketIOKit.png?raw=true =36x36) SocketIO-Kit
 
-SocketIO-Kit is a [Socket.io](http://socket.io) iOS client with type safe, clean syntax and speed in mind.
+SocketIO-Kit is a [Socket.io](http://socket.io) iOS client with type safe, clean syntax and speed in mind. It uses [Starscrem](https://github.com/daltoniam/Starscream).
+
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 ## Installation
 
@@ -34,6 +36,8 @@ for up to date installation instructions.
 ## Usage
 
 ```swift
+import SocketIOKit
+
 // Type safety events
 enum AppEvents: String, Printable {
     case ChatMessage = "chat message"
