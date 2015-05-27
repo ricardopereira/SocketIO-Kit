@@ -113,7 +113,7 @@ io.on('connection', function(socket) {
 socket.on(.Image) {
     switch $0 {
     case .JSON(let json):
-        if let image = json["buffer"] as? String >>- Utilities.base64EncodedStringToUIImage {
+        if let image = json["buffer"] as? String >>- SocketIOUtilities.base64EncodedStringToUIImage {
             println(image)
         }
     default:
@@ -153,7 +153,7 @@ socket.on(.Image) {
     case .JSON(let json):
         let imageInfo = ImageInfo(dict: json) //<---
         
-        if let image = imageInfo.buffer >>- Utilities.base64EncodedStringToUIImage {
+        if let image = imageInfo.buffer >>- SocketIOUtilities.base64EncodedStringToUIImage {
             println(image)
         }
     default:
