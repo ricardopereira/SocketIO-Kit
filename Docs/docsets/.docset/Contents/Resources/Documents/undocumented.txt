@@ -1,0 +1,49 @@
+SocketIOTransport.swift
+	public class SocketIOTransport
+	public required init(delegate: SocketIOTransportDelegate)
+SocketIORequester.swift
+	public protocol SocketIORequester
+	func sendRequest(request: NSURLRequest, completion: RequestCompletionHandler)
+SocketIOEvent.swift
+	public enum SocketIOEvent: String, Printable
+	public var description: String
+SocketIOError.swift
+	public class SocketIOError: Printable
+	public let message: String
+	public let info: [String]
+	public init(message: String, withInfo info: [String])
+	public convenience init(error: NSError)
+	public var description: String
+SocketIO.swift
+	public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter
+	public init(nsurl: NSURL, withOptions options: SocketIOOptions, withRequest request: SocketIORequester, withTransport transport: SocketIOTransport.Type)
+SocketIOHandshake.swift
+	struct SocketIOHandshake
+SocketIOTransportDelegate.swift
+	public protocol SocketIOTransportDelegate
+	var options: SocketIOOptions { get }
+	func failure(event: SocketIOEvent, withError error: SocketIOError)
+	func didReceiveMessage(event: String, withString message: String)
+	func didReceiveMessage(event: String, withList list: NSArray)
+	func didReceiveMessage(event: String, withDictionary dict: NSDictionary)
+SocketIOCallback.swift
+	public enum SocketIOArg<E: SocketIOError>
+SocketIOOptions.swift
+	public class SocketIOOptions
+	public var namespace: String = ""
+	public init()
+	public func namespace(aNamespace: String?) -> SocketIOOptions
+SocketIOObject.swift
+	public protocol SocketIOObject
+	init(dict: NSDictionary)
+	var asDictionary: NSDictionary { get }
+SocketIOEventHandler.swift
+	public class SocketIOEventHandler: SocketIOReceiver
+	public final func on(event: SocketIOEvent, withCallback callback: SocketIOCallback) -> SocketIOEventHandler
+	public final func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler
+	public final func onAny(callback: SocketIOCallback) -> SocketIOEventHandler
+	public final func off() -> SocketIOEventHandler
+SocketIOUtilities.swift
+	public class SocketIOUtilities
+	static public let arrayToJSON : NSArray -> String? =
+	static public let base64EncodedStringToUIImage : String -> UIImage? =
