@@ -67,6 +67,15 @@ socket.on(.ConnectError) {
 }.on(.Connected) { (arg: SocketIOArg) -> () in
     println("Connected")
     socket.emit(.ChatMessage, withMessage: "I'm iOS")
+}.on(.Disconnected) {
+    switch $0 {
+    case .Message(let message):
+        println("Disconnected with no error")
+    case .Failure(let error):
+        println("Disconnected with error: \(error)")
+    default:
+        break
+    }
 }
 
 socket.on(.ChatMessage) {
