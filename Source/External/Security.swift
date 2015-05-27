@@ -11,7 +11,7 @@
 import Foundation
 import Security
 
-public class SSLCert {
+class SSLCert {
     var certData: NSData?
     var key: SecKeyRef?
     
@@ -22,7 +22,7 @@ public class SSLCert {
     
     :returns: a representation security object to be used with
     */
-    public init(data: NSData) {
+    internal init(data: NSData) {
         self.certData = data
     }
     
@@ -33,13 +33,13 @@ public class SSLCert {
     
     :returns: a representation security object to be used with
     */
-    public init(key: SecKeyRef) {
+    internal init(key: SecKeyRef) {
         self.key = key
     }
 }
 
-public class Security {
-    public var validatedDN = true //should the domain name be validated?
+class Security {
+    var validatedDN = true //should the domain name be validated?
     
     var isReady = false //is the key processing done?
     var certificates: [NSData]? //the certificates
@@ -53,7 +53,7 @@ public class Security {
     
     :returns: a representation security object to be used with
     */
-    public convenience init(usePublicKeys: Bool = false) {
+    convenience init(usePublicKeys: Bool = false) {
         let paths = NSBundle.mainBundle().pathsForResourcesOfType("cer", inDirectory: ".")
         var collect = Array<SSLCert>()
         for path in paths {
@@ -72,7 +72,7 @@ public class Security {
     
     :returns: a representation security object to be used with
     */
-    public init(certs: [SSLCert], usePublicKeys: Bool) {
+    init(certs: [SSLCert], usePublicKeys: Bool) {
         self.usePublicKeys = usePublicKeys
         
         if self.usePublicKeys {
@@ -109,7 +109,7 @@ public class Security {
     
     :returns: if the key was successfully validated
     */
-    public func isValid(trust: SecTrustRef, domain: String?) -> Bool {
+    func isValid(trust: SecTrustRef, domain: String?) -> Bool {
         
         var tries = 0
         while(!self.isReady) {

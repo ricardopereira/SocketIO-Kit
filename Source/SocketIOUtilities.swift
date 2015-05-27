@@ -1,5 +1,5 @@
 //
-//  Utilities.swift
+//  SocketIOUtilities.swift
 //  Smartime
 //
 //  Created by Ricardo Pereira on 12/05/2015.
@@ -14,7 +14,7 @@ import Foundation
 
 import Runes
 
-public class Utilities {
+public class SocketIOUtilities {
     
     // MARK: base64EncodedStringToUIImage
     

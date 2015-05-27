@@ -94,7 +94,7 @@ class SocketIOPacket {
             return (id.value + key.value, SocketIOError(message: "Invalid JSON Object", withInfo: ["Event: \(event)"]))
         }
         
-        let message = (array >>- Utilities.arrayToJSON) ?? ""
+        let message = (array >>- SocketIOUtilities.arrayToJSON) ?? ""
         
         if nsp.isEmpty {
             return (id.value + key.value + message, nil)
@@ -115,7 +115,7 @@ class SocketIOPacket {
             return (id.value + key.value, SocketIOError(message: "Invalid JSON Object", withInfo: ["Event: \(event)"]))
         }
         
-        let message = (array >>- Utilities.arrayToJSON) ?? ""
+        let message = (array >>- SocketIOUtilities.arrayToJSON) ?? ""
         
         if nsp.isEmpty {
             return (id.value + key.value + message, nil)
