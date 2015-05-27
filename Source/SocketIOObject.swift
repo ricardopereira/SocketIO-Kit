@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol SocketIOObject {
+public protocol SocketIOObject {
     
     init(dict: NSDictionary)
     var asDictionary: NSDictionary { get }

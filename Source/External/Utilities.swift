@@ -6,9 +6,15 @@
 //  Copyright (c) 2015 Ricardo Pereira. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#else
+import Foundation
+#endif
 
-class Utilities {
+import Runes
+
+public class Utilities {
     
     // MARK: base64EncodedStringToUIImage
     
@@ -24,7 +30,7 @@ class Utilities {
         $0 as String
     }
     
-    static let arrayToJSON : NSArray -> String? = {
+    static public let arrayToJSON : NSArray -> String? = {
         $0 >>- arrayToJSONData >>- dataToJSONString >>- getJSONString
     }
 
@@ -36,17 +42,19 @@ class Utilities {
         NSData(base64EncodedString: $0, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
     }
 
+    #if os(iOS)
     static private let base64ToUIImage : NSData -> UIImage? = {
         UIImage(data: $0)
     }
     
-    static let base64EncodedStringToUIImage : String -> UIImage? = {
+    static public let base64EncodedStringToUIImage : String -> UIImage? = {
         $0 >>- decodeBuffer >>- base64ToUIImage
     }
+    #endif
     
 }
 
-func hasValue<T>(value: T?) -> Bool {
+internal func hasValue<T>(value: T?) -> Bool {
     switch (value) {
     case .Some(_): return true
     case .None: return false

@@ -7,3 +7,4 @@ xcuserdata
 *.xccheckout
 
 Carthage/Build
+Carthage/Checkouts
