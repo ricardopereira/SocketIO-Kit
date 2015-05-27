@@ -1,6 +1,6 @@
 # ![SocketIO-Kit Logo](https://github.com/ricardopereira/SocketIO-Kit/blob/master/Logo/SocketIOKit.png?raw=true =36x36) SocketIO-Kit
 
-SocketIO-Kit is a [Socket.io](http://socket.io) iOS client with type safe, clean syntax and speed in mind. It uses [Starscrem](https://github.com/daltoniam/Starscream).
+SocketIO-Kit is a [Socket.io](http://socket.io) iOS client with type safe, clean syntax and speed in mind. WebSocket is the only transport that is implemented and it uses [Starscrem](https://github.com/daltoniam/Starscream).
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
@@ -69,14 +69,14 @@ socket.on(.ConnectError) {
     socket.emit(.ChatMessage, withMessage: "I'm iOS")
 }
 
-socket.on(.ChatMessage, withCallback: { (arg: SocketIOArg) -> () in
-    switch arg {
+socket.on(.ChatMessage) {
+    switch $0 {
     case .Message(let message):
         println("Remote: \(message)")
     default:
         println("Not supported")
     }
-})
+}
 
 socket.connect()
 ```
