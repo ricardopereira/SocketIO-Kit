@@ -242,7 +242,7 @@ private class TransportDelegate: SocketIOTransportDelegate {
         self.options = options
     }
     
-    final func failure(event: SocketIOEvent, error: SocketIOError) {
+    final func failure(event: SocketIOEvent, withError error: SocketIOError) {
         events.performEvent(event.description, withError: error)
     }
     

@@ -101,7 +101,7 @@ class WebSocket : NSObject, NSStreamDelegate {
     private var receivedTextBlock: ((String) -> Void)? = nil
     private var receivedDataBlock: ((NSData) -> Void)? = nil
     
-    internal var isConnected :Bool {
+    internal var isConnected: Bool {
         return connected
     }
     
@@ -304,9 +304,9 @@ class WebSocket : NSObject, NSStreamDelegate {
         }        
         outputStream = nil
         isRunLoop = false
-        connected = false
         certValidated = false
         self.doDisconnect(error)
+        connected = false
     }
     
     ///handles the incoming bytes and sending them to the proper processing method

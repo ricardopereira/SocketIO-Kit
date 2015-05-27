@@ -55,6 +55,10 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
     final override func send(event: String, withString message: String) {
         if !isOpen {
+            #if DEBUG
+                println("--- \(SocketIOName): Send")
+                println("Transport is closed")
+            #endif
             return
         }
         
@@ -80,6 +84,10 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
     final override func send(event: String, withList list: NSArray) {
         if !isOpen {
+            #if DEBUG
+                println("--- \(SocketIOName): Send")
+                println("Transport is closed")
+            #endif
             return
         }
         
@@ -94,7 +102,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         }
 
         if let e = error {
-            delegate.failure(.EmitError, error: e)
+            delegate.failure(.EmitError, withError: e)
             return
         }
         
@@ -107,6 +115,10 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
     final override func send(event: String, withDictionary dict: NSDictionary) {
         if !isOpen {
+            #if DEBUG
+                println("--- \(SocketIOName): Send")
+                println("Transport is closed")
+            #endif
             return
         }
         
@@ -121,7 +133,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
         }
         
         if let e = error {
-            delegate.failure(.EmitError, error: e)
+            delegate.failure(.EmitError, withError: e)
             return
         }
         
@@ -160,7 +172,13 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             println("disconnected")
             println("error: \(error)")
         #endif
-        delegate.didReceiveMessage(SocketIOEvent.Disconnected.description, withString: "")
+        close()
+        if let disconnectError = error {
+            delegate.failure(.Disconnected, withError: SocketIOError(error: disconnectError))
+        }
+        else {
+            delegate.didReceiveMessage(SocketIOEvent.Disconnected.description, withString: "")
+        }
     }
     
     func websocketDidReceiveData(socket: WebSocket, data: NSData) {
