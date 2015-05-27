@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		D70F6DDC1B0F3F1F007DDF31 /* SocketIOKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D70F6DDB1B0F3F1F007DDF31 /* SocketIOKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D7904C291B15339A00FF50D1 /* SocketIOKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D70F6DDB1B0F3F1F007DDF31 /* SocketIOKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D7904C361B153A3F00FF50D1 /* SocketIOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D70F6DD61B0F3F1F007DDF31 /* SocketIOKit.framework */; };
 		D7904C581B153B0B00FF50D1 /* NSURL+TrailingSlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C3D1B153B0B00FF50D1 /* NSURL+TrailingSlash.swift */; };
 		D7904C591B153B0B00FF50D1 /* NSURL+TrailingSlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C3D1B153B0B00FF50D1 /* NSURL+TrailingSlash.swift */; };
 		D7904C5C1B153B0B00FF50D1 /* LumaJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C401B153B0B00FF50D1 /* LumaJSON.swift */; };
@@ -62,35 +61,12 @@
 		D7904C8B1B153B0B00FF50D1 /* SocketIOWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C571B153B0B00FF50D1 /* SocketIOWebSocket.swift */; };
 		D7904C8D1B153C4900FF50D1 /* Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C8C1B153C4900FF50D1 /* Security.swift */; };
 		D7904C8E1B153C4900FF50D1 /* Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C8C1B153C4900FF50D1 /* Security.swift */; };
-		D7904C941B153DF400FF50D1 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7904C921B153DF400FF50D1 /* Nimble.framework */; };
-		D7904C951B153DF400FF50D1 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7904C931B153DF400FF50D1 /* Quick.framework */; };
-		D7904C981B153E1400FF50D1 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7904C921B153DF400FF50D1 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D7904C991B153E1400FF50D1 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7904C931B153DF400FF50D1 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D7904CA71B1545CB00FF50D1 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C2B1B1539EA00FF50D1 /* Tests.swift */; };
+		D7904CA81B15468300FF50D1 /* Nimble.framework in Resources */ = {isa = PBXBuildFile; fileRef = D7904C921B153DF400FF50D1 /* Nimble.framework */; };
+		D7904CA91B15468300FF50D1 /* Quick.framework in Resources */ = {isa = PBXBuildFile; fileRef = D7904C931B153DF400FF50D1 /* Quick.framework */; };
+		D7904CAA1B15468E00FF50D1 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7904C921B153DF400FF50D1 /* Nimble.framework */; };
+		D7904CAB1B15468E00FF50D1 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7904C931B153DF400FF50D1 /* Quick.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D7904C371B153A3F00FF50D1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D70F6DCD1B0F3F1F007DDF31 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D70F6DD51B0F3F1F007DDF31;
-			remoteInfo = "SocketIOKit-iOS";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		D7904C911B153DD700FF50D1 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D7904C981B153E1400FF50D1 /* Nimble.framework in CopyFiles */,
-				D7904C991B153E1400FF50D1 /* Quick.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D70F6DD61B0F3F1F007DDF31 /* SocketIOKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SocketIOKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,7 +74,6 @@
 		D70F6DDB1B0F3F1F007DDF31 /* SocketIOKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketIOKit.h; sourceTree = "<group>"; };
 		D70F6DF71B0F4008007DDF31 /* SocketIOKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SocketIOKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7904C2B1B1539EA00FF50D1 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		D7904C301B153A3F00FF50D1 /* SocketIOKit-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SocketIOKit-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7904C3D1B153B0B00FF50D1 /* NSURL+TrailingSlash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+TrailingSlash.swift"; sourceTree = "<group>"; };
 		D7904C401B153B0B00FF50D1 /* LumaJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LumaJSON.swift; sourceTree = "<group>"; };
 		D7904C411B153B0B00FF50D1 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -127,6 +102,7 @@
 		D7904C8C1B153C4900FF50D1 /* Security.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Security.swift; sourceTree = "<group>"; };
 		D7904C921B153DF400FF50D1 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = SOURCE_ROOT; };
 		D7904C931B153DF400FF50D1 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = SOURCE_ROOT; };
+		D7904C9E1B15458D00FF50D1 /* SocketIOKit-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SocketIOKit-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7B7D0051B1482D30081BC15 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,13 +121,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D7904C2D1B153A3F00FF50D1 /* Frameworks */ = {
+		D7904C9B1B15458D00FF50D1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7904C361B153A3F00FF50D1 /* SocketIOKit.framework in Frameworks */,
-				D7904C941B153DF400FF50D1 /* Nimble.framework in Frameworks */,
-				D7904C951B153DF400FF50D1 /* Quick.framework in Frameworks */,
+				D7904CAA1B15468E00FF50D1 /* Nimble.framework in Frameworks */,
+				D7904CAB1B15468E00FF50D1 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +147,7 @@
 			children = (
 				D70F6DD61B0F3F1F007DDF31 /* SocketIOKit.framework */,
 				D70F6DF71B0F4008007DDF31 /* SocketIOKit.framework */,
-				D7904C301B153A3F00FF50D1 /* SocketIOKit-iOSTests.xctest */,
+				D7904C9E1B15458D00FF50D1 /* SocketIOKit-Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -333,23 +308,21 @@
 			productReference = D70F6DF71B0F4008007DDF31 /* SocketIOKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D7904C2F1B153A3F00FF50D1 /* SocketIOKit-iOSTests */ = {
+		D7904C9D1B15458D00FF50D1 /* SocketIOKit-Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D7904C391B153A3F00FF50D1 /* Build configuration list for PBXNativeTarget "SocketIOKit-iOSTests" */;
+			buildConfigurationList = D7904CA61B15458D00FF50D1 /* Build configuration list for PBXNativeTarget "SocketIOKit-Tests" */;
 			buildPhases = (
-				D7904C2C1B153A3F00FF50D1 /* Sources */,
-				D7904C2D1B153A3F00FF50D1 /* Frameworks */,
-				D7904C2E1B153A3F00FF50D1 /* Resources */,
-				D7904C911B153DD700FF50D1 /* CopyFiles */,
+				D7904C9A1B15458D00FF50D1 /* Sources */,
+				D7904C9B1B15458D00FF50D1 /* Frameworks */,
+				D7904C9C1B15458D00FF50D1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D7904C381B153A3F00FF50D1 /* PBXTargetDependency */,
 			);
-			name = "SocketIOKit-iOSTests";
-			productName = "SocketIOKit-iOSTests";
-			productReference = D7904C301B153A3F00FF50D1 /* SocketIOKit-iOSTests.xctest */;
+			name = "SocketIOKit-Tests";
+			productName = "SocketIOKit-Tests";
+			productReference = D7904C9E1B15458D00FF50D1 /* SocketIOKit-Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -367,7 +340,7 @@
 					D70F6DF61B0F4008007DDF31 = {
 						CreatedOnToolsVersion = 6.3;
 					};
-					D7904C2F1B153A3F00FF50D1 = {
+					D7904C9D1B15458D00FF50D1 = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
 				};
@@ -386,7 +359,7 @@
 			targets = (
 				D70F6DD51B0F3F1F007DDF31 /* SocketIOKit-iOS */,
 				D70F6DF61B0F4008007DDF31 /* SocketIOKit-Mac */,
-				D7904C2F1B153A3F00FF50D1 /* SocketIOKit-iOSTests */,
+				D7904C9D1B15458D00FF50D1 /* SocketIOKit-Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -406,10 +379,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D7904C2E1B153A3F00FF50D1 /* Resources */ = {
+		D7904C9C1B15458D00FF50D1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7904CA81B15468300FF50D1 /* Nimble.framework in Resources */,
+				D7904CA91B15468300FF50D1 /* Quick.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,22 +486,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D7904C2C1B153A3F00FF50D1 /* Sources */ = {
+		D7904C9A1B15458D00FF50D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7904CA71B1545CB00FF50D1 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D7904C381B153A3F00FF50D1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D70F6DD51B0F3F1F007DDF31 /* SocketIOKit-iOS */;
-			targetProxy = D7904C371B153A3F00FF50D1 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D70F6DEA1B0F3F1F007DDF31 /* Debug */ = {
@@ -721,7 +689,7 @@
 			};
 			name = Release;
 		};
-		D7904C3A1B153A3F00FF50D1 /* Debug */ = {
+		D7904CA41B15458D00FF50D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
@@ -739,7 +707,7 @@
 			};
 			name = Debug;
 		};
-		D7904C3B1B153A3F00FF50D1 /* Release */ = {
+		D7904CA51B15458D00FF50D1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
@@ -783,14 +751,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D7904C391B153A3F00FF50D1 /* Build configuration list for PBXNativeTarget "SocketIOKit-iOSTests" */ = {
+		D7904CA61B15458D00FF50D1 /* Build configuration list for PBXNativeTarget "SocketIOKit-Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D7904C3A1B153A3F00FF50D1 /* Debug */,
-				D7904C3B1B153A3F00FF50D1 /* Release */,
+				D7904CA41B15458D00FF50D1 /* Debug */,
+				D7904CA51B15458D00FF50D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
