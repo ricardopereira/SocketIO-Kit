@@ -62,7 +62,6 @@
 		D7904C8B1B153B0B00FF50D1 /* SocketIOWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C571B153B0B00FF50D1 /* SocketIOWebSocket.swift */; };
 		D7904C8D1B153C4900FF50D1 /* Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C8C1B153C4900FF50D1 /* Security.swift */; };
 		D7904C8E1B153C4900FF50D1 /* Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C8C1B153C4900FF50D1 /* Security.swift */; };
-		D7904C8F1B153C8300FF50D1 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C2B1B1539EA00FF50D1 /* Tests.swift */; };
 		D7904C941B153DF400FF50D1 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7904C921B153DF400FF50D1 /* Nimble.framework */; };
 		D7904C951B153DF400FF50D1 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7904C931B153DF400FF50D1 /* Quick.framework */; };
 		D7904C981B153E1400FF50D1 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7904C921B153DF400FF50D1 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -230,9 +229,9 @@
 		D7904C3E1B153B0B00FF50D1 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				D7904C8C1B153C4900FF50D1 /* Security.swift */,
 				D7904C401B153B0B00FF50D1 /* LumaJSON.swift */,
 				D7904C411B153B0B00FF50D1 /* Utilities.swift */,
+				D7904C8C1B153C4900FF50D1 /* Security.swift */,
 				D7904C421B153B0B00FF50D1 /* WebSocket.swift */,
 			);
 			name = External;
@@ -516,7 +515,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7904C8F1B153C8300FF50D1 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
