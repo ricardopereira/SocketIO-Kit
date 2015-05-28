@@ -33,6 +33,11 @@ for up to date installation instructions.
 
 [Runes]: https://github.com/thoughtbot/Runes
 
+## Requirements
+
+* iOS 8.0+ / Mac OS X 10.10+
+* Xcode 6.3 (Swift 1.2)
+
 ## Usage
 
 ```swift
@@ -202,6 +207,14 @@ let john = Person(name: "John")
 socket.emit(.Login, withObject: john)
 ```
 
+## Features
+###### To implement
+
+- [ ] Reconnect automatically
+- [ ] Complete documentation
+- [ ] Test on iOS 7.0+ and Mac OS X 10.9+
+- [ ] BDD Tests
+
 ## Debugging
 
 You can opt into seeing messages by supplying the DEBUG flag. Just add `-D DEBUG` in `Build Settings > Swift Compiler - Custom Flags: Other Swift Flags`.
@@ -212,6 +225,10 @@ See the [CONTRIBUTING] document. Thank you, [contributors]!
 
 [CONTRIBUTING]: CONTRIBUTING.md
 [contributors]: https://github.com/ricardopereira/SocketIO-Kit/graphs/contributors
+
+## Author
+
+Ricardo Pereira, [@ricardopereiraw](https://twitter.com/ricardopereiraw)
 
 ## License
 
