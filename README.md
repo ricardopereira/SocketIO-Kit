@@ -31,6 +31,8 @@ for up to date installation instructions.
 
 [Download](https://github.com/ricardopereira/SocketIO-Kit/archive/master.zip) the project and copy the `SocketIO-Kit` folder into your project and use the `Source` files. You need [Runes] framework to run SocketIO-Kit because it uses infix operators for monadic functions.
 
+There is no need for `import SocketIOKit` when manually installing.
+
 [Runes]: https://github.com/thoughtbot/Runes
 
 ## Requirements
