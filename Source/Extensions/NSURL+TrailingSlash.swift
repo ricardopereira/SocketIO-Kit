@@ -38,7 +38,12 @@ internal extension NSURL {
     }
     
     var relativeURL: NSURL? {
-        return NSURL(string: "\(self.scheme!)://\(self.host!):\(self.port!)")
+        if let port = self.port {
+            return NSURL(string: "\(self.scheme!)://\(self.host!):\(port)")
+        }
+        else {
+            return NSURL(string: "\(self.scheme!)://\(self.host!)")
+        }
     }
     
 }

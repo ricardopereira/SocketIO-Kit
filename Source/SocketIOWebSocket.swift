@@ -11,6 +11,7 @@ import Foundation
 class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
     
     private var socket: WebSocket!
+    private let defaultPort = 80
     
     private var nsp: String {
         return delegate.options.namespace
@@ -26,7 +27,16 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             return
         }
         
-        if let scheme = hostUrl.scheme, let host = hostUrl.host, let port = hostUrl.port {
+        // Check current port
+        let port: Int
+        if let hostPort = hostUrl.port {
+            port = hostPort.integerValue
+        }
+        else {
+            port = defaultPort
+        }
+        
+        if let scheme = hostUrl.scheme, let host = hostUrl.host {
             // Establish connection
             if scheme.lowercaseString == "http" {
                 // Standard
