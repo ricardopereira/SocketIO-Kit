@@ -1,0 +1,10 @@
+framework module Runes {
+  umbrella header "Runes.h"
+
+  export *
+  module * { export * }
+}
+
+module Runes.Swift {
+    header "Runes-Swift.h"
+}
