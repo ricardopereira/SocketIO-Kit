@@ -11,7 +11,7 @@ SocketIO-Kit is a [Socket.io](http://socket.io) iOS client with type safe, clean
 [Carthage]: https://github.com/Carthage/Carthage
 
 ```
-github "ricardopereira/SocketIO-Kit"
+github "ricardopereira/SocketIO-Kit" "Swift2"
 ```
 
 Then run `carthage update`.
