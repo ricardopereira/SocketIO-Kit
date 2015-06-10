@@ -6,7 +6,7 @@ SocketIO-Kit is a [Socket.io](http://socket.io) iOS client with type safe, clean
 
 ## Installation
 
-#### [Carthage]
+#### <img src="https://cloud.githubusercontent.com/assets/432536/5252404/443d64f4-7952-11e4-9d26-fc5cc664cb61.png" width="24" height="24"> [Carthage]
 
 [Carthage]: https://github.com/Carthage/Carthage
 
@@ -21,7 +21,7 @@ for up to date installation instructions.
 
 [carthage-installation]: https://github.com/Carthage/Carthage#adding-frameworks-to-an-application
 
-#### [CocoaPods]
+#### <img src="https://dl.dropboxusercontent.com/u/11377305/resources/cocoapods.png" width="24" height="24"> [CocoaPods]
 
 [CocoaPods]: http://cocoapods.org
 
@@ -39,6 +39,8 @@ There is no need for `import SocketIOKit` when manually installing.
 
 * iOS 8.0+ / Mac OS X 10.10+
 * Xcode 6.3 (Swift 1.2)
+
+⚠️ Swift 2.0 version, please use branch [`Swift2`](https://github.com/ricardopereira/SocketIO-Kit/tree/Swift2).
 
 ## Usage
 
