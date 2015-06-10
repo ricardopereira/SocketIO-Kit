@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LumaJSONObject: Printable {
+class LumaJSONObject: CustomStringConvertible {
     
     var value: AnyObject?
     
@@ -49,14 +49,17 @@ struct LumaJSON {
     
     static func jsonFromObject(object: [String: AnyObject]) -> String? {
         var err: NSError?
-        if let jsonData = NSJSONSerialization.dataWithJSONObject( (object as NSDictionary) , options: nil, error: &err) {
+        do {
+            let jsonData = try NSJSONSerialization.dataWithJSONObject( (object as NSDictionary) , options: [])
             if let jsonStr = NSString(data: jsonData, encoding: NSUTF8StringEncoding) {
                 return jsonStr as String
             }
-        }
-        else if(err != nil) {
-            if LumaJSON.logErrors {
-                println( err?.localizedDescription )
+        } catch let error as NSError {
+            err = error
+            if(err != nil) {
+                if LumaJSON.logErrors {
+                    print( err?.localizedDescription )
+                }
             }
         }
         return nil
@@ -66,7 +69,13 @@ struct LumaJSON {
         if let jsonData = json.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false){
             var err: NSError?
             
-            let parsed: AnyObject? = NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableLeaves, error: &err)
+            let parsed: AnyObject?
+            do {
+                parsed = try NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableLeaves)
+            } catch let error as NSError {
+                err = error
+                parsed = nil
+            }
             
             if let parsedArray = parsed as? NSArray {
                 return LumaJSONObject(parsedArray)
@@ -77,7 +86,7 @@ struct LumaJSON {
             }
             
             if LumaJSON.logErrors && (err != nil) {
-                println(err?.localizedDescription)
+                print(err?.localizedDescription)
             }
             
             return LumaJSONObject(parsed)

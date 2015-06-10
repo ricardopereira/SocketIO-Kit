@@ -19,7 +19,11 @@ public class SocketIOUtilities {
     // MARK: base64EncodedStringToUIImage
     
     static private let arrayToJSONData : NSArray -> NSData? = {
-        NSJSONSerialization.dataWithJSONObject($0, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
+        do {
+            return try NSJSONSerialization.dataWithJSONObject($0, options: NSJSONWritingOptions.PrettyPrinted)
+        } catch _ {
+            return nil
+        }
     }
     
     static private let dataToJSONString : NSData -> NSString? = {

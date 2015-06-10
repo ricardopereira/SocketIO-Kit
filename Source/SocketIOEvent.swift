@@ -9,7 +9,7 @@
 import Foundation
 
 // System events
-public enum SocketIOEvent: String, Printable {
+public enum SocketIOEvent: String, CustomStringConvertible {
     
     case Connected = "connected" //Called on a successful connection
     case Disconnected = "disconnected" //Called on a disconnection

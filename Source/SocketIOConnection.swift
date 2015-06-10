@@ -81,13 +81,18 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
         return true
     }
     
-    private func requestCompletion(data: NSData!, response: NSURLResponse?, error: NSError?) {
+    private func requestCompletion(data: NSData?, response: NSURLResponse?, error: NSError?) {
         #if DEBUG
             println("--- \(SocketIOName): Request")
             println("data: \(data)")
             println("response: \(response)")
             println("error: \(error)")
         #endif
+        
+        guard let data = data else {
+            emit(.ConnectError, withError: SocketIOError(message: "No data received from Socket.io server"))
+            return
+        }
         
         // Got error
         if let currentError = error {
@@ -123,7 +128,7 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
                 transport.open(hostUrl, withHandshake: handshake)
             }
             else {
-                emit(.ConnectError, withError: SocketIOError(message: jsonStr, withInfo: []))
+                emit(.ConnectError, withError: SocketIOError(message: jsonStr))
             }
             
             // Parse string data (when response status code: 200)

@@ -107,7 +107,7 @@ public class SocketIOEventHandler: SocketIOReceiver {
 
     public final func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         // Check current callback
-        if let currentCallback = activeEvents[event] {
+        if let _ = activeEvents[event] {
             #if DEBUG
                 println("--- \(SocketIOName): Event handler")
                 println("set event \"\(event)\" with new callback")

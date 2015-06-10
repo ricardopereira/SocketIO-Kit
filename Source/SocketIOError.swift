@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class SocketIOError: Printable {
+public class SocketIOError: CustomStringConvertible {
     
     public let message: String
     public let info: [String]
     
-    public init(message: String, withInfo info: [String]) {
+    public init(message: String, withInfo info: [String] = []) {
         self.message = message
         self.info = info
     }

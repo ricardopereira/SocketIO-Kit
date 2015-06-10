@@ -11,7 +11,11 @@ import Foundation
 class SocketIONamespace {
     
     static private func regEx() -> NSRegularExpression? {
-        return NSRegularExpression(pattern: "^/([a-z][a-z0-9]+)", options: .CaseInsensitive, error: nil)
+        do {
+            return try NSRegularExpression(pattern: "^/([a-z][a-z0-9]+)", options: .CaseInsensitive)
+        } catch _ {
+            return nil
+        }
     }
     
     static func isValid(nsp: String) -> Bool {
@@ -20,7 +24,7 @@ class SocketIONamespace {
         }
         
         if let regex = regEx() {
-            let all = NSMakeRange(0, count(nsp))
+            let all = NSMakeRange(0, nsp.characters.count)
             
             if let match = regex.firstMatchInString(nsp, options: .ReportProgress, range: all) {
                 let data = (nsp as NSString).substringWithRange(match.range)

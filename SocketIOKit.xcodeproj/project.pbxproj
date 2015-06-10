@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D70F6DDC1B0F3F1F007DDF31 /* SocketIOKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D70F6DDB1B0F3F1F007DDF31 /* SocketIOKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D7494D5E1B275ED700485E61 /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7494D5D1B275ED700485E61 /* Runes.framework */; };
+		D7494D5F1B275EE500485E61 /* Runes.framework in Resources */ = {isa = PBXBuildFile; fileRef = D7494D5D1B275ED700485E61 /* Runes.framework */; };
 		D7904C291B15339A00FF50D1 /* SocketIOKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D70F6DDB1B0F3F1F007DDF31 /* SocketIOKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D7904C581B153B0B00FF50D1 /* NSURL+TrailingSlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C3D1B153B0B00FF50D1 /* NSURL+TrailingSlash.swift */; };
 		D7904C591B153B0B00FF50D1 /* NSURL+TrailingSlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C3D1B153B0B00FF50D1 /* NSURL+TrailingSlash.swift */; };
@@ -71,6 +73,7 @@
 		D70F6DDA1B0F3F1F007DDF31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D70F6DDB1B0F3F1F007DDF31 /* SocketIOKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketIOKit.h; sourceTree = "<group>"; };
 		D70F6DF71B0F4008007DDF31 /* SocketIOKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SocketIOKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7494D5D1B275ED700485E61 /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = Carthage/Build/iOS/Runes.framework; sourceTree = "<group>"; };
 		D7904C2B1B1539EA00FF50D1 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		D7904C3D1B153B0B00FF50D1 /* NSURL+TrailingSlash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+TrailingSlash.swift"; sourceTree = "<group>"; };
 		D7904C401B153B0B00FF50D1 /* LumaJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LumaJSON.swift; sourceTree = "<group>"; };
@@ -108,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7494D5E1B275ED700485E61 /* Runes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +137,7 @@
 		D70F6DCC1B0F3F1F007DDF31 = {
 			isa = PBXGroup;
 			children = (
+				D7494D5D1B275ED700485E61 /* Runes.framework */,
 				D70F6DD81B0F3F1F007DDF31 /* SocketIOKit */,
 				D7B7D0041B1482D30081BC15 /* Tests */,
 				D70F6DD71B0F3F1F007DDF31 /* Products */,
@@ -327,6 +332,7 @@
 		D70F6DCD1B0F3F1F007DDF31 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Ricardo Pereira";
 				TargetAttributes = {
@@ -365,6 +371,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7494D5F1B275EE500485E61 /* Runes.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

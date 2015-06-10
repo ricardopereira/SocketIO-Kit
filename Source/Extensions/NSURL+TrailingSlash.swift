@@ -11,16 +11,11 @@ import Foundation
 internal extension NSURL {
     
     func hasTrailingSlash() -> Bool {
-        if let urlAsString = self.absoluteString {
-            return urlAsString.hasSuffix("/")
-        }
-        else {
-            return false
-        }
+        return self.absoluteString.hasSuffix("/")
     }
     
     func URLByAppendingTrailingSlash() -> NSURL {
-        if !self.hasTrailingSlash(), let urlAsString = self.absoluteString, let url = NSURL(string: urlAsString + "/") {
+        if !self.hasTrailingSlash(), let url = NSURL(string: self.absoluteString + "/") {
             return url
         }
         else {
@@ -29,7 +24,7 @@ internal extension NSURL {
     }
     
     func URLByDeletingTrailingSlash() -> NSURL {
-        if self.hasTrailingSlash(), let urlAsString = self.absoluteString, let url = NSURL(string: urlAsString.substringToIndex(urlAsString.endIndex.predecessor())) {
+        if self.hasTrailingSlash(), let url = NSURL(string: self.absoluteString.substringToIndex(self.absoluteString.endIndex.predecessor())) {
             return url
         }
         else {
@@ -39,10 +34,10 @@ internal extension NSURL {
     
     var relativeURL: NSURL? {
         if let port = self.port {
-            return NSURL(string: "\(self.scheme!)://\(self.host!):\(port)")
+            return NSURL(string: "\(self.scheme)://\(self.host!):\(port)")
         }
         else {
-            return NSURL(string: "\(self.scheme!)://\(self.host!)")
+            return NSURL(string: "\(self.scheme)://\(self.host!)")
         }
     }
     

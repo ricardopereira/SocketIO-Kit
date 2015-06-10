@@ -44,13 +44,21 @@ enum PacketTypeKey: Int {
 class SocketIOPacket {
     
     static private func regEx() -> NSRegularExpression? {
-        // Regular Expression: <packet type>[<data>]
-        return NSRegularExpression(pattern: "^[0-9][0-9]", options: .CaseInsensitive, error: nil)
+        do {
+            // Regular Expression: <packet type>[<data>]
+            return try NSRegularExpression(pattern: "^[0-9][0-9]", options: .CaseInsensitive)
+        } catch _ {
+            return nil
+        }
     }
     
     static private func regEx(namespace nsp: String) -> NSRegularExpression? {
-        // Regular Expression: <packet type>/nsp,[<data>]
-        return NSRegularExpression(pattern: "^[0-9][0-9]" + nsp, options: .CaseInsensitive, error: nil)
+        do {
+            // Regular Expression: <packet type>/nsp,[<data>]
+            return try NSRegularExpression(pattern: "^[0-9][0-9]" + nsp, options: .CaseInsensitive)
+        } catch _ {
+            return nil
+        }
     }
     
     
@@ -130,7 +138,7 @@ class SocketIOPacket {
     
     static func decode(value: String) -> (Bool, PacketTypeID, PacketTypeKey, NSArray) {
         if let regex = regEx() {
-            let all = NSMakeRange(0, count(value))
+            let all = NSMakeRange(0, value.characters.count)
             
             // <packet type id>[<data>]
             // 4 message + 2 event
@@ -142,7 +150,7 @@ class SocketIOPacket {
             if let match = regex.firstMatchInString(value, options: .ReportProgress, range: all) {
                 
                 // Data
-                let remaining = NSMakeRange(match.range.length, count(value) - match.range.length)
+                let remaining = NSMakeRange(match.range.length, value.characters.count - match.range.length)
                 // Ex: ["object message",{"id":1,"name":"Xpto"}]
                 let remainingData = (value as NSString).substringWithRange(remaining)
                 
@@ -150,8 +158,16 @@ class SocketIOPacket {
                 
                 if !remainingData.isEmpty, let jsonData = remainingData.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
                     // Parse JSON
-                    var err: NSError?
-                    let parsed: AnyObject? = NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableLeaves, error: &err)
+                    let parsed: AnyObject?
+                    do {
+                        parsed = try NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableLeaves)
+                    } catch let error as NSError {
+                        #if DEBUG
+                            println("--- \(SocketIOName): Packet decoding")
+                            println("JSON error: \(error)")
+                        #endif
+                        parsed = nil
+                    }
                     
                     if let parsedArray = parsed as? NSArray {
                         data = parsedArray
@@ -159,8 +175,8 @@ class SocketIOPacket {
                 }
                 
                 // Result: ID and Key
-                if let firstDigit = (value as NSString).substringToIndex(1).toInt(), let packetID = PacketTypeID(rawValue: firstDigit),
-                    let secondDigit = (value as NSString).substringWithRange(NSMakeRange(1, 1)).toInt(), let packetKey = PacketTypeKey(rawValue: secondDigit)
+                if let firstDigit = Int((value as NSString).substringToIndex(1)), let packetID = PacketTypeID(rawValue: firstDigit),
+                    let secondDigit = Int((value as NSString).substringWithRange(NSMakeRange(1, 1))), let packetKey = PacketTypeKey(rawValue: secondDigit)
                 {
                     return (true, packetID, packetKey, data)
                 }
@@ -175,7 +191,7 @@ class SocketIOPacket {
         }
         
         if let regex = regEx(namespace: nsp) {
-            let all = NSMakeRange(0, count(value))
+            let all = NSMakeRange(0, value.characters.count)
             
             //42/gallery,["chat message","message for gallery group"]
             
@@ -184,17 +200,25 @@ class SocketIOPacket {
                 
                 var data = []
                 
-                if match.range.length < count(value) {
+                if match.range.length < value.characters.count {
                     let comma = 1
                     // Data
-                    let remaining = NSMakeRange(match.range.length + comma, count(value) - match.range.length - comma)
+                    let remaining = NSMakeRange(match.range.length + comma, value.characters.count - match.range.length - comma)
                     // Ex: ["object message",{"id":1,"name":"Xpto"}]
                     let remainingData = (value as NSString).substringWithRange(remaining)
                     
                     if !remainingData.isEmpty, let jsonData = remainingData.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
                         // Parse JSON
-                        var err: NSError?
-                        let parsed: AnyObject? = NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableLeaves, error: &err)
+                        let parsed: AnyObject?
+                        do {
+                            parsed = try NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableLeaves)
+                        } catch let error as NSError {
+                            #if DEBUG
+                                println("--- \(SocketIOName): Packet decoding")
+                                println("JSON error: \(error)")
+                            #endif
+                            parsed = nil
+                        }
                         
                         if let parsedArray = parsed as? NSArray {
                             data = parsedArray
@@ -203,8 +227,8 @@ class SocketIOPacket {
                 }
                 
                 // Result: ID and Key
-                if let firstDigit = (value as NSString).substringToIndex(1).toInt(), let packetID = PacketTypeID(rawValue: firstDigit),
-                    let secondDigit = (value as NSString).substringWithRange(NSMakeRange(1, 1)).toInt(), let packetKey = PacketTypeKey(rawValue: secondDigit)
+                if let firstDigit = Int((value as NSString).substringToIndex(1)), let packetID = PacketTypeID(rawValue: firstDigit),
+                    let secondDigit = Int((value as NSString).substringWithRange(NSMakeRange(1, 1))), let packetKey = PacketTypeKey(rawValue: secondDigit)
                 {
                     return (true, packetID, packetKey, data)
                 }

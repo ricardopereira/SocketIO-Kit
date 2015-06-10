@@ -11,9 +11,13 @@ import Foundation
 class SocketIOPayload {
     
     static private func regEx() -> NSRegularExpression? {
-        // Regular Expression: <length>:<packet>, added 0 for parse optimization
-        //because packet as suffix 0 for string data
-        return NSRegularExpression(pattern: "^[0-9]{2,}:0", options: .CaseInsensitive, error: nil)
+        do {
+            // Regular Expression: <length>:<packet>, added 0 for parse optimization
+            //because packet as suffix 0 for string data
+            return try NSRegularExpression(pattern: "^[0-9]{2,}:0", options: .CaseInsensitive)
+        } catch _ {
+            return nil
+        }
     }
     
     static func isStringPacket(payload: NSString) -> Bool {

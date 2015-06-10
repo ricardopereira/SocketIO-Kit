@@ -36,9 +36,9 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             port = defaultPort
         }
         
-        if let scheme = hostUrl.scheme, let host = hostUrl.host {
+        if let host = hostUrl.host {
             // Establish connection
-            if scheme.lowercaseString == "http" {
+            if hostUrl.scheme.lowercaseString == "http" {
                 // Standard
                 socket = WebSocket(url: NSURL(scheme: "ws", host: "\(host):\(port)", path: "/socket.io/?transport=websocket&sid=\(handshake.sid)")!)
             }
