@@ -36,7 +36,7 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             port = defaultPort
         }
         
-        if let scheme = hostUrl.scheme, let host = hostUrl.host {
+        if let scheme = hostUrl.scheme, host = hostUrl.host {
             // Establish connection
             if scheme.lowercaseString == "http" {
                 // Standard

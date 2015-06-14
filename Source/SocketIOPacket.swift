@@ -159,8 +159,8 @@ class SocketIOPacket {
                 }
                 
                 // Result: ID and Key
-                if let firstDigit = (value as NSString).substringToIndex(1).toInt(), let packetID = PacketTypeID(rawValue: firstDigit),
-                    let secondDigit = (value as NSString).substringWithRange(NSMakeRange(1, 1)).toInt(), let packetKey = PacketTypeKey(rawValue: secondDigit)
+                if let firstDigit = (value as NSString).substringToIndex(1).toInt(), packetID = PacketTypeID(rawValue: firstDigit),
+                    secondDigit = (value as NSString).substringWithRange(NSMakeRange(1, 1)).toInt(), packetKey = PacketTypeKey(rawValue: secondDigit)
                 {
                     return (true, packetID, packetKey, data)
                 }
@@ -203,8 +203,8 @@ class SocketIOPacket {
                 }
                 
                 // Result: ID and Key
-                if let firstDigit = (value as NSString).substringToIndex(1).toInt(), let packetID = PacketTypeID(rawValue: firstDigit),
-                    let secondDigit = (value as NSString).substringWithRange(NSMakeRange(1, 1)).toInt(), let packetKey = PacketTypeKey(rawValue: secondDigit)
+                if let firstDigit = (value as NSString).substringToIndex(1).toInt(), packetID = PacketTypeID(rawValue: firstDigit),
+                    secondDigit = (value as NSString).substringWithRange(NSMakeRange(1, 1)).toInt(), packetKey = PacketTypeKey(rawValue: secondDigit)
                 {
                     return (true, packetID, packetKey, data)
                 }

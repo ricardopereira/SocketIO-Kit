@@ -118,7 +118,7 @@ class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
             // Parse JSON info from response
             let (valid, handshake) = SocketIOHandshake.parse(jsonStr)
             
-            if valid, let url = response?.URL, let hostUrl = url.relativeURL {
+            if valid, let url = response?.URL, hostUrl = url.relativeURL {
                 // Connect
                 transport.open(hostUrl, withHandshake: handshake)
             }
