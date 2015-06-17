@@ -23,7 +23,7 @@ public enum SocketIOEvent: String, Printable {
     }
     
     static var system: [SocketIOEvent] {
-        return [.Connected, .Disconnected, .ReconnectAttempt, .EmitError]
+        return [.Connected, .ConnectedNamespace, .Disconnected, .ReconnectAttempt, .EmitError]
     }
     
 }
