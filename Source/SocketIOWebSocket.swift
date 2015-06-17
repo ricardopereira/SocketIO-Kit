@@ -202,16 +202,25 @@ class SocketIOWebSocket: SocketIOTransport, WebSocketDelegate {
             println("received message> \(text)")
         #endif
         
-        let (valid, id, key, data) = SocketIOPacket.decode(text, withNamespace: nsp)
+        let (valid, hasNamespace, id, key, data) = SocketIOPacket.decode(text, withNamespace: nsp)
         
         if valid {
             switch (id, key) {
             case (PacketTypeID.Message, PacketTypeKey.Connect):
-                #if DEBUG
-                    println("--- \(SocketIOName): WebSocket Packet decoded")
-                    println("connected")
-                #endif
-                delegate.didReceiveMessage(SocketIOEvent.Connected.description, withString: "")
+                if hasNamespace {
+                    #if DEBUG
+                        println("--- \(SocketIOName): WebSocket Packet decoded")
+                        println("connected on \(nsp)")
+                    #endif
+                    delegate.didReceiveMessage(SocketIOEvent.ConnectedNamespace.description, withString: nsp)
+                }
+                else {
+                    #if DEBUG
+                        println("--- \(SocketIOName): WebSocket Packet decoded")
+                        println("connected")
+                    #endif
+                    delegate.didReceiveMessage(SocketIOEvent.Connected.description, withString: "")
+                }
             case (PacketTypeID.Message, PacketTypeKey.Event):
                 // Event data
                 if data.count == 2, let eventName = data[0] as? String {

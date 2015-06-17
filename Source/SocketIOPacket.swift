@@ -128,7 +128,7 @@ class SocketIOPacket {
     
     // MARK: Decode
     
-    static func decode(value: String) -> (Bool, PacketTypeID, PacketTypeKey, NSArray) {
+    static func decode(value: String) -> (Bool, Bool, PacketTypeID, PacketTypeKey, NSArray) {
         if let regex = regEx() {
             let all = NSMakeRange(0, count(value))
             
@@ -162,14 +162,14 @@ class SocketIOPacket {
                 if let firstDigit = (value as NSString).substringToIndex(1).toInt(), packetID = PacketTypeID(rawValue: firstDigit),
                     secondDigit = (value as NSString).substringWithRange(NSMakeRange(1, 1)).toInt(), packetKey = PacketTypeKey(rawValue: secondDigit)
                 {
-                    return (true, packetID, packetKey, data)
+                    return (true, false, packetID, packetKey, data)
                 }
             }
         }
-        return (false, PacketTypeID.Close, PacketTypeKey.Error, [])
+        return (false, false, PacketTypeID.Close, PacketTypeKey.Error, [])
     }
     
-    static func decode(value: String, withNamespace nsp: String) -> (Bool, PacketTypeID, PacketTypeKey, NSArray) {
+    static func decode(value: String, withNamespace nsp: String) -> (Bool, Bool, PacketTypeID, PacketTypeKey, NSArray) {
         if nsp.isEmpty {
             return decode(value)
         }
@@ -206,7 +206,7 @@ class SocketIOPacket {
                 if let firstDigit = (value as NSString).substringToIndex(1).toInt(), packetID = PacketTypeID(rawValue: firstDigit),
                     secondDigit = (value as NSString).substringWithRange(NSMakeRange(1, 1)).toInt(), packetKey = PacketTypeKey(rawValue: secondDigit)
                 {
-                    return (true, packetID, packetKey, data)
+                    return (true, true, packetID, packetKey, data)
                 }
             }
             else {
@@ -214,7 +214,7 @@ class SocketIOPacket {
                 return decode(value)
             }
         }
-        return (false, PacketTypeID.Close, PacketTypeKey.Error, [])
+        return (false, false, PacketTypeID.Close, PacketTypeKey.Error, [])
     }
     
 }
