@@ -4,6 +4,8 @@ SocketIO-Kit is a [Socket.io](http://socket.io) iOS client with type safe, clean
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
+[![Version](https://img.shields.io/cocoapods/v/SocketIOKit.svg?style=flat)](http://cocoapods.org/pods/SocketIOKit)
+
 ## Installation
 
 #### <img src="https://cloud.githubusercontent.com/assets/432536/5252404/443d64f4-7952-11e4-9d26-fc5cc664cb61.png" width="24" height="24"> [Carthage]
@@ -25,7 +27,19 @@ for up to date installation instructions.
 
 [CocoaPods]: http://cocoapods.org
 
-(work in progress)
+To install it, simply add the following line to your **Podfile**:
+
+```ruby
+pod "SocketIOKit"
+```
+
+You will also need to make sure you're opting into using frameworks:
+
+```ruby
+use_frameworks!
+```
+
+Then run `pod install` with CocoaPods 0.36 or newer.
 
 #### Manually
 
