@@ -209,6 +209,10 @@ class SocketIOPacket {
                     return (true, packetID, packetKey, data)
                 }
             }
+            else {
+                // Invalid namespace: try with empty nsp
+                return decode(value)
+            }
         }
         return (false, PacketTypeID.Close, PacketTypeKey.Error, [])
     }
