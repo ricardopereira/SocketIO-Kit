@@ -15,7 +15,7 @@ private enum WSScheme: String {
 }
 
 class SocketIOWebSocket: SocketIOTransport {
-    
+
     private var ws: WebSocket!
     private let defaultPort = 80
     private var pingTimer: NSTimer?

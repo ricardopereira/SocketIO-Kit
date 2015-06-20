@@ -291,3 +291,10 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     }
     
 }
+
+// TODO: SwiftWebSocket doesn't have a Mac version!
+#if os(OSX)
+    class SocketIOWebSocket: SocketIOTransport {
+    
+    }
+#endif

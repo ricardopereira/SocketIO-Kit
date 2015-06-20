@@ -6,15 +6,8 @@
 //  Copyright (c) 2015 Ricardo Pereira. All rights reserved.
 //
 
-import Quick
-import Nimble
 import SocketIOKit
 
-class SocketIOKitSpec: QuickSpec {
-    override func spec() {
-        it("is 1 + 1 = 2") {
-            // TODO
-            expect(1 + 1).to(equal(2))
-        }
-    }
+class SocketIOKitSpec {
+
 }
