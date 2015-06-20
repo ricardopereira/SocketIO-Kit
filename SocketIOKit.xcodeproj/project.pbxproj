@@ -54,10 +54,6 @@
 		D7904C8A1B153B0B00FF50D1 /* SocketIOWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C571B153B0B00FF50D1 /* SocketIOWebSocket.swift */; };
 		D7904C8B1B153B0B00FF50D1 /* SocketIOWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C571B153B0B00FF50D1 /* SocketIOWebSocket.swift */; };
 		D7904CA71B1545CB00FF50D1 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C2B1B1539EA00FF50D1 /* Tests.swift */; };
-		D7904CA81B15468300FF50D1 /* Nimble.framework in Resources */ = {isa = PBXBuildFile; fileRef = D7904C921B153DF400FF50D1 /* Nimble.framework */; };
-		D7904CA91B15468300FF50D1 /* Quick.framework in Resources */ = {isa = PBXBuildFile; fileRef = D7904C931B153DF400FF50D1 /* Quick.framework */; };
-		D7904CAA1B15468E00FF50D1 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7904C921B153DF400FF50D1 /* Nimble.framework */; };
-		D7904CAB1B15468E00FF50D1 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7904C931B153DF400FF50D1 /* Quick.framework */; };
 		D7904CAD1B15BE3900FF50D1 /* SocketIOUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904CAC1B15BE3900FF50D1 /* SocketIOUtilities.swift */; };
 		D7904CAE1B15BE3900FF50D1 /* SocketIOUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904CAC1B15BE3900FF50D1 /* SocketIOUtilities.swift */; };
 /* End PBXBuildFile section */
@@ -116,8 +112,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7904CAA1B15468E00FF50D1 /* Nimble.framework in Frameworks */,
-				D7904CAB1B15468E00FF50D1 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,8 +365,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7904CA81B15468300FF50D1 /* Nimble.framework in Resources */,
-				D7904CA91B15468300FF50D1 /* Quick.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +382,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/usr/local/bin/carthage copy-frameworks";
-			shellScript = "$(SRCROOT)/Carthage/Build/Mac/Runes.framework\n$(SRCROOT)/Carthage/Build/iOS/SwiftWebSocket.framework";
+			shellScript = "$(SRCROOT)/Carthage/Build/Mac/Runes.framework\n$(SRCROOT)/Carthage/Build/Mac/SwiftWebSocket.framework";
 		};
 		D7CC0C7C1B113ADE00D5E036 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
