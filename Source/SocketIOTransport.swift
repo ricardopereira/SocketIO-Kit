@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class SocketIOTransport {
+public class SocketIOTransport: NSObject {
     
     let delegate: SocketIOTransportDelegate
     

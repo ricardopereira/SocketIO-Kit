@@ -129,6 +129,11 @@ class SocketIOPacket {
     // MARK: Decode
     
     static func decode(value: String) -> (Bool, Bool, PacketTypeID, PacketTypeKey, NSArray) {
+        // Just a number
+        if let ID = value.toInt(), packetID = PacketTypeID(rawValue: ID) {
+            return (true, false, packetID, PacketTypeKey.Event, [])
+        }
+        
         if let regex = regEx() {
             let all = NSMakeRange(0, count(value))
             
@@ -172,6 +177,11 @@ class SocketIOPacket {
     static func decode(value: String, withNamespace nsp: String) -> (Bool, Bool, PacketTypeID, PacketTypeKey, NSArray) {
         if nsp.isEmpty {
             return decode(value)
+        }
+        
+        // Just a number
+        if let ID = value.toInt(), packetID = PacketTypeID(rawValue: ID) {
+            return (true, false, packetID, PacketTypeKey.Event, [])
         }
         
         if let regex = regEx(namespace: nsp) {

@@ -9,20 +9,22 @@
 import Foundation
 
 extension SocketIOHandshake: SocketIOJSON {
-    
+        
     static func parse(json: String) -> (Bool, SocketIOHandshake) {
         // Parse JSON
         if let parsed = SocketIOJSONParser(json: json),
             let sid = parsed["sid"] as? String,
             let transports = parsed["upgrades"] as? [String],
-            let pingInterval = parsed["pingInterval"] as? Int,
-            let pingTimeout = parsed["pingTimeout"] as? Int
+            var pingInterval = parsed["pingInterval"] as? Int,
+            var pingTimeout = parsed["pingTimeout"] as? Int
         {
+            pingInterval = pingInterval / 1000
+            pingTimeout = pingTimeout / 1000
             // Valid
             return (true, SocketIOHandshake(sid: sid, transport: transports, pingInterval: pingInterval, pingTimeout: pingTimeout))
         }
         // Invalid
-        return (false, SocketIOHandshake(sid: "", transport: [""], pingInterval: 0, pingTimeout: 0))
+        return (false, SocketIOHandshake(sid: "", transport: [""], pingInterval: defaultPingInterval, pingTimeout: defaultPingTimeout))
     }
     
 }
