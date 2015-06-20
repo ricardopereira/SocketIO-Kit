@@ -41,11 +41,12 @@ Then run `pod install` with CocoaPods 0.36 or newer.
 
 #### Manually
 
-[Download](https://github.com/ricardopereira/SocketIO-Kit/archive/master.zip) the project and copy the `SocketIO-Kit` folder into your project and use the `Source` files. You need [Runes] framework to run SocketIO-Kit because it uses infix operators for monadic functions.
+[Download](https://github.com/ricardopereira/SocketIO-Kit/archive/master.zip) the project and copy the `SocketIO-Kit` folder into your project and use the `Source` files. You need [Runes] v2.0.0 (Swift 1.2) framework to run SocketIO-Kit because it uses infix operators for monadic functions and you need [SwiftWebSocket] v0.1.18 (Swift 1.2).
 
 There is no need for `import SocketIOKit` when manually installing.
 
 [Runes]: https://github.com/thoughtbot/Runes
+[SwiftWebSocket]: https://github.com/tidwall/SwiftWebSocket
 
 ## Requirements
 
