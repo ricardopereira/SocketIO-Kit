@@ -1,6 +1,6 @@
 # ![SocketIO-Kit Logo](https://github.com/ricardopereira/SocketIO-Kit/blob/master/Logo/SocketIOKit.png?raw=true =36x36) SocketIO-Kit
 
-SocketIO-Kit is a [Socket.io](http://socket.io) iOS client with type safe, clean syntax and speed in mind. WebSocket is the only transport that is implemented and it uses [Starscream](https://github.com/daltoniam/Starscream).
+SocketIO-Kit is a [Socket.io](http://socket.io) iOS client with type safe, clean syntax and speed in mind. WebSocket is the only transport that is implemented and it uses [SwiftWebSocket](https://github.com/tidwall/SwiftWebSocket).
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Version](https://img.shields.io/cocoapods/v/SocketIOKit.svg?style=flat)](http://cocoapods.org/pods/SocketIOKit)
 
@@ -85,15 +85,20 @@ socket.on(.ConnectError) {
     default:
         break
     }
-}.on(.Connected) { (arg: SocketIOArg) -> () in
+}.on(.TransportError) {
+    switch $0 {
+    case .Failure(let error):
+        println("WebSocket error: \(error)")
+    default:
+        break
+    }
+}.on(.Connected) { result in
     println("Connected")
     socket.emit(.ChatMessage, withMessage: "I'm iOS")
-}.on(.Disconnected) {
-    switch $0 {
-    case .Message(let message):
-        println("Disconnected with no error")
-    case .Failure(let error):
-        println("Disconnected with error: \(error)")
+}.on(.Disconnected) { result in
+    switch result {
+    case .Message(let reason):
+        println("Disconnected: \(reason)")
     default:
         break
     }

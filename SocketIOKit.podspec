@@ -17,5 +17,6 @@ Pod::Spec.new do |spec|
   spec.osx.deployment_target = '10.9'
   spec.osx.frameworks = 'Foundation', 'AppKit'
 
-  spec.dependency 'Runes'
+  spec.dependency 'Runes', '2.0.0'
+  spec.dependency 'SwiftWebSocket', '0.1.18'
 end
