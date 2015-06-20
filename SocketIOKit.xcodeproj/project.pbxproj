@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D70F6DDC1B0F3F1F007DDF31 /* SocketIOKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D70F6DDB1B0F3F1F007DDF31 /* SocketIOKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D719491D1B35EACD0015C529 /* SocketIOWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C571B153B0B00FF50D1 /* SocketIOWebSocket.swift */; };
 		D7904C291B15339A00FF50D1 /* SocketIOKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D70F6DDB1B0F3F1F007DDF31 /* SocketIOKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D7904C581B153B0B00FF50D1 /* NSURL+TrailingSlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C3D1B153B0B00FF50D1 /* NSURL+TrailingSlash.swift */; };
 		D7904C591B153B0B00FF50D1 /* NSURL+TrailingSlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C3D1B153B0B00FF50D1 /* NSURL+TrailingSlash.swift */; };
@@ -450,6 +451,7 @@
 				D7904C791B153B0B00FF50D1 /* SocketIOObject.swift in Sources */,
 				D7904C6F1B153B0B00FF50D1 /* SocketIOEventHandler.swift in Sources */,
 				D7904C731B153B0B00FF50D1 /* SocketIOJSON.swift in Sources */,
+				D719491D1B35EACD0015C529 /* SocketIOWebSocket.swift in Sources */,
 				D7904C671B153B0B00FF50D1 /* SocketIOConnection.swift in Sources */,
 				D7904C591B153B0B00FF50D1 /* NSURL+TrailingSlash.swift in Sources */,
 				D7904C691B153B0B00FF50D1 /* SocketIOEmitter.swift in Sources */,
