@@ -8,8 +8,10 @@
 
 import Foundation
 
+public protocol EventsType: CustomStringConvertible {}
+
 // System events
-public enum SocketIOEvent: String, CustomStringConvertible {
+public enum SocketIOEvent: String, EventsType {
     
     case Connected = "connected" //Called on a successful connection
     case Disconnected = "disconnected" //Called on a disconnection
