@@ -390,7 +390,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/usr/local/bin/carthage copy-frameworks";
-			shellScript = "$(SRCROOT)/Carthage/Build/Mac/Runes.framework";
+			shellScript = "$(SRCROOT)/Carthage/Build/Mac/Runes.framework\n$(SRCROOT)/Carthage/Build/iOS/SwiftWebSocket.framework";
 		};
 		D7CC0C7C1B113ADE00D5E036 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -403,7 +403,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/usr/local/bin/carthage copy-frameworks";
-			shellScript = "$(SRCROOT)/Carthage/Build/iOS/Runes.framework";
+			shellScript = "$(SRCROOT)/Carthage/Build/iOS/Runes.framework\n$(SRCROOT)/Carthage/Build/iOS/SwiftWebSocket.framework";
 		};
 /* End PBXShellScriptBuildPhase section */
 
