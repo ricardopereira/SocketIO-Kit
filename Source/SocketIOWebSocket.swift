@@ -7,11 +7,7 @@
 //
 
 import Foundation
-
-// TODO: SwiftWebSocket doesn't have a Mac version!
-#if os(iOS)
 import SwiftWebSocket
-#endif
 
 private enum WSScheme: String {
     case WS = "ws"
@@ -20,7 +16,6 @@ private enum WSScheme: String {
 
 class SocketIOWebSocket: SocketIOTransport {
 
-    #if os(iOS)
     private var ws: WebSocket!
     private let defaultPort = 80
     private var pingTimer: NSTimer?
@@ -301,6 +296,5 @@ class SocketIOWebSocket: SocketIOTransport {
             println("Ping")
         #endif
     }
-    #endif
     
 }

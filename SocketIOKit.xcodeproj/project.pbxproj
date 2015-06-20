@@ -52,7 +52,6 @@
 		D7904C881B153B0B00FF50D1 /* SocketIOTransportDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C561B153B0B00FF50D1 /* SocketIOTransportDelegate.swift */; };
 		D7904C891B153B0B00FF50D1 /* SocketIOTransportDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C561B153B0B00FF50D1 /* SocketIOTransportDelegate.swift */; };
 		D7904C8A1B153B0B00FF50D1 /* SocketIOWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C571B153B0B00FF50D1 /* SocketIOWebSocket.swift */; };
-		D7904C8B1B153B0B00FF50D1 /* SocketIOWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C571B153B0B00FF50D1 /* SocketIOWebSocket.swift */; };
 		D7904CA71B1545CB00FF50D1 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904C2B1B1539EA00FF50D1 /* Tests.swift */; };
 		D7904CAD1B15BE3900FF50D1 /* SocketIOUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904CAC1B15BE3900FF50D1 /* SocketIOUtilities.swift */; };
 		D7904CAE1B15BE3900FF50D1 /* SocketIOUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7904CAC1B15BE3900FF50D1 /* SocketIOUtilities.swift */; };
@@ -446,7 +445,6 @@
 				D7904C751B153B0B00FF50D1 /* SocketIOJSONHandshake.swift in Sources */,
 				D7904C891B153B0B00FF50D1 /* SocketIOTransportDelegate.swift in Sources */,
 				D7904C651B153B0B00FF50D1 /* SocketIOCallback.swift in Sources */,
-				D7904C8B1B153B0B00FF50D1 /* SocketIOWebSocket.swift in Sources */,
 				D7904C7D1B153B0B00FF50D1 /* SocketIOPacket.swift in Sources */,
 				D7904C7B1B153B0B00FF50D1 /* SocketIOOptions.swift in Sources */,
 				D7904C791B153B0B00FF50D1 /* SocketIOObject.swift in Sources */,
