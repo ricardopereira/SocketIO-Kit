@@ -132,6 +132,7 @@ socket = SocketIO(url: "http://localhost:8001/", withOptions: SocketIOOptions().
 ```js
 // NodeJS Server
 var io = require('socket.io')(http)
+var fs = require('fs')
 
 io.on('connection', function(socket) {
   socket.on('getimage', function(msg) {
