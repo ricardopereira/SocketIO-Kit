@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+Socket.io error.
+*/
 public class SocketIOError: Printable {
     
     public let message: String

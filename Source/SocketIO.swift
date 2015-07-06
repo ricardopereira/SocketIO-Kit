@@ -28,6 +28,9 @@ private class SessionRequest: SocketIORequester {
     
 }
 
+/**
+Socket.io client.
+*/
 public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     
     private let url: NSURL

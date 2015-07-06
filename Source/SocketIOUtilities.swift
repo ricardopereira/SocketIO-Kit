@@ -14,6 +14,9 @@ import Foundation
 
 import Runes
 
+/**
+Socket.io client utilities.
+*/
 public class SocketIOUtilities {
     
     // MARK: base64EncodedStringToUIImage

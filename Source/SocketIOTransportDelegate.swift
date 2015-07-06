@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+Socket.io transport delegate.
+*/
 public protocol SocketIOTransportDelegate {
     
     var options: SocketIOOptions { get }

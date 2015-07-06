@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+Socket.io object protocol.
+*/
 public protocol SocketIOObject {
     
     init(dict: NSDictionary)

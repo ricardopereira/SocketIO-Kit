@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+Socket.io event handler.
+*/
 public class SocketIOEventHandler: SocketIOReceiver {
     
     private lazy var activeEvents = [String: SocketIOCallback]()

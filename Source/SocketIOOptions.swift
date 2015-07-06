@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+Socket.io client options.
+*/
 public class SocketIOOptions {
     
     public var namespace: String = ""
