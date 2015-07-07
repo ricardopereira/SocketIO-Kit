@@ -234,7 +234,7 @@ socket.emit(.Login, withObject: john)
 ###### To implement
 
 - [ ] Reconnect automatically
-- [ ] Complete documentation
+- [x] Complete documentation
 - [ ] Test on iOS 7.0+ and Mac OS X 10.9+
 - [ ] BDD Tests
 
