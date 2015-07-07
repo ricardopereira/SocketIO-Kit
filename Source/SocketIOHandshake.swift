@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+Socket.io connection handshake.
+*/
 struct SocketIOHandshake {
     
     static let defaultPingInterval = 25

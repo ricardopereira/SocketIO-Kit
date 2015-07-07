@@ -33,6 +33,9 @@ public class SocketIOUtilities {
         $0 as String
     }
     
+    /**
+    Convert array to JSON.
+    */
     static public let arrayToJSON : NSArray -> String? = {
         $0 >>- arrayToJSONData >>- dataToJSONString >>- getJSONString
     }
@@ -50,6 +53,10 @@ public class SocketIOUtilities {
         UIImage(data: $0)
     }
     
+    /**
+    Convert base64 to UIImage.
+    **iOS only**
+    */
     static public let base64EncodedStringToUIImage : String -> UIImage? = {
         $0 >>- decodeBuffer >>- base64ToUIImage
     }

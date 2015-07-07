@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+Socket.io connection.
+*/
 class SocketIOConnection: SocketIOReceiver, SocketIOEmitter {
     
     private let requester: SocketIORequester

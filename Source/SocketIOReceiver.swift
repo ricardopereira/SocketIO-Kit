@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+Socket.io receiver protocol.
+*/
 protocol SocketIOReceiver {
     
     func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler

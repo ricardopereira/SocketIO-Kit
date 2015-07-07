@@ -56,7 +56,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     Creates a SocketIO instance with Options.
     
     :param: url     URL that will be used to establish the transport connection.
-    :param options  Custom options
+    :param: options  Custom options.
     
       let options = SocketIOOptions().namespace("/users")
     */
@@ -83,7 +83,7 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
     Creates a SocketIO instance with Options.
     
     :param: nsurl   URL that will be used to establish the transport connection.
-    :param options  Custom options
+    :param: options  Custom options.
     
       let options = SocketIOOptions().namespace("/users")
     */
@@ -91,6 +91,16 @@ public class SocketIO<T: Printable>: SocketIOReceiver, SocketIOEmitter {
         self.init(nsurl: nsurl, withOptions: options, withRequest: SessionRequest(), withTransport: SocketIOWebSocket.self)
     }
 
+    /**
+    Creates a SocketIO instance with Options.
+    
+    :param: nsurl   URL that will be used to establish the transport connection.
+    :param: options  Custom options.
+    :param: request  Custom request.
+    :param: transport  Custom transport.
+    
+      let options = SocketIOOptions().namespace("/users")
+    */
     public init(nsurl: NSURL, withOptions options: SocketIOOptions, withRequest request: SocketIORequester, withTransport transport: SocketIOTransport.Type) {
         url = nsurl
         self.options = options

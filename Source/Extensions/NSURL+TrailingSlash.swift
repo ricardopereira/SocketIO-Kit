@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+NSURL+TrailingSlash.
+*/
 internal extension NSURL {
     
     func hasTrailingSlash() -> Bool {

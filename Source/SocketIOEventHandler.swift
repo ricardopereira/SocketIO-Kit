@@ -104,10 +104,22 @@ public class SocketIOEventHandler: SocketIOReceiver {
         }
     }
     
+    /**
+    Define an event receiver.
+    
+    :param: event Socket.io system event.
+    :param: callback Event callback.
+    */
     public final func on(event: SocketIOEvent, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         return self.on(event.description, withCallback: callback)
     }
 
+    /**
+    Define an event receiver.
+    
+    :param: event Name of the event.
+    :param: callback Event callback.
+    */
     public final func on(event: String, withCallback callback: SocketIOCallback) -> SocketIOEventHandler {
         // Check current callback
         if let currentCallback = activeEvents[event] {
@@ -127,6 +139,11 @@ public class SocketIOEventHandler: SocketIOReceiver {
         return self
     }
     
+    /**
+    Define an event receiver that is called for any event.
+    
+    :param: callback Event callback.
+    */
     public final func onAny(callback: SocketIOCallback) -> SocketIOEventHandler {
         #if DEBUG
             println("--- \(SocketIOName): Event handler")
@@ -137,6 +154,12 @@ public class SocketIOEventHandler: SocketIOReceiver {
         return self
     }
     
+    /**
+    Define an event receiver.
+    
+    :param: event Socket.io system event.
+    :param: callback Event callback.
+    */
     public final func off() -> SocketIOEventHandler {
         #if DEBUG
             println("--- \(SocketIOName): Event handler")

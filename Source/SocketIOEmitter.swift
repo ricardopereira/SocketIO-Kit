@@ -8,10 +8,13 @@
 
 import Foundation
 
+/**
+Socket.io emitter protocol.
+*/
 protocol SocketIOEmitter {
     
     func emit(event: SocketIOEvent, withMessage message: String)
-    func emit(event: String, withMessage message: String)
+    func emit(event: String, withMessage message: String)    
     func emit(event: SocketIOEvent, withList list: NSArray)
     func emit(event: String, withList list: NSArray)
     func emit(event: SocketIOEvent, withDictionary dict: NSDictionary)

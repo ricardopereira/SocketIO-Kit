@@ -13,7 +13,14 @@ Socket.io object protocol.
 */
 public protocol SocketIOObject {
     
+    /**
+    Creates an instance  with data from a dictionary.
+    
+    :param: dict Data dictionary.
+    */
     init(dict: NSDictionary)
+    
+    /// Retrieve a dictionary.
     var asDictionary: NSDictionary { get }
     
 }

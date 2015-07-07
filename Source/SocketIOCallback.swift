@@ -8,6 +8,16 @@
 
 import Foundation
 
+/**
+Enum with valid arguments for event callback.
+
+**Cases:**
+
+ - Message
+ - List
+ - JSON Object
+ - Failure
+*/
 public enum SocketIOArg<E: SocketIOError> {
     
     case Message(message: String)
@@ -17,4 +27,5 @@ public enum SocketIOArg<E: SocketIOError> {
     
 }
 
+/// Type alias for an event callback.
 public typealias SocketIOCallback = (SocketIOArg<SocketIOError>) -> ()

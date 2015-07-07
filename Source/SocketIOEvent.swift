@@ -8,7 +8,9 @@
 
 import Foundation
 
-// System events
+/**
+Socket.io system events.
+*/
 public enum SocketIOEvent: String, Printable {
     
     case Connected = "connected" //Called on a successful connection
@@ -19,10 +21,12 @@ public enum SocketIOEvent: String, Printable {
     case ReconnectAttempt = "reconnect_attempt" //Attempt for reconnection
     case EmitError = "emit_error" //Sending errors
     
+    /// Event description.
     public var description: String {
         return self.rawValue
     }
     
+    /// Protected events.
     static var system: [SocketIOEvent] {
         return [.Connected, .ConnectedNamespace, .Disconnected, .ReconnectAttempt, .EmitError]
     }
