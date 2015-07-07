@@ -12,7 +12,7 @@
     <a title="  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (39% documented)</p>
+        <p><a href="index.html"> Docs</a> (100% documented)</p>
         <p class="header-right"><a href=""><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -85,6 +85,17 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+          <a href="Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:11SocketIOKit24RequestCompletionHandler">RequestCompletionHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:11SocketIOKit16SocketIOCallback">SocketIOCallback</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -93,24 +104,42 @@
             
             <a href='#img_src_https_github_com_ricardopereira_socketio_kit_blob_master_logo_socketiokit_png_raw_true_20_36x36_alt_socketio_kit_logo_socketio_kit' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='img_src_https_github_com_ricardopereira_socketio_kit_blob_master_logo_socketiokit_png_raw_true_20_36x36_alt_socketio_kit_logo_socketio_kit'><img src="https://github.com/ricardopereira/SocketIO-Kit/blob/master/Logo/SocketIOKit.png?raw=true%20=36x36" alt="SocketIO-Kit Logo"> SocketIO-Kit</h1>
 
-<p>SocketIO-Kit is a <a href="http://socket.io">Socket.io</a> iOS client with type safe, clean syntax and speed in mind. WebSocket is the only transport that is implemented and it uses <a href="https://github.com/daltoniam/Starscream">Starscream</a>.</p>
+<p>SocketIO-Kit is a <a href="http://socket.io">Socket.io</a> iOS client with type safe, clean syntax and speed in mind. WebSocket is the only transport that is implemented and it uses <a href="https://github.com/tidwall/SwiftWebSocket">SwiftWebSocket</a>.</p>
 
-<p><a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a></p>
+<p><a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a> <a href="http://cocoapods.org/pods/SocketIOKit"><img src="https://img.shields.io/cocoapods/v/SocketIOKit.svg?style=flat" alt="Version"></a></p>
 <a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
-<a href='#a_href_https_github_com_carthage_carthage_carthage_a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='a_href_https_github_com_carthage_carthage_carthage_a'><a href="https://github.com/Carthage/Carthage">Carthage</a></h4>
-<pre class="highlight plaintext"><code>github "ricardopereira/SocketIO-Kit"
+<a href='#img_src_https_cloud_githubusercontent_com_assets_432536_5252404_443d64f4_7952_11e4_9d26_fc5cc664cb61_png_width_24_height_24_a_href_https_github_com_carthage_carthage_carthage_a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='img_src_https_cloud_githubusercontent_com_assets_432536_5252404_443d64f4_7952_11e4_9d26_fc5cc664cb61_png_width_24_height_24_a_href_https_github_com_carthage_carthage_carthage_a'><img src="https://cloud.githubusercontent.com/assets/432536/5252404/443d64f4-7952-11e4-9d26-fc5cc664cb61.png" width="24" height="24"> <a href="https://github.com/Carthage/Carthage">Carthage</a></h4>
+<pre class="highlight ruby"><code><span class="n">github</span> <span class="s2">"ricardopereira/SocketIO-Kit"</span>
 </code></pre>
 
 <p>Then run <code>carthage update</code>.</p>
 
 <p>Follow the current instructions in <a href="https://github.com/Carthage/Carthage#adding-frameworks-to-an-application">Carthage&rsquo;s README</a>
 for up to date installation instructions.</p>
-<a href='#a_href_http_cocoapods_org_cocoapods_a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='a_href_http_cocoapods_org_cocoapods_a'><a href="http://cocoapods.org">CocoaPods</a></h4>
+<a href='#img_src_https_dl_dropboxusercontent_com_u_11377305_resources_cocoapods_png_width_24_height_24_a_href_http_cocoapods_org_cocoapods_a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='img_src_https_dl_dropboxusercontent_com_u_11377305_resources_cocoapods_png_width_24_height_24_a_href_http_cocoapods_org_cocoapods_a'><img src="https://dl.dropboxusercontent.com/u/11377305/resources/cocoapods.png" width="24" height="24"> <a href="http://cocoapods.org">CocoaPods</a></h4>
 
-<p>(work in progress)</p>
+<p>To install it, simply add the following line to your <strong>Podfile</strong>:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s2">"SocketIOKit"</span>
+</code></pre>
+
+<p>You will also need to make sure you&rsquo;re opting into using frameworks:</p>
+<pre class="highlight ruby"><code><span class="n">use_frameworks!</span>
+</code></pre>
+
+<p>Then run <code>pod install</code> with CocoaPods 0.36 or newer.</p>
 <a href='#manually' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='manually'>Manually</h4>
 
-<p><a href="https://github.com/ricardopereira/SocketIO-Kit/archive/master.zip">Download</a> the project and copy the <code>SocketIO-Kit</code> folder into your project and use the <code>Source</code> files. You need <a href="https://github.com/thoughtbot/Runes">Runes</a> framework to run SocketIO-Kit because it uses infix operators for monadic functions.</p>
+<p><a href="https://github.com/ricardopereira/SocketIO-Kit/archive/master.zip">Download</a> the project and copy the <code>SocketIO-Kit</code> folder into your project and use the <code>Source</code> files. You need <a href="https://github.com/thoughtbot/Runes">Runes</a> v2.0.0 (Swift 1.2) framework to run SocketIO-Kit because it uses infix operators for monadic functions and you need <a href="https://github.com/tidwall/SwiftWebSocket">SwiftWebSocket</a> v0.1.18 (Swift 1.2).</p>
+
+<p>There is no need for <code>import SocketIOKit</code> when manually installing.</p>
+<a href='#requirements' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='requirements'>Requirements</h2>
+
+<ul>
+<li>iOS 8.0+ / Mac OS X 10.10+</li>
+<li>Xcode 6.3 (Swift 1.2)</li>
+</ul>
+
+<p>⚠️ Swift 2.0 version, please use branch <a href="https://github.com/ricardopereira/SocketIO-Kit/tree/Swift2"><code>Swift2</code></a>.</p>
 <a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">SocketIOKit</span>
 
@@ -140,15 +169,20 @@ for up to date installation instructions.</p>
     <span class="k">default</span><span class="p">:</span>
         <span class="k">break</span>
     <span class="p">}</span>
-<span class="p">}</span><span class="o">.</span><span class="nf">on</span><span class="p">(</span><span class="o">.</span><span class="kt">Connected</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="nv">arg</span><span class="p">:</span> <span class="kt">SocketIOArg</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">()</span> <span class="k">in</span>
+<span class="p">}</span><span class="o">.</span><span class="nf">on</span><span class="p">(</span><span class="o">.</span><span class="kt">TransportError</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="nv">$0</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="kt">Failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+        <span class="nf">println</span><span class="p">(</span><span class="s">"WebSocket error: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">default</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="p">}</span>
+<span class="p">}</span><span class="o">.</span><span class="nf">on</span><span class="p">(</span><span class="o">.</span><span class="kt">Connected</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="nf">println</span><span class="p">(</span><span class="s">"Connected"</span><span class="p">)</span>
     <span class="n">socket</span><span class="o">.</span><span class="nf">emit</span><span class="p">(</span><span class="o">.</span><span class="kt">ChatMessage</span><span class="p">,</span> <span class="nv">withMessage</span><span class="p">:</span> <span class="s">"I'm iOS"</span><span class="p">)</span>
-<span class="p">}</span><span class="o">.</span><span class="nf">on</span><span class="p">(</span><span class="o">.</span><span class="kt">Disconnected</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">switch</span> <span class="nv">$0</span> <span class="p">{</span>
-    <span class="k">case</span> <span class="o">.</span><span class="kt">Message</span><span class="p">(</span><span class="k">let</span> <span class="nv">message</span><span class="p">):</span>
-        <span class="nf">println</span><span class="p">(</span><span class="s">"Disconnected with no error"</span><span class="p">)</span>
-    <span class="k">case</span> <span class="o">.</span><span class="kt">Failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
-        <span class="nf">println</span><span class="p">(</span><span class="s">"Disconnected with error: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span><span class="o">.</span><span class="nf">on</span><span class="p">(</span><span class="o">.</span><span class="kt">Disconnected</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="kt">Message</span><span class="p">(</span><span class="k">let</span> <span class="nv">reason</span><span class="p">):</span>
+        <span class="nf">println</span><span class="p">(</span><span class="s">"Disconnected: </span><span class="se">\(</span><span class="n">reason</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
     <span class="k">default</span><span class="p">:</span>
         <span class="k">break</span>
     <span class="p">}</span>
@@ -176,6 +210,7 @@ for up to date installation instructions.</p>
 <p><strong>Retrieving an image</strong></p>
 <pre class="highlight javascript"><code><span class="c1">// NodeJS Server</span>
 <span class="kd">var</span> <span class="nx">io</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'socket.io'</span><span class="p">)(</span><span class="nx">http</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">)</span>
 
 <span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'connection'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'getimage'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
@@ -191,7 +226,7 @@ for up to date installation instructions.</p>
 <span class="n">socket</span><span class="o">.</span><span class="nf">on</span><span class="p">(</span><span class="o">.</span><span class="kt">Image</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">switch</span> <span class="nv">$0</span> <span class="p">{</span>
     <span class="k">case</span> <span class="o">.</span><span class="kt">JSON</span><span class="p">(</span><span class="k">let</span> <span class="nv">json</span><span class="p">):</span>
-        <span class="k">if</span> <span class="k">let</span> <span class="nv">image</span> <span class="o">=</span> <span class="n">json</span><span class="p">[</span><span class="s">"buffer"</span><span class="p">]</span> <span class="k">as</span><span class="p">?</span> <span class="kt">String</span> <span class="o">&gt;&gt;-</span> <span class="kt">SocketIOUtilities</span><span class="o">.</span><span class="n">base64EncodedStringToUIImage</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">image</span> <span class="o">=</span> <span class="n">json</span><span class="p">[</span><span class="s">"buffer"</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">String</span> <span class="o">&gt;&gt;-</span> <span class="kt">SocketIOUtilities</span><span class="o">.</span><span class="n">base64EncodedStringToUIImage</span> <span class="p">{</span>
             <span class="nf">println</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
         <span class="p">}</span>
     <span class="k">default</span><span class="p">:</span>
@@ -212,7 +247,7 @@ for up to date installation instructions.</p>
     <span class="p">}</span>
 
     <span class="nf">init</span><span class="p">(</span><span class="nv">dict</span><span class="p">:</span> <span class="kt">NSDictionary</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">self</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">buffer</span><span class="p">:</span> <span class="n">dict</span><span class="p">[</span><span class="s">"buffer"</span><span class="p">]</span> <span class="k">as</span><span class="o">!</span> <span class="kt">String</span><span class="p">)</span> <span class="c1">//Force casts should be avoided!</span>
+        <span class="k">self</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">buffer</span><span class="p">:</span> <span class="n">dict</span><span class="p">[</span><span class="s">"buffer"</span><span class="p">]</span> <span class="k">as!</span> <span class="kt">String</span><span class="p">)</span> <span class="c1">//Force casts should be avoided!</span>
     <span class="p">}</span>
 
     <span class="k">var</span> <span class="nv">asDictionary</span><span class="p">:</span> <span class="kt">NSDictionary</span> <span class="p">{</span>
@@ -248,7 +283,7 @@ for up to date installation instructions.</p>
     <span class="p">}</span>
 
     <span class="n">convenience</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="nv">dict</span><span class="p">:</span> <span class="kt">NSDictionary</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">self</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="n">dict</span><span class="p">[</span><span class="s">"name"</span><span class="p">]</span> <span class="k">as</span><span class="o">!</span> <span class="kt">String</span><span class="p">)</span> <span class="c1">//Force casts should be avoided!</span>
+        <span class="k">self</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="n">dict</span><span class="p">[</span><span class="s">"name"</span><span class="p">]</span> <span class="k">as!</span> <span class="kt">String</span><span class="p">)</span> <span class="c1">//Force casts should be avoided!</span>
     <span class="p">}</span>
 
     <span class="k">var</span> <span class="nv">asDictionary</span><span class="p">:</span> <span class="kt">NSDictionary</span> <span class="p">{</span>
@@ -262,12 +297,24 @@ for up to date installation instructions.</p>
 
 <span class="n">socket</span><span class="o">.</span><span class="nf">emit</span><span class="p">(</span><span class="o">.</span><span class="kt">Login</span><span class="p">,</span> <span class="nv">withObject</span><span class="p">:</span> <span class="n">john</span><span class="p">)</span>
 </code></pre>
+<a href='#features' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='features'>Features</h2>
+<a href='#to_implement' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h6 id='to_implement'>To implement</h6>
+
+<ul>
+<li>[ ] Reconnect automatically</li>
+<li>[ ] Complete documentation</li>
+<li>[ ] Test on iOS 7.0+ and Mac OS X 10.9+</li>
+<li>[ ] BDD Tests</li>
+</ul>
 <a href='#debugging' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='debugging'>Debugging</h2>
 
 <p>You can opt into seeing messages by supplying the DEBUG flag. Just add <code>-D DEBUG</code> in <code>Build Settings &gt; Swift Compiler - Custom Flags: Other Swift Flags</code>.</p>
 <a href='#contributing' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='contributing'>Contributing</h2>
 
 <p>See the <a href="CONTRIBUTING.md">CONTRIBUTING</a> document. Thank you, <a href="https://github.com/ricardopereira/SocketIO-Kit/graphs/contributors">contributors</a>!</p>
+<a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author</h2>
+
+<p>Ricardo Pereira, <a href="https://twitter.com/ricardopereiraw">@ricardopereiraw</a></p>
 <a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
 
 <p>It is free software and may be redistributed under the terms specified in the <a href="/LICENSE">LICENSE</a> file.</p>
@@ -275,7 +322,7 @@ for up to date installation instructions.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-05-27)</p>
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-07-07)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.2.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

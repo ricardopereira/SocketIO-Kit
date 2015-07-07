@@ -13,7 +13,7 @@
     <a title="SocketIO Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (39% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
         <p class="header-right"><a href=""><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -86,13 +86,24 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+          <a href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:11SocketIOKit24RequestCompletionHandler">RequestCompletionHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:11SocketIOKit16SocketIOCallback">SocketIOCallback</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
         <section>
           <section class="section">
             <h1>SocketIO</h1>
-            <p>Undocumented</p>
+            <p>Socket.io client.</p>
 
           </section>
           <section class="section task-group-section">
@@ -182,6 +193,20 @@
                               <td>
                                 <div>
                                   <p>URL that will be used to establish the transport connection.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>options</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Custom options.</p>
+<p>let options = SocketIOOptions().namespace(<q>/users</q>)</p>
 
                                 </div>
                               </td>
@@ -280,6 +305,20 @@
                                 </div>
                               </td>
                             </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>options</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Custom options.</p>
+<p>let options = SocketIOOptions().namespace(<q>/users</q>)</p>
+
+                                </div>
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -299,8 +338,76 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a SocketIO instance with Options.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">nsurl</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">,</span> <span class="n">withOptions</span> <span class="nv">options</span><span class="p">:</span> <span class="kt">SocketIOOptions</span><span class="p">,</span> <span class="n">withRequest</span> <span class="nv">request</span><span class="p">:</span> <span class="kt">SocketIORequester</span><span class="p">,</span> <span class="n">withTransport</span> <span class="nv">transport</span><span class="p">:</span> <span class="kt">SocketIOTransport</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>nsurl</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>URL that will be used to establish the transport connection.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>options</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Custom options.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>request</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Custom request.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>transport</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Custom transport.</p>
+<p>let options = SocketIOOptions().namespace(<q>/users</q>)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -1387,7 +1494,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-05-27)</p>
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-07-07)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.2.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

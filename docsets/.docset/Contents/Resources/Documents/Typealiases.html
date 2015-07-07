@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Protocols  Reference</title>
+    <title>Typealiases  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
@@ -9,7 +9,7 @@
     <script src="js/jazzy.js" defer></script>
   </head>
   <body>
-    <a title="Protocols  Reference"></a>
+    <a title="Typealiases  Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="index.html"> Docs</a> (100% documented)</p>
@@ -20,7 +20,7 @@
       <p id="breadcrumbs">
         <a href="index.html"> Reference</a>
         <img id="carat" src="img/carat.png" />
-        Protocols  Reference
+        Typealiases  Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -101,8 +101,8 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Protocols</h1>
-            <p>The following protocols are available globally.</p>
+            <h1>Typealiases</h1>
+            <p>The following typealiases are available globally.</p>
 
           </section>
           <section class="section task-group-section">
@@ -111,9 +111,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P11SocketIOKit17SocketIORequester"></a>
-                    <a name="//apple_ref/swift/Protocol/SocketIORequester" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P11SocketIOKit17SocketIORequester">SocketIORequester</a>
+                    <a name="/s:11SocketIOKit24RequestCompletionHandler"></a>
+                    <a name="//apple_ref/swift/Alias/RequestCompletionHandler" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11SocketIOKit24RequestCompletionHandler">RequestCompletionHandler</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -121,15 +121,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Protocol for custom requests.</p>
+                        <p>Type alias for request completion handler.</p>
 
-                        <a href="Protocols/SocketIORequester.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SocketIORequester</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">RequestCompletionHandler</span> <span class="o">=</span> <span class="p">(</span><span class="kt">NSData</span><span class="o">!</span><span class="p">,</span> <span class="kt">NSURLResponse</span><span class="p">?,</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
 
                         </div>
                       </div>
@@ -143,9 +142,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P11SocketIOKit25SocketIOTransportDelegate"></a>
-                    <a name="//apple_ref/swift/Protocol/SocketIOTransportDelegate" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P11SocketIOKit25SocketIOTransportDelegate">SocketIOTransportDelegate</a>
+                    <a name="/s:11SocketIOKit16SocketIOCallback"></a>
+                    <a name="//apple_ref/swift/Alias/SocketIOCallback" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11SocketIOKit16SocketIOCallback">SocketIOCallback</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -153,47 +152,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Socket.io transport delegate.</p>
+                        <p>Type alias for an event callback.</p>
 
-                        <a href="Protocols/SocketIOTransportDelegate.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SocketIOTransportDelegate</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P11SocketIOKit14SocketIOObject"></a>
-                    <a name="//apple_ref/swift/Protocol/SocketIOObject" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P11SocketIOKit14SocketIOObject">SocketIOObject</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Socket.io object protocol.</p>
-
-                        <a href="Protocols/SocketIOObject.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SocketIOObject</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">SocketIOCallback</span> <span class="o">=</span> <span class="p">(</span><span class="kt">SocketIOArg</span><span class="o">&lt;</span><span class="kt">SocketIOError</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">()</span></code></pre>
 
                         </div>
                       </div>
