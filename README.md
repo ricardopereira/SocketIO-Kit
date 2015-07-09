@@ -2,7 +2,7 @@
 
 SocketIO-Kit is a [Socket.io](http://socket.io) iOS client with type safe, clean syntax and speed in mind. WebSocket is the only transport that is implemented and it uses [SwiftWebSocket](https://github.com/tidwall/SwiftWebSocket).
 
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Version](https://img.shields.io/cocoapods/v/SocketIOKit.svg?style=flat)](http://cocoapods.org/pods/SocketIOKit) [![Build Status](https://www.bitrise.io/app/d4c6b6bba39b8539.svg?token=WqomE50tr11oq3AV_nyL-A)](https://www.bitrise.io/app/d4c6b6bba39b8539) [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](/LICENSE)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Version](https://img.shields.io/cocoapods/v/SocketIOKit.svg?style=flat)](http://cocoapods.org/pods/SocketIOKit) [![Build Status](https://www.bitrise.io/app/d4c6b6bba39b8539.svg?token=WqomE50tr11oq3AV_nyL-A)](https://www.bitrise.io/app/d4c6b6bba39b8539) [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](/LICENSE.md)
 
 ## Installation
 
