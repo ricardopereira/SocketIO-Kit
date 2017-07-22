@@ -1,4 +1,4 @@
-# ![SocketIO-Kit Logo](https://github.com/ricardopereira/SocketIO-Kit/blob/master/Logo/SocketIOKit.png?raw=true =36x36) SocketIO-Kit
+# ![SocketIO-Kit Logo](https://github.com/ricardopereira/SocketIO-Kit/blob/master/Logo/SocketIOKit.png?raw=true=36x36) SocketIO-Kit
 
 ⚠️ **This project is no longer maintained. Please use the official framework [Socket.IO-Client-Swift](https://github.com/socketio/socket.io-client-swift).**
 
@@ -23,7 +23,7 @@ for up to date installation instructions.
 
 [carthage-installation]: https://github.com/Carthage/Carthage#adding-frameworks-to-an-application
 
-#### <img src="https://dl.dropboxusercontent.com/u/11377305/resources/cocoapods.png" width="24" height="24"> [CocoaPods]
+#### <img src="https://raw.githubusercontent.com/ricardopereira/resources/master/img/cocoapods.png" width="24" height="24"> [CocoaPods]
 
 [CocoaPods]: http://cocoapods.org
 
